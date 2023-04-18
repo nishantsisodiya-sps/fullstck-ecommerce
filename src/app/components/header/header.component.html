@@ -18,16 +18,14 @@
 
         <ul class="navbar-nav ms-auto" *ngSwitchCase="'default'">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/sellerAuth">seller</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">LogIn/SignUp</a>
-          </li>
-
-
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Seller</a>
+            <a class="nav-link active" aria-current="page" routerLink="/userAuth">LogIn/SignUp</a>
           </li>
         </ul>
 
@@ -45,7 +43,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Become a seller</a>
+            <a class="nav-link active" aria-current="page" routerLink="/sellerAuth">Become a seller</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -56,7 +54,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><a class="dropdown-item" href="#">MyOrders</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -85,7 +83,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="#">Profile</a></li>
               <li><a class="dropdown-item" href="#">MyOrders</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" (click)="sellerlogout()">Logout</a></li>
             </ul>
           </li>
         </ul>

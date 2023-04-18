@@ -1,0 +1,75 @@
+<div class="section">
+    <div class="container">
+        <div class="row full-height justify-content-center">
+            <div class="col-12 text-center align-self-center">
+                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+                    <h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+                    <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" />
+                    <label for="reg-log"></label>
+                    <div class="card-3d-wrap mx-auto">
+                        <div class="card-3d-wrapper">
+                            <div class="card-front">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-2 pb-3" style="color: white;">Log In</h4>
+                                        <form [formGroup]="loginForm">
+                                            <div class="form-group">
+                                                <input type="email" name="logemail" class="form-style"
+                                                    placeholder="Your Email" id="logemail" autocomplete="off" formControlName="email">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="logpass" class="form-style"
+                                                    placeholder="Your Password" id="logpass" autocomplete="off" formControlName="password">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <a class="btn mt-4" type="submit" (click)="loginUser($event)">submit</a>
+                                            <p class="mb-0 mt-4 text-center"><a class="link">Forgot your
+                                                    password?</a></p>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <div class="center-wrap">
+                                    <div class="section text-center">
+                                        <h4 class="mb-2 pb-3" style="color: white;">Sign Up</h4>
+
+                                        <form [formGroup]="signupForm">
+                                            <div class="form-group">
+                                                <input type="text" name="name" class="form-style"
+                                                    placeholder="Your Full Name" id="logname" autocomplete="off" formControlName="name">
+                                                <i class="input-icon uil uil-user"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="email" name="email" class="form-style"
+                                                    placeholder="Your Email" id="logemail" autocomplete="off" formControlName="email">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="number" name="phone" class="form-style"
+                                                    placeholder="Phone Number" id="logPhone" autocomplete="off" formControlName="phone">
+                                                <i class="input-icon uil uil-at"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="password" class="form-style"
+                                                    placeholder="Your Password" id="logpass" autocomplete="off" formControlName="password">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <div class="form-group mt-2">
+                                                <input type="password" name="Cpassword" class="form-style"
+                                                    placeholder="Confirm Password" id="logCpass" autocomplete="off" formControlName="Cpassword">
+                                                <i class="input-icon uil uil-lock-alt"></i>
+                                            </div>
+                                            <a  class="btn mt-4" (click)="submitUser()">submit</a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
