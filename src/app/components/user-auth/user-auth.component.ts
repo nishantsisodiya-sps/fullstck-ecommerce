@@ -36,7 +36,7 @@ export class UserAuthComponent implements OnInit {
     let data = this.signupForm.value;
 
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/user/signup', data)
+      ('https://ecom-backend-file.onrender.com/user/signup', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Usertoken', response.token);
@@ -50,14 +50,13 @@ export class UserAuthComponent implements OnInit {
   }
 
 
-
   loginUser(event: Event) {
     event.preventDefault();
     let data = this.loginForm.value;
 
 
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/user/login', { email: data.email, password: data.password })
+      ('https://ecom-backend-file.onrender.com/user/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Usertoken', response.token);

@@ -38,7 +38,7 @@ export class SellerAuthComponent implements OnInit {
     let data = this.sellerSignupForm.value;
 
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/seller/signup', data)
+      ('https://ecom-backend-file.onrender.com/seller/signup', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.removeItem('Usertoken')
@@ -58,7 +58,7 @@ export class SellerAuthComponent implements OnInit {
     event.preventDefault();
     let data = this.sellerLoginForm.value;
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/seller/login', { email: data.email, password: data.password })
+      ('https://ecom-backend-file.onrender.com/seller/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Sellertoken', response.token);

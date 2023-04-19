@@ -1,0 +1,109 @@
+<div class="row justify-content-center py-2">
+    <div class="col-lg-6 col-md-8">
+        <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab-login" data-bs-toggle="pill" data-bs-target="#pills-login"
+                    type="button" role="tab" aria-controls="pills-login" aria-selected="true">AddProducts</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab-register" data-bs-toggle="pill" data-bs-target="#pills-register"
+                    type="button" role="tab" aria-controls="pills-register" aria-selected="false">My Products</button>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+
+    <div class="form-top">
+        <div class="myForm">
+            <form action="/products" method="post" [formGroup]="productForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Product Title</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Product title" formControlName="title" name="title">
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Product Description" formControlName="description" name="description">
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleInputEmail1">Price</label>
+                        <input type="number" class="form-control" placeholder="Price" formControlName="price"
+                            name="price">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputEmail1">Discount Percentage</label>
+                        <input type="number" class="form-control" placeholder="Discount Percentage"
+                            formControlName="discountPercentage" name="discountPercentage">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleInputEmail1">Rating</label>
+                        <input type="number" class="form-control" placeholder="Rating" formControlName="rating"
+                            name="rating">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputEmail1">stock</label>
+                        <input type="number" class="form-control" placeholder="stock" formControlName="stock"
+                            name="stock">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleInputEmail1">Category</label>
+                        <input type="text" class="form-control" placeholder="Rating" formControlName="category"
+                            name="category">
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputEmail1">Brand</label>
+                        <input type="text" class="form-control" placeholder="stock" formControlName="brand"
+                            name="brand">
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleFormControlFile1">Choose File &nbsp;</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                        formControlName="thumbnail" name="thumbnail">
+                    <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
+                </div>
+                <br>
+                <div class="myBtn">
+                    <button type="submit" class="btn btn-primary mb-4 d-flex" (click)="addProduct($event)">
+                        Add Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+
+    <div>
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                    card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,7 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http' ;
+import {HttpClientModule} from '@angular/common/http';
+import { AddProductComponent } from './components/add-product/add-product.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {HttpClientModule} from '@angular/common/http' ;
     FooterComponent,
     HomeComponent,
     UserAuthComponent,
-    SellerAuthComponent
+    SellerAuthComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,

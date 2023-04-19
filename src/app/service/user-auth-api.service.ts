@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { login, signup } from '../interface/userInterface';
+import { login, product, signup } from '../interface/userInterface';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -13,32 +13,16 @@ export class UserAuthApiService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-
-  // userSignup(data: signup) {
-  //   this.http.post<signup>(`${this.ApiUrl}/user/signup`, data, { observe: 'response' })
-  //     .subscribe(result => {
-  //       if (result) {
-  //         this.router.navigate(['/home'])
-  //       }
-  //     })
-  // }
+  addProduct(data: any):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const options = { headers: headers };
+   return this.http.post<any>('http://localhost:2800/products' , data , options)
+  }
 
 
-  // userLogin(data: login) {
-  //   this.http.post<{ success: boolean, message: string, token: string }>
-  //   (`${this.ApiUrl}/user/login`, data, { observe: 'response' })
-  //     .subscribe(response => {
-  //       if (Response) {
-  //         localStorage.setItem('token', response.token);
-  //         this.router.navigate(['/home'])
-  //       } else {
-  //         alert("Invalid credentials")
-  //       }
-  //     })
-  // }
 
-  getUserData(): Observable<any> {
-    return this.http.get(`${this.ApiUrl}/user/signup/data`)
+  getProducts():Observable<any>{
+    return this.http.get('http://localhost:2800/products')
   }
 
 }
