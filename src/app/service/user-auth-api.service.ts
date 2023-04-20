@@ -16,13 +16,13 @@ export class UserAuthApiService {
   addProduct(data: any):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const options = { headers: headers };
-   return this.http.post<any>('http://localhost:2800/products' , data , options)
+   return this.http.post<any>('https://ecom-backend-file.onrender.com/products' , data , options)
   }
 
 
 
   getProducts():Observable<any>{
-    return this.http.get('http://localhost:2800/products')
+    return this.http.get('https://ecom-backend-file.onrender.com/products')
   }
 
 }

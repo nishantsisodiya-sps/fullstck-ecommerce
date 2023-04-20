@@ -12,6 +12,7 @@ import { SellerAuthComponent } from './components/seller-auth/seller-auth.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { MyProductsComponent } from './components/my-products/my-products.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     UserAuthComponent,
     SellerAuthComponent,
     AddProductComponent,
+    MyProductsComponent,
   ],
   imports: [
     BrowserModule,
