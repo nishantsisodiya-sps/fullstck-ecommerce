@@ -1,7 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { login, product, signup } from '../interface/userInterface';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,7 +9,7 @@ export class UserAuthApiService {
 
   public ApiUrl = 'http://localhost:2800'
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   addProduct(data: any):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
