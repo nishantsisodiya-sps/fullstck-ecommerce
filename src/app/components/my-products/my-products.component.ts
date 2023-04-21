@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
+import { PipePipe } from 'src/app/service/pipe.pipe';
 
 @Component({
   selector: 'app-my-products',
@@ -19,7 +20,7 @@ export class MyProductsComponent implements OnInit {
   getProducts(){
     this.api.getProducts().subscribe(response=>{
       this.products = response.products
-      console.log(this.products);
+     
     })
   }
 

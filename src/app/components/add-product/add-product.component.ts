@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -110,9 +111,10 @@ export class AddProductComponent implements OnInit {
       formData.append('images', imagesFiles[i]);
     }
     console.log(formData);
-    this.http.post('https://ecom-backend-file.onrender.com/products', formData).subscribe(
+    this.http.post('http://localhost:2800/products', formData).subscribe(
       res => {
         console.log('Product created successfully!');
+        this.productForm.reset(this.productForm.value)
       },
       err => {
         console.error('Product creation failed:', err);

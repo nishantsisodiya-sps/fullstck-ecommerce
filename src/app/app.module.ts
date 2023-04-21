@@ -13,6 +13,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { PipePipe } from './service/pipe.pipe';
+import { DetailsComponent } from './components/details/details.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
     SellerAuthComponent,
     AddProductComponent,
     MyProductsComponent,
+    PipePipe,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

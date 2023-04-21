@@ -5,6 +5,7 @@ import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { DetailsComponent } from './components/details/details.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path : 'userAuth' , component : UserAuthComponent},
   {path : 'sellerAuth' , component : SellerAuthComponent},
   {path : 'addproduct' , component : AddProductComponent},
-  {path : 'MyProducts' , component : MyProductsComponent}
+  {path : 'MyProducts' , component : MyProductsComponent},
+  {path : 'details/:id' , component : DetailsComponent},
 ]
 
 @NgModule({

@@ -1,3 +1,19 @@
-<div class="main">
-    <h1>home</h1>
+<div>
+<ngb-carousel *ngIf="myProducts">
+    <ng-template *ngFor="let item of myProducts" ngbSlide>
+        <div class="picsum-img-wrapper">
+            <a [routerLink]="['/buy', item.id]"><img class="product-header-image" src="http://localhost:2800/upload/{{item.thumbnail}}"
+                    alt="Random first slide" /></a>
+        </div>
+        <div class="carousel-caption">
+            <h3>{{item.title}}</h3>
+            <p>{{item.description}}</p>
+        </div>
+    </ng-template>
+</ngb-carousel>
 </div>
+
+
+<h2 class="my-2 mt-3 mb-1 text-center"><strong>Bestsellers</strong></h2>
+
+<app-my-products></app-my-products>
