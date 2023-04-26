@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class SellerAuthComponent implements OnInit {
   sellerLoginForm !: FormGroup
   sellerSignupForm !: FormGroup
   signupdata: [] = []
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router , private api : UserAuthApiService) {
 
     this.sellerLoginForm = this.fb.group({
       email: ['', [Validators.required]],
@@ -25,20 +26,21 @@ export class SellerAuthComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      Cpassword: ['', [Validators.required]]
+      phone: ['', [Validators.required]]
     })
 
   }
 
   ngOnInit(): void {
+
   }
 
 
   submitseller() {
     let data = this.sellerSignupForm.value;
 
-    this.http.post<{ success: boolean, message: string, token: string }>
-      ('https://ecom-backend-file.onrender.com/seller/signup', data)
+    this.http.post<{ success: boolean, token: string }>
+      ('http://localhost:2800/sellers/register', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.removeItem('Usertoken')
@@ -47,7 +49,7 @@ export class SellerAuthComponent implements OnInit {
             window.location.reload();
           })
         } else {
-          alert(response.message);
+          alert("Something went wrong");
         }
       })
   }
@@ -58,7 +60,7 @@ export class SellerAuthComponent implements OnInit {
     event.preventDefault();
     let data = this.sellerLoginForm.value;
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('https://ecom-backend-file.onrender.com/seller/login', { email: data.email, password: data.password })
+      ('http://localhost:2800/sellers/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Sellertoken', response.token);
@@ -70,5 +72,9 @@ export class SellerAuthComponent implements OnInit {
         }
       });
   }
+
+
+ 
+
 
 }

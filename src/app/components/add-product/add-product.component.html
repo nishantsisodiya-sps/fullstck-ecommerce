@@ -68,7 +68,7 @@
             <div class="form-group">
                 <label for="exampleFormControlFile1"><b> More images </b>&nbsp;</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                    name="thumbnail" multiple (change)="onImagesSelected($event)">
+                    name="images" multiple (change)="onImagesSelected($event)">
                 <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
             </div>
             <br>

@@ -28,4 +28,9 @@ export class UserAuthApiService {
     return this.http.get(`http://localhost:2800/products/${id}`)
   }
 
+  // getSellerProfile():Observable<any>{
+  //   return this.http.get('http://localhost:2800/sellers/profile/6448c51fda331d1b06e02c32')
+  // }
+
+
 }

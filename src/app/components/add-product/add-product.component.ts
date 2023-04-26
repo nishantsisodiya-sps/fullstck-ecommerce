@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
@@ -110,13 +110,19 @@ export class AddProductComponent implements OnInit {
     for (let i = 0; i < imagesFiles.length; i++) {
       formData.append('images', imagesFiles[i]);
     }
-    console.log(formData);
-    this.http.post('http://localhost:2800/products', formData).subscribe(
+
+    let token = localStorage.getItem('Sellertoken')
+
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+    });
+    this.http.post('http://localhost:2800/products/add', formData , { headers }).subscribe(
       res => {
+        console.log('res=====>' + res);
         console.log('Product created successfully!');
         this.productForm.reset(this.productForm.value)
       },
-      err => {
+      err => {  
         console.error('Product creation failed:', err);
       }
     );

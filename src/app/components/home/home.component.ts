@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts()
+    // this.getProfile()
   }
 
   getProducts(){
@@ -20,5 +21,11 @@ export class HomeComponent implements OnInit {
     })
   
   }
+
+  // getProfile(){
+  //   this.api.getSellerProfile().subscribe(response=>{
+  //     console.log(response.seller);
+  //   })
+  // }
 
 }

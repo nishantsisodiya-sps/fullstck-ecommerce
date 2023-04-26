@@ -24,7 +24,6 @@ export class UserAuthComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      Cpassword: ['', [Validators.required]],
       phone: ['', [Validators.required]]
     })
   }
@@ -35,8 +34,8 @@ export class UserAuthComponent implements OnInit {
   submitUser() {
     let data = this.signupForm.value;
 
-    this.http.post<{ success: boolean, message: string, token: string }>
-      ('https://ecom-backend-file.onrender.com/user/signup', data)
+    this.http.post<{ success: boolean, token: string }>
+      ('http://localhost:2800/users/register', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Usertoken', response.token);
@@ -44,7 +43,7 @@ export class UserAuthComponent implements OnInit {
             window.location.reload()
           })
         } else {
-          alert(response.message);
+          alert("something wrong");
         }
       })
   }
@@ -56,7 +55,7 @@ export class UserAuthComponent implements OnInit {
 
 
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('https://ecom-backend-file.onrender.com/user/login', { email: data.email, password: data.password })
+      ('http://localhost:2800/users/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('Usertoken', response.token);
@@ -68,6 +67,11 @@ export class UserAuthComponent implements OnInit {
         }
       });
   }
+
+
+
+
+
 }
 
 
