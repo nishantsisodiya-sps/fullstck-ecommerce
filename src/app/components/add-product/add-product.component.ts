@@ -111,21 +111,20 @@ export class AddProductComponent implements OnInit {
       formData.append('images', imagesFiles[i]);
     }
 
-    let token = localStorage.getItem('Sellertoken')
-
     const headers = new HttpHeaders({
+     
       'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
     });
-    this.http.post('http://localhost:2800/products/add', formData , { headers }).subscribe(
+    this.http.post('http://localhost:2800/products/add', formData , {headers} ).subscribe(
       res => {
-        console.log('res=====>' + res);
+        // console.log('res=====>' + res);
         console.log('Product created successfully!');
-        this.productForm.reset(this.productForm.value)
+        this.productForm.reset()
       },
       err => {  
         console.error('Product creation failed:', err);
       }
     );
-  }
+  } 
 
 }

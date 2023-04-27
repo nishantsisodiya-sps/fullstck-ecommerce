@@ -5,7 +5,7 @@
 <div class="form-top">
     <div class="myForm">
         <h3 class="mt-2 text-center">Add Products</h3>
-        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="productForm"  enctype="multipart/form-data" (ngSubmit)="onSubmit()" method="post">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Title</label>
                 <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -61,7 +61,7 @@
             <div class="form-group">
                 <label for="exampleFormControlFile1"><b>Choose Thumbnail</b> &nbsp;</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1"
-                    name="thumbnail" (change)="onThumbnailSelected($event)">
+                    name="thumbnail" (change)="onThumbnailSelected($event)" enctype="multipart/form-data">
                 <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
             </div>
             <br>
