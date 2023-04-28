@@ -38,7 +38,7 @@ export class UserAuthComponent implements OnInit {
       ('http://localhost:2800/users/register', data)
       .subscribe(response => {
         if (response.success) {
-          localStorage.setItem('Usertoken', response.token);
+          localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
           })
@@ -58,7 +58,7 @@ export class UserAuthComponent implements OnInit {
       ('http://localhost:2800/users/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
-          localStorage.setItem('Usertoken', response.token);
+          localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
           })

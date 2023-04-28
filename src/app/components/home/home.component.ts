@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
@@ -8,11 +9,12 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 })
 export class HomeComponent implements OnInit {
   myProducts : any = []
-  constructor(private api : UserAuthApiService) { }
+  sellerData : any = []
+  constructor(private api : UserAuthApiService , private auth : AuthTokenService) { }
 
   ngOnInit(): void {
     this.getProducts()
-    // this.getProfile()
+    this.getProfile()
   }
 
   getProducts(){
@@ -22,10 +24,13 @@ export class HomeComponent implements OnInit {
   
   }
 
-  // getProfile(){
-  //   this.api.getSellerProfile().subscribe(response=>{
-  //     console.log(response.seller);
-  //   })
-  // }
+  getProfile(){
+
+    let id = this.auth.getSellerId().id
+
+    this.api.getSellerProfile(id).subscribe(response=>{
+      this.sellerData = response.seller
+    })
+  }
 
 }

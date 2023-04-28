@@ -14,6 +14,7 @@ export class AddProductComponent implements OnInit {
   productForm !: FormGroup
   thumbnailPreview : any
   myproduct : any = []
+sellerId: any|string;
   constructor(private fb : FormBuilder , private http : HttpClient , private router : Router , private api : UserAuthApiService) { 
 
     // this.productForm = this.fb.group({

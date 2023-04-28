@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +11,22 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   menuType : string = 'default'
+  sellerData: any = []
 
-  constructor( private router : Router) { }
+  constructor( private router : Router , private api : UserAuthApiService , private auth : AuthTokenService) { }
 
   ngOnInit(): void {
     this.switchMenu()
   }
 
   switchMenu(){
-    let token = localStorage.getItem('Usertoken')
-    let sellerToken = localStorage.getItem('Sellertoken')
-    if(token){
+
+    let tokendata = this.auth.getSellerId()
+
+    if(tokendata.role === 'user'){
       this.menuType = 'user'
       
-    }else if(sellerToken){
+    }else if(tokendata.role === 'seller'){
       this.menuType = 'seller'
     }
     else{
@@ -43,6 +47,16 @@ export class HeaderComponent implements OnInit {
     this.menuType = 'default'
     this.router.navigate(['/home'])
 
+  }
+
+  getProfile(){
+
+    let id = this.auth.getSellerId().id
+
+    this.api.getSellerProfile(id).subscribe(response=>{
+      this.sellerData = response.seller
+      console.log(this.sellerData);
+    })
   }
 
   }

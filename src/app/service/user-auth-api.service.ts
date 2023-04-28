@@ -28,9 +28,24 @@ export class UserAuthApiService {
     return this.http.get(`http://localhost:2800/products/${id}`)
   }
 
-  // getSellerProfile():Observable<any>{
-  //   return this.http.get('http://localhost:2800/sellers/profile/6448c51fda331d1b06e02c32')
-  // }
+
+  getSellerProducts(id : any):Observable<any>{
+
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+    });
+    return this.http.get(`http://localhost:2800/products/seller/${id}` , {headers})
+  }
 
 
+  getSellerProfile(id : any):Observable<any>{
+
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+    });
+    return this.http.get(`http://localhost:2800/sellers/profile/${id}` , {headers})
+
+  }
 }

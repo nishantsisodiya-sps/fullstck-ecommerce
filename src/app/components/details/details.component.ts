@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
@@ -11,7 +13,8 @@ export class DetailsComponent implements OnInit {
   product : any = []
   productQuantity: number = 1;
   quantity: number = 1
-  constructor(private activate : ActivatedRoute , private api : UserAuthApiService) { }
+  constructor(private activate : ActivatedRoute , private api : UserAuthApiService , 
+    private auth : AuthTokenService , private productApi : ProductService) { }
   arr : [] = []
 
   ngOnInit(): void {
@@ -20,12 +23,10 @@ export class DetailsComponent implements OnInit {
      let id = param.get('id')
 
      this.api.getSingleProduct(id).subscribe(res=>{
-       console.log(res);
       this.product.push(res)
 
       let image = this.product[0].images
       this.arr = image
-      console.log(this.arr);
      })
     })
   }
@@ -40,11 +41,26 @@ export class DetailsComponent implements OnInit {
   }
 
   changeImage(element:any,i:any){
-    this.product.thumbnail = element.arr[i]
+    this.product[0].thumbnail = element.arr[i]
   }
 
   AddToCart(){
-    console.log("Hello");
+    if(this.product){
+      this.product[0].quantity = this.productQuantity
+       
+      //Getting user id 
+      let user = this.auth.getSellerId().id
+      console.log(user);
+      let cart : any = {
+        // ...this.product[0],
+        user : user,
+        quantity : this.productQuantity,
+        product : this.product[0],
+      }
+      this.productApi.addToCart(cart).subscribe((res)=>{
+        console.log(res);
+      })
+    }
   }
   
 

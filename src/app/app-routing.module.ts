@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
-import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { DetailsComponent } from './components/details/details.component';
+import { SellerProductsComponent } from './seller-products/seller-products.component';
+import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path : 'addproduct' , component : AddProductComponent},
   {path : 'MyProducts' , component : MyProductsComponent},
   {path : 'details/:id' , component : DetailsComponent},
+  {path : 'sellerProducts' , component : SellerProductsComponent},
 ]
 
 @NgModule({

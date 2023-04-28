@@ -3,7 +3,7 @@
             <div class="row g-0">
                 <div class="col-md-6 border-end">
                     <div class="d-flex flex-column justify-content-center">
-                        <div class="main_image"> <img src="http://localhost:2800/uploads/{{item.thumbnail}}" id="main_product_image" width="350"> </div>
+                        <div class="main_image"> <img src="http://localhost:2800/uploads/{{item.thumbnail}}" id="main_product_image" width="300"> </div>
                         <div class="thumbnail_images">
                             <ul id="thumbnail" *ngFor="let items of arr let i = index">
                                 <li><img (click)="changeImage(this , i)" src="http://localhost:2800/uploads/{{items}}" width="70"></li>
@@ -17,7 +17,7 @@
                             <h1>{{item.title}}</h1> <span class="heart"><i class='bx bx-heart'></i></span>
                         </div>
                         <div class="mt-2 pr-3 content">
-                            <h3>{{item.description}}</h3>
+                            <h3 style="font-size: 1rem;">{{item.description}}</h3>
                         </div>
                         <h3><b>Price : </b>$ {{item.price}}</h3>
                         <div class="mt-2 pr-3 content">
@@ -45,8 +45,7 @@
                                 cart</button>
                         </div>
                         <div class="search-option"> <i class='bx bx-search-alt-2 first-search'></i>
-                            <div class="inputs"> <input type="text" name="" placeholder="Comment here"> </div> <i
-                                class='bx bx-share-alt share'></i>
+                            <div class="inputs"> <input type="text" name="" placeholder="Comment here"> </div>
                         </div>
                     </div>
                 </div>

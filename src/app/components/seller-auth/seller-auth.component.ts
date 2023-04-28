@@ -43,8 +43,8 @@ export class SellerAuthComponent implements OnInit {
       ('http://localhost:2800/sellers/register', data)
       .subscribe(response => {
         if (response.success) {
-          localStorage.removeItem('Usertoken')
-          localStorage.setItem('Sellertoken', response.token);
+          localStorage.removeItem('token')
+          localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload();
           })
@@ -63,7 +63,7 @@ export class SellerAuthComponent implements OnInit {
       ('http://localhost:2800/sellers/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
-          localStorage.setItem('Sellertoken', response.token);
+          localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
           })
