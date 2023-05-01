@@ -7,6 +7,7 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
 import { DetailsComponent } from './components/details/details.component';
 import { SellerProductsComponent } from './seller-products/seller-products.component';
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path : 'MyProducts' , component : MyProductsComponent},
   {path : 'details/:id' , component : DetailsComponent},
   {path : 'sellerProducts' , component : SellerProductsComponent},
+  {path : 'cart' , component : CartComponent},
 ]
 
 @NgModule({

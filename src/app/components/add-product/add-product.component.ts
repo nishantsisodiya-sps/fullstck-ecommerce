@@ -16,18 +16,6 @@ export class AddProductComponent implements OnInit {
   myproduct : any = []
 sellerId: any|string;
   constructor(private fb : FormBuilder , private http : HttpClient , private router : Router , private api : UserAuthApiService) { 
-
-    // this.productForm = this.fb.group({
-    //   title: ['', Validators.required],
-    //   description: ['', Validators.required],
-    //   price: [0, Validators.required],
-    //   discountPercentage: [0, Validators.required],
-    //   rating: [0, Validators.required],
-    //   stock: [0, Validators.required],
-    //   brand: ['', Validators.required],
-    //   category: ['', Validators.required],
-    //   thumbnail: [null, Validators.required],
-    // })
   }
 
   ngOnInit(): void {
@@ -46,41 +34,6 @@ sellerId: any|string;
     });
   }
 
-
-  // onFileSelected(event: any) {
-  //   const file: File = event.target.files[0];
-
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(file);
-
-  //     reader.onload = () => {
-  //       this.thumbnailPreview = reader.result as any;
-  //       this.productForm.patchValue({ thumbnail: file });
-  //     };
-  //   }
-  // }
-
-  // addProduct(event : Event){
-  //   let data = this.productForm.value
-  //   this.api.addProduct(data).subscribe(
-  //     () => {
-  //       console.log('Product added successfully!');
-  //       this.productForm.reset();
-  //       this.thumbnailPreview = null;
-  //     },
-  //     (err) => {
-  //       console.log('Failed to add product:', err);
-  //     }
-  //   );
-  // }
-
-
-  // getproduct(){
-  //   this.api.getProducts().subscribe(result=>{
-  //    this.myproduct = result
-  //   })
-  // }
 
   onThumbnailSelected(event: any) {
     const file = event.target.files?.[0];
@@ -114,7 +67,7 @@ sellerId: any|string;
 
     const headers = new HttpHeaders({
      
-      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     this.http.post('http://localhost:2800/products/add', formData , {headers} ).subscribe(
       res => {

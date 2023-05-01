@@ -17,6 +17,7 @@ import { DetailsComponent } from './components/details/details.component';
 import { SellerProductsComponent } from './seller-products/seller-products.component';
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     DetailsComponent,
     SellerProductsComponent,
     ProfileComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

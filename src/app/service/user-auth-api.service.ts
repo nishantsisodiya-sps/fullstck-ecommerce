@@ -33,7 +33,7 @@ export class UserAuthApiService {
 
     const headers = new HttpHeaders({
      
-      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     return this.http.get(`http://localhost:2800/products/seller/${id}` , {headers})
   }
@@ -43,7 +43,7 @@ export class UserAuthApiService {
 
     const headers = new HttpHeaders({
      
-      'Authorization': 'Bearer ' + localStorage.getItem('Sellertoken')
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     return this.http.get(`http://localhost:2800/sellers/profile/${id}` , {headers})
 
