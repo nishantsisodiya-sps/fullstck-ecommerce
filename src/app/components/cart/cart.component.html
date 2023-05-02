@@ -14,19 +14,21 @@
                 <div class="row main align-items-center">
                     <div class="col-2"><img class="img-fluid" src="http://localhost:2800/uploads/{{item.product.thumbnail}}"></div>
                     <div class="col">
-                        <div class="row text-muted">{{item.product.title}}</div>
-                        <div class="row">{{item.Quantity}}</div>
+                        <div class="row">{{item.product.title}}</div>
+                        <div class="row">Qty : {{item.quantity}}</div>
                     </div>
                     <div class="col">
-                        <div class="row"><b>Brand</b></div>
+                        <!-- <div class="row"><b>Brand</b></div> -->
                             <a>{{item.product.brand}}</a>
                     </div>
                     <div class="col">
-                        <div class="row"><b>Price</b></div>
-                        <a>{{item.product.price}}</a>
+                        <div class="row"><b>{{item.product.discountPercentage}} %</b></div>
+                        <a >&#8377; {{item.product.price | currencyConvert}}</a>
+                     
+
                     </div>
                     <span class="close">
-                        <button class="btn">Remove</button>
+                        <button class="btn" (click)="deleteFromCart(item.id)">Remove</button>
                     </span>
                 </div>
             </div>
@@ -47,12 +49,14 @@
                 <select>
                     <option class="text-muted">Standard-Delivery- &#8377;100</option>
                 </select>
-                <p><b>Discount : </b></p>
-                    <div>&#8377;</div>
+                <p><b>Total Discount : &#8377;  {{totalDiscount}}</b></p>
+                    <!-- <div></div> -->
             </form>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col"> <b>TOTAL PRICE</b> </div>
-                <div class="col text-right">&#8377; 120000</div>
+                <div class="col"> <b>TOTAL PRICE</b><br>
+                <small>(Including Delivery Charge)</small>
+                </div>
+                <div class="col text-right">&#8377;  {{totalPrice}}</div>
             </div>
             <button class="btn">CHECKOUT</button>
         </div>

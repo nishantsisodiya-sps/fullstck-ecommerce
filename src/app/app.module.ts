@@ -20,6 +20,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

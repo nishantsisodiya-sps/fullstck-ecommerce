@@ -37,13 +37,13 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('Usertoken')
+    localStorage.removeItem('token')
     this.menuType = 'default'
     this.router.navigate(['/home'])
 
   }
   sellerlogout(){
-    localStorage.removeItem('Sellertoken')
+    localStorage.removeItem('token')
     this.menuType = 'default'
     this.router.navigate(['/home'])
 

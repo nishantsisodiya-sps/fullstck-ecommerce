@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthApiService } from '../service/user-auth-api.service';
-import { ActivatedRoute } from '@angular/router';
 import { AuthTokenService } from '../service/auth-token.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { __values } from 'tslib';
 import { ProductService } from '../service/product.service';
+
 
 @Component({
   selector: 'app-seller-products',

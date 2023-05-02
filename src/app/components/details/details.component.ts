@@ -50,7 +50,6 @@ export class DetailsComponent implements OnInit {
        
       //Getting user id 
       let user = this.auth.getSellerId().id
-      console.log(user);
       let cart : any = {
         // ...this.product[0],
         user : user,
