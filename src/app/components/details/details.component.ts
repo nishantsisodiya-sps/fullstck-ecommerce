@@ -48,17 +48,34 @@ export class DetailsComponent implements OnInit {
     if(this.product){
       this.product[0].quantity = this.productQuantity
        
-      //Getting user id 
-      let user = this.auth.getSellerId().id
-      let cart : any = {
-        // ...this.product[0],
-        user : user,
-        quantity : this.productQuantity,
-        product : this.product[0],
+      let controll =  this.auth.getSellerId()
+
+      if(controll.role === 'user'){
+        //Getting user id 
+        let user = controll.id
+        let cart : any = {
+          user : user,
+          seller : null,
+          quantity : this.productQuantity,
+          product : this.product[0],
+        }
+        this.productApi.addToCart(cart).subscribe((res)=>{
+          console.log(res);
+        })
+      }else if(controll.role === 'seller'){
+          //Getting user id 
+          let seller = controll.id
+          let cart : any = {
+            user : null,
+            seller : seller,
+            quantity : this.productQuantity,
+            product : this.product[0],
+          }
+          this.productApi.addToCart(cart).subscribe((res)=>{
+            console.log(res);
+          })
       }
-      this.productApi.addToCart(cart).subscribe((res)=>{
-        console.log(res);
-      })
+
     }
   }
   

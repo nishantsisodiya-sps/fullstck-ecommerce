@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProducts()
-    this.getProfile()
+    // this.getProfile()
   }
 
   getProducts(){
@@ -24,13 +24,13 @@ export class HomeComponent implements OnInit {
   
   }
 
-  getProfile(){
+  // getProfile(){
 
-    let id = this.auth.getSellerId().id
+  //   let id = this.auth.getSellerId().id
 
-    this.api.getSellerProfile(id).subscribe(response=>{
-      this.sellerData = response.seller
-    })
-  }
+  //   this.api.getSellerProfile(id).subscribe(response=>{
+  //     this.sellerData = response.seller
+  //   })
+  // }
 
 }

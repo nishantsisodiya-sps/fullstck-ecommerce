@@ -24,7 +24,7 @@ productId : any
 
   ngOnInit(): void {
     this.fetchProducts()
-    this.deleteProduct(this , this)
+    // this.deleteProduct(this , this)
 
     this.productUpdateForm = this.fb.group({
       title: ['', Validators.required],
@@ -99,7 +99,9 @@ productId : any
   } 
   
   editProduct(id : any , i : any){
+
     let data = this.sellerProducts[i]
+    console.log(data);
     let pId = data._id
     this.productId = pId
     this.productUpdateForm.setValue({

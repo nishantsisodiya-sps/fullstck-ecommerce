@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
-import { PipePipe } from 'src/app/service/pipe.pipe';
+
 
 @Component({
   selector: 'app-cart',
@@ -36,15 +36,13 @@ export class CartComponent implements OnInit {
       for (let item of this.products) {
         let quantity = item.quantity 
         let Realprice = item.product.price * quantity
-        let priceInRupee = Realprice * 80 * quantity
         let discount = item.product.discountPercentage
-        let discountp = Math.round(priceInRupee * discount / 100)
-        let priceAfterDiscount = priceInRupee - discountp
-        item.PriceAfterDiscount = priceAfterDiscount
+        let discountp = Math.round(Realprice * discount / 100)
+        let priceAfterDiscount = Realprice - discountp
         totalPrice += priceAfterDiscount
         totalDiscount += discountp
       }
-      this.totalPrice = totalPrice + 100;
+      this.totalPrice = totalPrice * 80 + 100;
       this.totalDiscount = totalDiscount;
     })
     }
@@ -54,6 +52,7 @@ export class CartComponent implements OnInit {
       this.productApi.deleteFromCart(itemId).subscribe(res=>{
         if(res){
           this.products = this.products.filter((item:any) => item.id !== itemId);
+          this.getcartItems()
         }else{
           console.log("error occured");
         }
