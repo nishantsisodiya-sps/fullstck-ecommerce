@@ -1,4 +1,6 @@
+import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -17,7 +19,7 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   totalDiscount: number = 0;
   constructor(private api : UserAuthApiService , private productApi : ProductService,
-    private auth : AuthTokenService) { }
+    private auth : AuthTokenService , private router : Router) { }
 
   ngOnInit(): void {
     this.getcartItems()
@@ -57,6 +59,11 @@ export class CartComponent implements OnInit {
           console.log("error occured");
         }
       })
+    }
+
+    checkout(totalPrice : number){
+      console.log(totalPrice);
+      this.router.navigate(['/checkout'] , {queryParams : {totalPrice : totalPrice}})
     }
   }
 

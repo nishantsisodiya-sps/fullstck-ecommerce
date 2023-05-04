@@ -23,3 +23,9 @@ export interface product{
     category : string;
     thumbnail : string
 }
+
+
+export interface typeDeliver{
+    value : string,
+    viewValue : string
+}

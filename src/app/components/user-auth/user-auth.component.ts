@@ -13,6 +13,7 @@ export class UserAuthComponent implements OnInit {
   loginForm !: FormGroup
   signupForm !: FormGroup
   signupdata: [] = []
+  showSpinner : any = false
   constructor(private fb: FormBuilder, private router: Router, private userAuthApi: UserAuthApiService, private http: HttpClient) {
 
     this.loginForm = this.fb.group({
@@ -34,10 +35,10 @@ export class UserAuthComponent implements OnInit {
   submitUser() {
     let data = this.signupForm.value;
 
-    this.http.post<{ success: boolean, token: string }>
+    this.http.post<{ message: boolean, token: string }>
       ('http://localhost:2800/users/register', data)
       .subscribe(response => {
-        if (response.success) {
+        if (response.message) {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()

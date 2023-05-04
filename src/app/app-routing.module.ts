@@ -9,6 +9,7 @@ import { SellerProductsComponent } from './seller-products/seller-products.compo
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path : 'sellerProducts' , component : SellerProductsComponent},
   {path : 'cart' , component : CartComponent},
   {path : 'profile' , component : ProfileComponent},
+  {path : 'checkout' , component : CheckoutComponent},
 ]
 
 @NgModule({

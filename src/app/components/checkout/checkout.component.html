@@ -1,0 +1,73 @@
+<div class="loadingindicator"><mat-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-spinner></div>
+<div class="mainbox">
+  <div class="wrapper">
+    <div class="container">
+      <form [formGroup]="shipDetails" (ngSubmit)="purchase()">
+        <h1>
+            <i class="fas fa-shipping-fast"></i>
+            Shipping Details
+          <h3>Total Price :&#8377; {{totalPrice}}</h3>
+        </h1>
+        <div class="name">
+          <div>
+            <label for="f-name">First</label>
+            <input type="text" NoSpecialCharacter name="f-name" formControlName="firstName">
+            <small class="text-danger"
+              *ngIf="!shipDetails.get('firstName')?.valid && shipDetails.get('firstName')?.touched">*Please
+              Enter First Name</small>
+          </div>
+          <div>
+            <label for="l-name">Last</label>
+            <input type="text" NoSpecialCharacter name="l-name" formControlName="lastName">
+            <small class="text-danger"
+              *ngIf="!shipDetails.get('lastName')?.valid && shipDetails.get('lastName')?.touched">*Please
+              Enter Last Name</small>
+          </div>
+        </div>
+        <div class="street">
+          <label for="name">Street</label>
+          <input type="text" NoSpecialCharacter name="address" formControlName="street">
+          <small class="text-danger"
+            *ngIf="!shipDetails.get('street')?.valid && shipDetails.get('street')?.touched">*Please
+            Enter Street</small>
+        </div>
+
+        <div class="email">
+          <label for="name">Email</label>
+          <input type="email" NoSpecialCharacter name="address" formControlName="email">
+          <small class="text-danger"
+            *ngIf="!shipDetails.get('email')?.valid && shipDetails.get('email')?.touched">*Please
+            Enter Street</small>
+        </div>
+
+        <div class="address-info">
+          <div>
+            <label for="city">City</label>
+            <input type="text" NoSpecialCharacter name="city" formControlName="city">
+            <small class="text-danger"
+              *ngIf="!shipDetails.get('city')?.valid && shipDetails.get('city')?.touched">*Please
+              Enter Your city</small>
+          </div>
+          <div>
+            <label for="state">State</label>
+            <input type="text" NoSpecialCharacter name="state" formControlName="state">
+            <small class="text-danger"
+              *ngIf="!shipDetails.get('state')?.valid && shipDetails.get('state')?.touched">*Please
+              Enter Your state</small>
+          </div>
+          <div>
+            <label for="zip">Zip</label>
+            <input type="number" NoSpecialCharacter name="zip" formControlName="zip">
+            <small class="text-danger" *ngIf="!shipDetails.get('zip')?.valid && shipDetails.get('zip')?.touched">*Please
+              Enter Zip Code</small>
+          </div>
+        </div>
+
+        <div class="btns">
+          <button type="submit">Purchase</button>
+          <button>Back to cart</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
