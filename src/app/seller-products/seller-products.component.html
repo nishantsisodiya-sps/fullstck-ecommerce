@@ -51,9 +51,9 @@
                 </div>
                 <h6 class="text-success">Free shipping</h6>
                 <div class="d-flex flex-column mt-4">
-                  <button class="btn btn-primary btn-sm" type="button" data-bs-toggle="modal"
+                  <button class="btns btns-primary btns-sm" type="button" data-bs-toggle="modal"
                     data-bs-target="#EditModal" (click)="editProduct(this ,  i)">Edit</button>
-                  <button class="btn btn-outline-primary btn-sm mt-2" type="button" (click)="deleteProduct(this , i)">
+                  <button class="btns btns-outline-primary btns-sm mt-2" type="button" (click)="deleteProduct(this , i)">
                     Delete
                   </button>
                 </div>
@@ -73,7 +73,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btns-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="form-top">
@@ -146,8 +146,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" (click)="updateProduct()">Update</button>
+            <button type="button" class="btns btns-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btns btns-primary" (click)="updateProduct()">Update</button>
           </div>
         </div>
       </div>

@@ -94,12 +94,12 @@
  .cc-info div {
 	 width: 45%;
 }
- .btns {
+ .btns2 {
 	 display: flex;
 	 flex-direction: column;
 	 align-items: flex-end;
 }
- .btns button {
+ .btns2 button {
 	 margin: 3px 0;
 	 height: 40px;
 	 width: 50%;
@@ -110,7 +110,7 @@
 	 border-radius: 0.3rem;
 	 letter-spacing: 2px;
 }
- .btns button:hover {
+ .btns2 button:hover {
 	 animation-name: btn-hov;
 	 animation-duration: 550ms;
 	 animation-fill-mode: forwards;

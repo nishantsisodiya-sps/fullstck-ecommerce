@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
-import * as Razorpay from 'razorpay';
+
+
+declare var Razorpay : any
 
 @Component({
   selector: 'app-checkout',
@@ -11,7 +13,7 @@ import * as Razorpay from 'razorpay';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  totalPrice: number | undefined;
+  totalPrice: any;
   cartData: any
 
 
@@ -27,7 +29,9 @@ export class CheckoutComponent implements OnInit {
     zip :   new FormControl(null, [Validators.required]),
   });
 
-  constructor(private activate : ActivatedRoute , private http : HttpClient , private auth : AuthTokenService) { }
+  constructor(private activate : ActivatedRoute , private http : HttpClient , 
+    private auth : AuthTokenService ,
+    ) { }
 
   ngOnInit(): void {
 
@@ -38,34 +42,35 @@ export class CheckoutComponent implements OnInit {
   }
 
   purchase() {
-   let userId =  this.auth.getSellerId().id
-   let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value
+    let userId =  this.auth.getSellerId().id;
+    let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
 
     this.showSpinner = true;
-    this.http.post('http://localhost:2800/order/create-order', { amount: this.totalPrice , userId : userId , address : address  }).subscribe((data: any) => {
+    this.http.post('http://localhost:2800/order/create-order', { amount: this.totalPrice , userId : userId , address : address, testMode: true }).subscribe((data: any) => {
       console.log(data);
       this.showSpinner = false;
       if (data && data.orderId) {
-        this.openRazorpay(data.orderId);
+        console.log(data.razorpayOrderId.id);
+        this.openRazorpay(data.razorpayOrderId);
       }
     });
   }
   
-  openRazorpay(orderId: string) {
+  openRazorpay(razorpayOrderId : any) {
     const razorpay = new Razorpay({
       key: 'rzp_test_Tiv5oHxAC3kTlH',
       name: 'My Online Store',
       description: 'Purchase description',
       currency: 'INR',
       image: 'https://example.com/your_logo.jpg',
-      order_id: orderId,
+      order_id: razorpayOrderId.id,
       handler: (response: any) => {
         // Callback function for successful payment
-        console.log(response);
+        console.log('responst====>' + response);
         this.saveOrder(response.razorpay_payment_id);
       },
       prefill: {
-        name: this.shipDetails.get('firstname')?.value + ' ' + this.shipDetails.get('lastName')?.value,
+        name: this.shipDetails.get('firstname')?.value + ' ' + this.shipDetails.get('lastname')?.value,
         email: this.shipDetails.get('email')?.value,
         contact: '',
       },
@@ -76,27 +81,32 @@ export class CheckoutComponent implements OnInit {
         color: '#F37254'
       }
     });
-  
+
     razorpay.open();
   }
   
   saveOrder(paymentId: string) {
     this.showSpinner = true;
-    let userId = this.auth.getSellerId().id
+    let userId = this.auth.getSellerId().id;
+    console.log('userId======>', userId);
     const order = {
       userId: userId,
       address: this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value,
       totalAmount: this.totalPrice,
       status: 'pending',
-      paymentId: paymentId
+      paymentId: paymentId,
+      testMode: true // set test mode flag to true
     };
   
     // Call your backend API to save the order in your database
     this.http.post('http://localhost:2800/order/update-order', order).subscribe((response: any) => {
-      console.log(response);
+      console.log('response order save====>', response);
       this.showSpinner = false;
     });
   }
   
+
+
 }
+
 

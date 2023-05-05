@@ -62,7 +62,6 @@ export class CartComponent implements OnInit {
     }
 
     checkout(totalPrice : number){
-      console.log(totalPrice);
       this.router.navigate(['/checkout'] , {queryParams : {totalPrice : totalPrice}})
     }
   }

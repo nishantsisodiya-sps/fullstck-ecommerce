@@ -232,7 +232,7 @@ h6 span{
     transition: all 200ms linear;
 }
 
-.btn{  
+.btns{  
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -260,14 +260,14 @@ h6 span{
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
 }
-.btn:active,
-.btn:focus{  
+.btns:active,
+.btns:focus{  
   background-color: #ffeba7;
   color: #102770;
 
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
-.btn:hover{  
+.btns:hover{  
   background-color: #ffeba7;
   color: #102770;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
@@ -288,7 +288,7 @@ h6 span{
 }
 
 html, body { height: 100%; }
-/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .loadingindicator {
 	position: fixed;
 	z-index: 999;
@@ -311,3 +311,5 @@ html, body { height: 100%; }
 	width: 100%;
 	height: 100%;
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
