@@ -33,6 +33,7 @@ export class UserAuthComponent implements OnInit {
   }
 
   submitUser() {
+    this.showSpinner = true
     let data = this.signupForm.value;
 
     this.http.post<{ message: boolean, token: string }>
@@ -42,6 +43,7 @@ export class UserAuthComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
+            this.showSpinner = false
           })
         } else {
           alert("something wrong");
@@ -51,6 +53,7 @@ export class UserAuthComponent implements OnInit {
 
 
   loginUser(event: Event) {
+    this.showSpinner = true
     event.preventDefault();
     let data = this.loginForm.value;
 
@@ -62,6 +65,7 @@ export class UserAuthComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
+            this.showSpinner = false
           })
         } else {
           alert(response.message);

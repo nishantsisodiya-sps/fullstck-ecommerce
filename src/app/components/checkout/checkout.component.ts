@@ -7,6 +7,8 @@ import { AuthTokenService } from 'src/app/service/auth-token.service';
 
 declare var Razorpay : any
 
+
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -14,8 +16,9 @@ declare var Razorpay : any
 })
 export class CheckoutComponent implements OnInit {
   totalPrice: any;
-  cartData: any
-
+  cartData: any 
+  products : any = []
+  cartProduct : any
 
   showSpinner : boolean = false
 
@@ -29,6 +32,8 @@ export class CheckoutComponent implements OnInit {
     zip :   new FormControl(null, [Validators.required]),
   });
 
+ 
+
   constructor(private activate : ActivatedRoute , private http : HttpClient , 
     private auth : AuthTokenService ,
     ) { }
@@ -37,6 +42,7 @@ export class CheckoutComponent implements OnInit {
 
     this.activate.queryParams.subscribe(params=>{
       this.totalPrice = params['totalPrice']
+      this.cartProduct = params['products']
     })
 
   }
@@ -46,7 +52,7 @@ export class CheckoutComponent implements OnInit {
     let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
 
     this.showSpinner = true;
-    this.http.post('http://localhost:2800/order/create-order', { amount: this.totalPrice , userId : userId , address : address, testMode: true }).subscribe((data: any) => {
+    this.http.post('http://localhost:2800/order/create-order', { amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
       console.log(data);
       this.showSpinner = false;
       if (data && data.orderId) {
@@ -88,7 +94,6 @@ export class CheckoutComponent implements OnInit {
   saveOrder(paymentId: string) {
     this.showSpinner = true;
     let userId = this.auth.getSellerId().id;
-    console.log('userId======>', userId);
     const order = {
       userId: userId,
       address: this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value,

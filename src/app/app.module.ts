@@ -26,6 +26,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ProfileComponent,
     CartComponent,
     CheckoutComponent,
+    MyOrdersComponent,
 
   ],
   imports: [
@@ -57,7 +61,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatFormFieldModule,
     MatListModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

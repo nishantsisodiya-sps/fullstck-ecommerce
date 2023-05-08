@@ -10,6 +10,7 @@ import { SellerAuthComponent } from './components/seller-auth/seller-auth.compon
 import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path : 'cart' , component : CartComponent},
   {path : 'profile' , component : ProfileComponent},
   {path : 'checkout' , component : CheckoutComponent},
+  {path : 'MyOrder' , component : MyOrdersComponent},
 ]
 
 @NgModule({
