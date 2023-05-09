@@ -40,12 +40,16 @@ export class ProfileComponent implements OnInit {
       //Getting cart item length
       this.product.getCartItems(id).subscribe(res=>{
         this.cartItems = res
-        console.log(this.cartItems);
         this.cartLength = this.cartItems.length
       })
     
     })
 
+  }
+
+
+  getOrderInfo(id:any){
+    console.log(id);
   }
 
 

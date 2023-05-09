@@ -43,6 +43,7 @@ export class CheckoutComponent implements OnInit {
     this.activate.queryParams.subscribe(params=>{
       this.totalPrice = params['totalPrice']
       this.cartProduct = params['products']
+      console.log(this.cartProduct);
     })
 
   }
@@ -50,9 +51,9 @@ export class CheckoutComponent implements OnInit {
   purchase() {
     let userId =  this.auth.getSellerId().id;
     let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
-
+    let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
     this.showSpinner = true;
-    this.http.post('http://localhost:2800/order/create-order', { amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
+    this.http.post('http://localhost:2800/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
       console.log(data);
       this.showSpinner = false;
       if (data && data.orderId) {

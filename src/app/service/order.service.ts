@@ -13,4 +13,8 @@ export class OrderService {
     return this.http.get(`${this.url}/order/${id}`)
   }
 
+  getOrderInfo(id : any):Observable<any>{
+    return this.http.get(`${this.url}/order/singleOrder/${id}`)
+  }
+
 }

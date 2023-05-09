@@ -19,6 +19,7 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   totalDiscount: number = 0;
   queryProduct: any = []
+  quantity : any
   constructor(private api: UserAuthApiService, private productApi: ProductService,
     private auth: AuthTokenService, private router: Router) { }
 
@@ -32,9 +33,9 @@ export class CartComponent implements OnInit {
     this.productApi.getCartItems(seller).subscribe(res => {
       this.products = res
       this.totalCart = this.products.length
-      this.products.forEach((element: { id: any; }) => {
-          console.log(element.id);
-          this.queryProduct.push(element.id)
+      this.products.forEach((element : any) => {
+          this.queryProduct.push(element.product.id)
+          console.log(this.queryProduct);
         });
 
       let totalPrice = 0;
@@ -54,7 +55,6 @@ export class CartComponent implements OnInit {
   }
 
   deleteFromCart(itemId: any) {
-    console.log(itemId);
     this.productApi.deleteFromCart(itemId).subscribe(res => {
       if (res) {
         this.products = this.products.filter((item: any) => item.id !== itemId);
@@ -66,8 +66,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(totalPrice: number) {
-    this.router.navigate(['/checkout'], { queryParams: { totalPrice: totalPrice, products: this.queryProduct } })
-    // this.router.navigate(['/checkout'] ,this.queryProduct)
+    this.router.navigate(['/checkout'], { queryParams: { totalPrice: totalPrice, products: this.queryProduct , quantity : this.quantity } })
   }
 }
 
