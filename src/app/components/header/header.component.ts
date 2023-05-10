@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
@@ -12,8 +13,9 @@ export class HeaderComponent implements OnInit {
 
   menuType : string = 'default'
   sellerData: any = []
-
-  constructor( private router : Router , private api : UserAuthApiService , private auth : AuthTokenService) { }
+  searchResult : any
+  constructor( private router : Router , private api : UserAuthApiService ,
+     private auth : AuthTokenService , private product : ProductService) { }
 
   ngOnInit(): void {
     this.switchMenu()
@@ -57,6 +59,21 @@ export class HeaderComponent implements OnInit {
       this.sellerData = response.seller
       console.log(this.sellerData);
     })
+  }
+
+  search(val : any){
+    this.product.searchProducts(val).subscribe(res=>{
+      this.searchResult = res
+    })
+  }
+
+  redirectToDetails(id: any) {
+      this.router.navigate(['/details', id])
+  }
+
+
+  hideSearch(){
+    this.searchResult = undefined
   }
 
   }

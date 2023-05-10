@@ -29,8 +29,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { UserDetailsComponent } from './user-details/user-details.component';
-// import { NgToastModule } from 'ng-angular-popup';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { SupportComponent } from './components/support/support.component'
 
 
 @NgModule({
@@ -51,6 +51,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     CheckoutComponent,
     MyOrdersComponent,
     UserDetailsComponent,
+    SupportComponent,
 
 
   ],
@@ -69,7 +70,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
     MatExpansionModule,
     MatInputModule,
     FormsModule,
-    // NgToastModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

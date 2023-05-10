@@ -11,6 +11,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import { SupportComponent } from './components/support/support.component';
 
 const routes: Routes = [
   {path : '' , pathMatch : 'full' , redirectTo : 'home'},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path : 'profile' , component : ProfileComponent},
   {path : 'checkout' , component : CheckoutComponent},
   {path : 'MyOrder/:id' , component : MyOrdersComponent},
+  {path : 'support' , component : SupportComponent},
 ]
 
 @NgModule({

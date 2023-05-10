@@ -14,7 +14,7 @@ export class DetailsComponent implements OnInit {
   productQuantity: number = 1;
   quantity: number = 1
   constructor(private activate : ActivatedRoute , private api : UserAuthApiService , 
-    private auth : AuthTokenService , private productApi : ProductService) { }
+    private auth : AuthTokenService , private productApi : ProductService ) { }
   arr : [] = []
 
   ngOnInit(): void {
@@ -61,6 +61,7 @@ export class DetailsComponent implements OnInit {
         }
         this.productApi.addToCart(cart).subscribe((res)=>{
           console.log(res);
+
         })
       }else if(controll.role === 'seller'){
           //Getting user id 
@@ -73,6 +74,7 @@ export class DetailsComponent implements OnInit {
           }
           this.productApi.addToCart(cart).subscribe((res)=>{
             console.log(res);
+
           })
       }
 

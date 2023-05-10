@@ -13,15 +13,16 @@
                             </div>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="text-decoration-none d-flex align-items-start">
-                            <div class="fas fa-box-open pt-2 me-3"></div>
+                    <li *ngIf="forseller">
+                        <a  class="text-decoration-none d-flex align-items-start" routerLink="/sellerProducts">
+                            <div class="fas fa-user-secret pt-2 me-3"></div>
                             <div class="d-flex flex-column">
-                                <div class="link">My Orders</div>
-                                <div class="link-desc">View & Manage orders and returns</div>
+                                <div class="link" >My Products</div>
+                                <div class="link-desc">Check your Products as You are Merchant</div>
                             </div>
                         </a>
                     </li>
+                    
                     <li>
                         <a href="#" class="text-decoration-none d-flex align-items-start">
                             <div class="far fa-address-book pt-2 me-3"></div>
@@ -41,7 +42,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="text-decoration-none d-flex align-items-start">
+                        <a class="text-decoration-none d-flex align-items-start" routerLink="/support">
                             <div class="fas fa-headset pt-2 me-3"></div>
                             <div class="d-flex flex-column">
                                 <div class="link">Help & Support</div>
@@ -52,6 +53,10 @@
                 </ul>
             </div>
         </div>
+
+
+
+
         <div class="col-lg-9 my-lg-0 my-1">
             <div id="main-content" class="bg-white border" *ngFor="let item of userData">
                 <div class="d-flex flex-column">

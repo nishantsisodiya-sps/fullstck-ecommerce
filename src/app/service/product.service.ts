@@ -42,4 +42,8 @@ export class ProductService {
     return this.http.delete<any>(`${this.url}/cart/${itemId}`)
   }
 
+
+  searchProducts(query : any):Observable<any>{
+    return this.http.get(`${this.url}/products/search?title=${query}`)
+  }
 }

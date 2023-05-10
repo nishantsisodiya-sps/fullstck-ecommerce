@@ -8,8 +8,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
       <form class="d-flex" style="margin: auto;">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btns btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" #val (keyup)="search(val.value)" (blur)="hideSearch()">
+        <ul id="suggested-search" *ngIf="searchResult">
+            <li *ngFor="let item of searchResult">
+              <a (mousedown)="redirectToDetails(item._id)">
+                <img src="http://localhost:2800/uploads/{{item.thumbnail}}" width="15%" alt="">
+                {{item.title}}</a>
+            </li>
+          </ul>
       </form>
 
       <div class="ms-auto" [ngSwitch]="menuType">

@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import jwtDecode from 'jwt-decode';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -7,7 +9,7 @@ import jwtDecode from 'jwt-decode';
 })
 export class AuthTokenService {
   public decodedToken: any;
-  constructor() { 
+  constructor(private http : HttpClient) { 
 
     const token = localStorage.getItem('token');
     if (token) {
@@ -20,6 +22,11 @@ export class AuthTokenService {
       return this.decodedToken
     }
     return null;
+  }
+
+
+  contactus(data : any):Observable<any>{
+    return this.http.post('http://localhost:2800/support' , data)
   }
 
   

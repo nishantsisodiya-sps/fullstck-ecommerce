@@ -14,12 +14,23 @@ export class ProfileComponent implements OnInit {
   cartItems : any = []
   cartLength : any
   orderLength : any
+
+  forseller : boolean =  false
+
   constructor(private auth : AuthTokenService , private order : OrderService,
     private product : ProductService) { }
 
   ngOnInit(): void {
     this.getUserInfo()
     this.getOrders()
+
+    let seller = this.auth.getSellerId().role
+    if(seller === 'seller'){
+      this.forseller = true
+    }else{
+      this.forseller = false
+    }
+
   }
 
 

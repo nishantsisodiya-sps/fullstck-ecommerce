@@ -24,13 +24,4 @@ export class HomeComponent implements OnInit {
   
   }
 
-  // getProfile(){
-
-  //   let id = this.auth.getSellerId().id
-
-  //   this.api.getSellerProfile(id).subscribe(response=>{
-  //     this.sellerData = response.seller
-  //   })
-  // }
-
 }

@@ -1,9 +1,9 @@
 <section style="background-color: #eee;">
   <div class="container py-5">
-    <div class="row justify-content-center mb-3">
-      <div class="col-md-12 col-xl-10">
-        <div class="card shadow-0 border rounded-3">
-          <div class="card-body" *ngFor="let item of sellerProducts let i = index" >
+    <div class=" row justify-content-center mb-3">
+      <div class=" col-md-12 col-xl-10" *ngFor="let item of sellerProducts let i = index" >
+        <div class="card shadow-0 border rounded-3 mt-2">
+          <div class="car card-body">
             <div class="row">
               <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
                 <div class="bg-image hover-zoom ripple rounded ripple-surface">
@@ -35,10 +35,7 @@
                 </div>
                 <div class="mb-2 text-muted small">
                   <span>Unique design</span>
-                  <span class="text-primary"> • </span>
-                  <span>For men</span>
-                  <span class="text-primary"> • </span>
-                  <span>Casual<br /></span>
+        
                 </div>
                 <p class="text-truncate mb-4 mb-md-0">
                   {{item.description}}
@@ -53,7 +50,8 @@
                 <div class="d-flex flex-column mt-4">
                   <button class="btns btns-primary btns-sm" type="button" data-bs-toggle="modal"
                     data-bs-target="#EditModal" (click)="editProduct(this ,  i)">Edit</button>
-                  <button class="btns btns-outline-primary btns-sm mt-2" type="button" (click)="deleteProduct(this , i)">
+                  <button class="btns btns-outline-primary btns-sm mt-2" type="button"
+                    (click)="deleteProduct(this , i)">
                     Delete
                   </button>
                 </div>
