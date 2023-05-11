@@ -17,16 +17,16 @@ export class SellerAuthComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient, private router: Router , private api : UserAuthApiService) {
 
     this.sellerLoginForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
 
     })
 
     this.sellerSignupForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
     })
 
   }
@@ -40,7 +40,7 @@ export class SellerAuthComponent implements OnInit {
     let data = this.sellerSignupForm.value;
 
     this.http.post<{ success: boolean, token: string }>
-      ('http://localhost:2800/sellers/register', data)
+      ('http://localhost:3838/sellers/register', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.removeItem('token')
@@ -60,7 +60,7 @@ export class SellerAuthComponent implements OnInit {
     event.preventDefault();
     let data = this.sellerLoginForm.value;
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/sellers/login', { email: data.email, password: data.password })
+      ('http://localhost:3838/sellers/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('token', response.token);

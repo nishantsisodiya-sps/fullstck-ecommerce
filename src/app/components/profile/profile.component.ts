@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   orderLength : any
 
   forseller : boolean =  false
-
+  paid : boolean = false
   constructor(private auth : AuthTokenService , private order : OrderService,
     private product : ProductService) { }
 
@@ -45,6 +45,11 @@ export class ProfileComponent implements OnInit {
 
     this.order.getOrders(id).subscribe(res=>{
       this.myorder = res
+      
+      if(this.myorder[0].status == 'PAID'){
+        this.paid = true
+      }
+
       this.orderLength = this.myorder.length
 
 

@@ -17,15 +17,15 @@ export class UserAuthComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private userAuthApi: UserAuthApiService, private http: HttpClient) {
 
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     })
 
     this.signupForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: ['', [Validators.required]],
-      password: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
     })
   }
 
@@ -37,7 +37,7 @@ export class UserAuthComponent implements OnInit {
     let data = this.signupForm.value;
 
     this.http.post<{ message: boolean, token: string }>
-      ('http://localhost:2800/users/register', data)
+      ('http://localhost:3838/users/register', data)
       .subscribe(response => {
         if (response.message) {
           localStorage.setItem('token', response.token);
@@ -59,7 +59,7 @@ export class UserAuthComponent implements OnInit {
 
 
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:2800/users/login', { email: data.email, password: data.password })
+      ('http://localhost:3838/users/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('token', response.token);

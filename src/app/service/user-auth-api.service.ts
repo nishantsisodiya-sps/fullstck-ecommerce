@@ -7,25 +7,25 @@ import { Observable } from 'rxjs';
 })
 export class UserAuthApiService {
 
-  public ApiUrl = 'http://localhost:2800'
+  public ApiUrl = 'http://localhost:3838'
 
   constructor(private http: HttpClient) { }
 
   addProduct(data: any):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const options = { headers: headers };
-   return this.http.post<any>('http://localhost:2800/products' , data , options)
+   return this.http.post<any>(`${this.ApiUrl}/products` , data , options)
   }
 
 
 
   getProducts():Observable<any>{
-    return this.http.get('http://localhost:2800/products')
+    return this.http.get(`${this.ApiUrl}/products`)
   }
 
 
   getSingleProduct(id : any):Observable<any>{
-    return this.http.get(`http://localhost:2800/products/${id}`)
+    return this.http.get(`${this.ApiUrl}/products/${id}`)
   }
 
 
@@ -35,7 +35,7 @@ export class UserAuthApiService {
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    return this.http.get(`http://localhost:2800/products/seller/${id}` , {headers})
+    return this.http.get(`${this.ApiUrl}/products/seller/${id}` , {headers})
   }
 
 
@@ -45,7 +45,7 @@ export class UserAuthApiService {
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    return this.http.get(`http://localhost:2800/sellers/profile/${id}` , {headers})
+    return this.http.get(`${this.ApiUrl}/sellers/profile/${id}` , {headers})
 
   }
 }

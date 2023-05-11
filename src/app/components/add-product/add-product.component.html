@@ -4,14 +4,18 @@
         <form [formGroup]="productForm"  enctype="multipart/form-data" (ngSubmit)="onSubmit()" method="post">
             <div class="form-group">
                 <label for="exampleInputEmail1">Product Title</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder="Product title" formControlName="title" name="title">
-            </div>
+                    <small class="text-danger"
+                    *ngIf="!productForm.get('title')?.valid && productForm.get('title')?.touched">*Please Enter Title</small>
+                </div>
             <br>
             <div class="form-group">
                 <label for="exampleInputEmail1">Description</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder="Product Description" formControlName="description" name="description">
+                    <small class="text-danger"
+                    *ngIf="!productForm.get('description')?.valid && productForm.get('description')?.touched">*Please Enter Descripttion</small>
             </div>
             <br>
 
@@ -20,11 +24,16 @@
                     <label for="exampleInputEmail1">Price</label>
                     <input type="number" class="form-control" placeholder="Price" formControlName="price"
                         name="price">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('price')?.valid && productForm.get('price')?.touched">*Please Enter Price</small>
                 </div>
+
                 <div class="col">
                     <label for="exampleInputEmail1">Discount Percentage</label>
                     <input type="number" class="form-control" placeholder="Discount Percentage"
                         formControlName="discountPercentage" name="discountPercentage">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('discountPercentage')?.valid && productForm.get('discountPercentage')?.touched">*Please Enter Discount Percentage</small>
                 </div>
             </div>
             <br>
@@ -33,33 +42,52 @@
                     <label for="exampleInputEmail1">Rating</label>
                     <input type="number" class="form-control" placeholder="Rating" formControlName="rating"
                         name="rating">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('rating')?.valid && productForm.get('rating')?.touched">*Please Enter Rating</small>
                 </div>
+
+
                 <div class="col">
                     <label for="exampleInputEmail1">stock</label>
                     <input type="number" class="form-control" placeholder="stock" formControlName="stock"
                         name="stock">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('stock')?.valid && productForm.get('stock')?.touched">*Please Enter stock</small>
                 </div>
             </div>
+
+
             <br>
             <div class="row">
                 <div class="col">
                     <label for="exampleInputEmail1">Category</label>
                     <input type="text" class="form-control" placeholder="Rating" formControlName="category"
                         name="category">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('category')?.valid && productForm.get('category')?.touched">*Please Enter Category</small>
                 </div>
+
+
                 <div class="col">
                     <label for="exampleInputEmail1">Brand</label>
                     <input type="text" class="form-control" placeholder="stock" formControlName="brand"
                         name="brand">
+                        <small class="text-danger"
+                        *ngIf="!productForm.get('brand')?.valid && productForm.get('brand')?.touched">*Please Enter Brand</small>
                 </div>
             </div>
+
+
             <br>
             <div class="form-group">
                 <label for="exampleFormControlFile1"><b>Choose Thumbnail</b> &nbsp;</label>
                 <input type="file" class="form-control-file" id="exampleFormControlFile1"
                     name="thumbnail" (change)="onThumbnailSelected($event)" enctype="multipart/form-data">
                 <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
+                
             </div>
+
+
             <br>
             <div class="form-group">
                 <label for="exampleFormControlFile1"><b> More images </b>&nbsp;</label>
@@ -67,6 +95,8 @@
                     name="images" multiple (change)="onImagesSelected($event)">
                 <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
             </div>
+
+
             <br>
             <div class="mybtns">
                 <button type="submit" class="btns btnss-primary mb-4 d-flex" [disabled]="productForm.invalid">

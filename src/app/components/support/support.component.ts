@@ -14,9 +14,9 @@ export class SupportComponent implements OnInit {
 
     this.supportForm = this.fb.group({
 
-      name :  ['', [Validators.required]] , 
-      email :  ['', [Validators.required]] , 
-      message :  ['', [Validators.required]] , 
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      message: ['', [Validators.required]]
 
     })
 
@@ -26,13 +26,26 @@ export class SupportComponent implements OnInit {
   }
 
   sendMessage(){
+    let user = this.auth.getSellerId()
     let data =this.supportForm.value
+    console.log(user);
+    if(user.role === 'user'){
+      data.userId = user.id
+      this.auth.contactus(data).subscribe(res=>{
+        if(res){
+          alert("Message sent")
+        }
+      })
 
-    this.auth.contactus(data).subscribe(res=>{
-      if(res){
-        alert("Message sent")
-      }
-    })
+    }else{
+      data.sellerId = user.id
+      this.auth.contactus(data).subscribe(res=>{
+        if(res){
+          alert("Message sent")
+        }
+      })
+    }
+
 
 
   }

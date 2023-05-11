@@ -2,7 +2,7 @@
 <ngb-carousel *ngIf="myProducts">
     <ng-template *ngFor="let item of myProducts" ngbSlide>
         <div class="picsum-img-wrapper">
-            <a [routerLink]="['/details', item._id]"><img class="product-header-image" src="http://localhost:2800/uploads/{{item.thumbnail}}"
+            <a [routerLink]="['/details', item._id]"><img class="product-header-image" src="http://localhost:3838/uploads/{{item.thumbnail}}"
                     alt="Random first slide" /></a>
         </div>
         <div class="carousel-caption">

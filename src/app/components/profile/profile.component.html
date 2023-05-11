@@ -92,8 +92,11 @@
                 <div class="text-uppercase">My recent orders</div>
                 <div class="order my-3 bg-light" *ngFor="let item of myorder let i = index">
                     <div class="row">
-                        <div class="text-primary ms-auto text-uppercase">paid</div>
-                        <div class="col-lg-4">
+                        <div class="text-primary ms-auto text-uppercase" *ngIf="paid">Paid</div>
+                        <div class="text-primary ms-auto text-uppercase" *ngIf="!paid">Cash on Delivery</div>
+                       
+                        <div class="col-lg-4 mt-2">
+                            
                             <div class="d-flex flex-column justify-content-between order-summary">
                                 <div class="d-flex align-items-center">
                                     <div class="text-uppercase">#{{item._id}}</div>
@@ -113,7 +116,7 @@
                         </div>
                         <div class="col-lg-8">
                             <div class="d-sm-flex align-items-sm-start justify-content-sm-between">
-                                <div class="status"><span class="text-success">STATUS :</span>  {{item.status}}</div>
+                                <div class="status"></div>
                                 <div class="btns btns-primary text-uppercase"  [routerLink]="['/MyOrder' , item._id]">order info</div>
                             </div>
                             <div class="progressbar-track">

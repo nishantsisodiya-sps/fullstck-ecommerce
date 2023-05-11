@@ -66,7 +66,7 @@
         
 
         <div class="btns2">
-          <button type="submit">Purchase</button>
+          <button type="submit" [disabled]="shipDetails.invalid">Purchase</button>
           <button routerLink="/cart" >Back to cart</button>
         </div>
       </form>

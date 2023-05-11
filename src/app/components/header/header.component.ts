@@ -65,6 +65,7 @@ export class HeaderComponent implements OnInit {
     this.product.searchProducts(val).subscribe(res=>{
       this.searchResult = res
     })
+
   }
 
   redirectToDetails(id: any) {

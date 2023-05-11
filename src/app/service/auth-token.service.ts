@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class AuthTokenService {
   public decodedToken: any;
+
+  public url = 'http://localhost:3838'
+
   constructor(private http : HttpClient) { 
 
     const token = localStorage.getItem('token');
@@ -26,7 +29,7 @@ export class AuthTokenService {
 
 
   contactus(data : any):Observable<any>{
-    return this.http.post('http://localhost:2800/support' , data)
+    return this.http.post(`${this.url}/support/contactUs` , data)
   }
 
   

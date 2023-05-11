@@ -12,10 +12,10 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 })
 export class AddProductComponent implements OnInit {
   productForm !: FormGroup
-  thumbnailPreview : any
-  myproduct : any = []
-sellerId: any|string;
-  constructor(private fb : FormBuilder , private http : HttpClient , private router : Router , private api : UserAuthApiService) { 
+  thumbnailPreview: any
+  myproduct: any = []
+  sellerId: any | string;
+  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private api: UserAuthApiService) {
   }
 
   ngOnInit(): void {
@@ -23,10 +23,10 @@ sellerId: any|string;
     this.productForm = this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
-      discountPercentage: ['', Validators.required],
-      rating: ['', Validators.required],
-      stock: ['', Validators.required],
+      price: ['', [Validators.required, Validators.min(0)]],
+      discountPercentage: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
+      rating: ['', [Validators.required, Validators.min(0), Validators.max(5)]],
+      stock: ['', [Validators.required, Validators.min(0)]],
       brand: ['', Validators.required],
       category: ['', Validators.required],
       thumbnail: [null, Validators.required],
@@ -41,7 +41,7 @@ sellerId: any|string;
       this.productForm.get('thumbnail')?.setValue(file)
     }
   }
-  
+
   onImagesSelected(event: any) {
     const files = event.target.files;
     if (files?.length) {
@@ -66,19 +66,19 @@ sellerId: any|string;
     }
 
     const headers = new HttpHeaders({
-     
+
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    this.http.post('http://localhost:2800/products/add', formData , {headers} ).subscribe(
+    this.http.post('http://localhost:3838/products/add', formData, { headers }).subscribe(
       res => {
         // console.log('res=====>' + res);
         console.log('Product created successfully!');
         this.productForm.reset()
       },
-      err => {  
+      err => {
         console.error('Product creation failed:', err);
       }
     );
-  } 
+  }
 
 }

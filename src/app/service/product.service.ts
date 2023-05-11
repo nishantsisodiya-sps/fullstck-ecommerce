@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  public url  = 'http://localhost:2800'
+  public url  = 'http://localhost:3838'
   constructor(private http : HttpClient) { }
 
   addToCart(data:any) : Observable < any>{
