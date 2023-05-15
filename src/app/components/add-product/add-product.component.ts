@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/service/category.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 
@@ -15,7 +16,9 @@ export class AddProductComponent implements OnInit {
   thumbnailPreview: any
   myproduct: any = []
   sellerId: any | string;
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router, private api: UserAuthApiService) {
+  categories: any = []
+  constructor(private fb: FormBuilder, private http: HttpClient,
+    private category: CategoryService) {
   }
 
   ngOnInit(): void {
@@ -32,6 +35,8 @@ export class AddProductComponent implements OnInit {
       thumbnail: [null, Validators.required],
       images: [null, Validators.required]
     });
+
+    this.getCaterogies()
   }
 
 
@@ -69,6 +74,11 @@ export class AddProductComponent implements OnInit {
 
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
+
+      console.log(this.productForm.value);
+      console.log(formData);
+
+
     this.http.post('http://localhost:3838/products/add', formData, { headers }).subscribe(
       res => {
         // console.log('res=====>' + res);
@@ -79,6 +89,16 @@ export class AddProductComponent implements OnInit {
         console.error('Product creation failed:', err);
       }
     );
+  }
+
+
+  getCaterogies() {
+    this.category.getCategories().subscribe(res => {
+      this.categories = res.map((category: any) => {
+        return { name: category.name, value: category._id };
+      });
+      console.log(this.categories);
+    })
   }
 
 }

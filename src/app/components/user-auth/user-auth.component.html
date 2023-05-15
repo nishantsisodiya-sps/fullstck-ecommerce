@@ -14,23 +14,41 @@
                                     <div class="section text-center">
                                         <h4 class="mb-2 pb-3" style="color: white;">Log In</h4>
                                         <form [formGroup]="loginForm">
+
+
                                             <div class="form-group">
                                                 <input type="email" name="logemail" class="form-style"
-                                                    placeholder="Your Email" id="logemail" autocomplete="off" formControlName="email">
+                                                    placeholder="Your Email" id="logemail" autocomplete="off"
+                                                    formControlName="email">
                                                 <i class="input-icon uil uil-at"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">*Please
+                                                    Enter Email</small>
                                             </div>
+
+
                                             <div class="form-group mt-2">
                                                 <input type="password" name="logpass" class="form-style"
-                                                    placeholder="Your Password" id="logpass" autocomplete="off" formControlName="password">
+                                                    placeholder="Your Password" id="logpass" autocomplete="off"
+                                                    formControlName="password">
                                                 <i class="input-icon uil uil-lock-alt"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">*Please
+                                                    Enter Password</small>
                                             </div>
-                                            <a class="btns mt-4" type="submit" (click)="loginUser($event)">submit</a>
+
+
+                                            <button class="btns mt-4" type="submit" (click)="loginUser($event)"
+                                                [disabled]="loginForm.invalid">submit</button>
                                             <p class="mb-0 mt-4 text-center"><a class="link">Forgot your
                                                     password?</a></p>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <div class="card-back">
                                 <div class="center-wrap">
                                     <div class="section text-center">
@@ -39,25 +57,42 @@
                                         <form [formGroup]="signupForm">
                                             <div class="form-group">
                                                 <input type="text" name="name" class="form-style"
-                                                    placeholder="Your Full Name" id="logname" autocomplete="off" formControlName="name">
+                                                    placeholder="Your Full Name" id="logname" autocomplete="off"
+                                                    formControlName="name">
                                                 <i class="input-icon uil uil-user"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!signupForm.get('name')?.valid && signupForm.get('name')?.touched">*Please
+                                                    Enter Name</small>
                                             </div>
                                             <div class="form-group mt-2">
                                                 <input type="email" name="email" class="form-style"
-                                                    placeholder="Your Email" id="logemail" autocomplete="off" formControlName="email">
+                                                    placeholder="Your Email" id="logemail" autocomplete="off"
+                                                    formControlName="email">
                                                 <i class="input-icon uil uil-at"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!signupForm.get('email')?.valid && signupForm.get('email')?.touched">*Please
+                                                    Enter Email</small>
                                             </div>
                                             <div class="form-group mt-2">
                                                 <input type="number" name="phone" class="form-style"
-                                                    placeholder="Phone Number" id="logPhone" autocomplete="off" formControlName="phone">
+                                                    placeholder="Phone Number" id="logPhone" autocomplete="off"
+                                                    formControlName="phone">
                                                 <i class="input-icon uil uil-at"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!signupForm.get('phone')?.valid && signupForm.get('phone')?.touched">*Please
+                                                    Enter Phone Number</small>
                                             </div>
                                             <div class="form-group mt-2">
                                                 <input type="password" name="password" class="form-style"
-                                                    placeholder="Your Password" id="logpass" autocomplete="off" formControlName="password">
+                                                    placeholder="Your Password" id="logpass" autocomplete="off"
+                                                    formControlName="password">
                                                 <i class="input-icon uil uil-lock-alt"></i>
+                                                <small class="text-danger"
+                                                    *ngIf="!signupForm.get('password')?.valid && signupForm.get('password')?.touched">*Please
+                                                    Enter Password</small>
                                             </div>
-                                            <a  class="btns mt-4" (click)="submitUser()">submit</a>
+                                            <button class="btns mt-4" (click)="submitUser()"
+                                                [disabled]="signupForm.invalid">submit</button>
                                         </form>
                                     </div>
                                 </div>
@@ -69,7 +104,3 @@
         </div>
     </div>
 </div>
-
-
-
-

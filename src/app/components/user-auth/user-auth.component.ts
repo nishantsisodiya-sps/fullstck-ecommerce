@@ -73,10 +73,6 @@ export class UserAuthComponent implements OnInit {
       });
   }
 
-
-
-
-
 }
 
 

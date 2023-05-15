@@ -1,26 +1,7 @@
-<div>
-    <ngb-carousel *ngIf="myProducts">
-        <ng-template *ngFor="let item of myProducts" ngbSlide>
-            <div class="picsum-img-wrapper">
-                <a [routerLink]="['/details', item._id]"><img class="product-header-image"
-                        src="http://localhost:3838/uploads/{{item.thumbnail}}" alt="Random first slide" /></a>
-            </div>
-            <div class="carousel-caption">
-                <h3>{{item.title}}</h3>
-                <p>{{item.description}}</p>
-            </div>
-        </ng-template>
-    </ngb-carousel>
-</div>
-
-<div class="my-2 mt-3 mb-1 text-center">
-    <h2 style="display: inline;"><strong>Bestsellers</strong></h2>
-    <button class="spanBtn btn btn-primary" routerLink="/MyProducts">View All</button>
-</div>
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-3 mb-5" *ngFor="let item of products" style="cursor: pointer;">
+        <div class="col-md-3 mb-5" *ngFor="let item of products"  style="cursor: pointer;">
             <div class="card">
                 <div class="image-container" [routerLink]="['/details' , item._id]">
                     <div class="first">
@@ -29,8 +10,7 @@
                             <span class="wishlist"><i class="fa fa-heart-o"></i></span>
                         </div>
                     </div>
-                    <img src="http://localhost:3838/uploads/{{item.thumbnail}}"
-                        class="img-fluid rounded thumbnail-image" style="aspect-ratio: 10/10;">
+                    <img src="http://localhost:3838/uploads/{{item.thumbnail}}" class="img-fluid rounded thumbnail-image" style="aspect-ratio: 10/10;">
                 </div>
                 <div class="product-detail-container p-2">
                     <div class="d-flex justify-content-between align-items-center">
@@ -78,28 +58,3 @@
     </div>
 </div>
 
-
-
-<h2 class="my-2 mt-3 mb-1 text-center"><strong>Categories</strong></h2>
-
-
-<section class="py-5">
-    <div class="container px-4 px-lg-5 mt-1">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" >        
-            <div class="col mb-5" *ngFor="let item of categories" [routerLink]="['/category-products' , item._id]">
-                <div class="card h-100" >                  
-                    <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div> 
-                    <img class="card-img-top" src="https://source.unsplash.com/450x300/?{{item.name}} "alt="..." />                     
-                    <div class="card-body p-4">
-                        <div class="text-center">                      
-                            <h5 class="fw-bolder">{{item.name | titlecase}}</h5>                       
-                            <span class="text-muted text-decoration-line-through">12% &nbsp;</span>
-                            UPTO 20 % off
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>

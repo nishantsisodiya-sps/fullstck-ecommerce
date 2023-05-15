@@ -29,12 +29,12 @@ export class CheckoutComponent implements OnInit {
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
-      zip: new FormControl(null, [Validators.required, Validators.pattern('/^([1-9])(\d{2})(\d{3})$/')])
+      zip: new FormControl(null, [Validators.required, Validators.pattern(/^([1-9])(\d{2})(\d{3})$/)])
   });
 
  
 
-  constructor(private activate : ActivatedRoute , private http : HttpClient , 
+  constructor(private activate : ActivatedRoute , private http : HttpClient ,   
     private auth : AuthTokenService ,
     ) { }
 

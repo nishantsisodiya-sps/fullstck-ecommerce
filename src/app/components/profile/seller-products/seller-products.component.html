@@ -1,0 +1,160 @@
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class=" row justify-content-center mb-3">
+      <div class=" col-md-12 col-xl-10" *ngFor="let item of sellerProducts let i = index" >
+        <div class="card shadow-0 border rounded-3 mt-2">
+          <div class="car card-body">
+            <div class="row">
+              <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+                <div class="bg-image hover-zoom ripple rounded ripple-surface">
+                  <img src="http://localhost:3838/uploads/{{item.thumbnail}}" class="w-100" />
+                  <a href="#!">
+                    <div class="hover-overlay">
+                      <div class="mask" style="background-color: rgba(253, 253, 253, 0.15);"></div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{item.title}}</h5>
+                <div class="d-flex flex-row">
+                  <div class="text-danger mb-1 me-2">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <span>{{item.rating}}</span>
+                </div>
+                <div class="mt-1 mb-0 text-muted small">
+                  <span>{{item.category}}</span>
+                  <span class="text-primary"> • </span>
+                  <span>Light weight</span>
+                  <span class="text-primary"> • </span>
+                  <span>Best finish<br /></span>
+                </div>
+                <div class="mb-2 text-muted small">
+                  <span>Unique design</span>
+        
+                </div>
+                <p class="text-truncate mb-4 mb-md-0">
+                  {{item.description}}
+                </p>
+              </div>
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+                <div class="d-flex flex-row align-items-center mb-1">
+                  <h4 class="mb-1 me-1">{{item.price | currencyConvert}}</h4>
+                  <span class="text-danger">&nbsp;{{item.discountPercentage}}% OFF</span>
+                </div>
+                <h6 class="text-success">Free shipping</h6>
+                <div class="d-flex flex-column mt-4">
+                  <button class="btns btns-primary btns-sm" type="button" data-bs-toggle="modal"
+                    data-bs-target="#EditModal" (click)="editProduct(this ,  i)">Edit</button>
+                  <button class="btns btns-outline-primary btns-sm mt-2" type="button"
+                    (click)="deleteProduct(this , i)">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Product</h5>
+          <button type="button" class="btns-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-top">
+            <div class="myForm">
+              <form [formGroup]="productUpdateForm" enctype="multipart/form-data" method="post">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Product Title</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Product title" formControlName="title" name="title">
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Description</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Product Description" formControlName="description" name="description">
+                </div>
+                <br>
+
+                <div class="row">
+                  <div class="col">
+                    <label for="exampleInputEmail1">Price</label>
+                    <input type="number" class="form-control" placeholder="Price" formControlName="price" name="price">
+                  </div>
+                  <div class="col">
+                    <label for="exampleInputEmail1">Discount Percentage</label>
+                    <input type="number" class="form-control" placeholder="Discount Percentage"
+                      formControlName="discountPercentage" name="discountPercentage">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+                  <div class="col">
+                    <label for="exampleInputEmail1">Rating</label>
+                    <input type="number" class="form-control" placeholder="Rating" formControlName="rating"
+                      name="rating">
+                  </div>
+                  <div class="col">
+                    <label for="exampleInputEmail1">stock</label>
+                    <input type="number" class="form-control" placeholder="stock" formControlName="stock" name="stock">
+                  </div>
+                </div>
+                <br>
+                <div class="row">
+
+
+                  <div class="col">
+                    <label for="exampleInputEmail1">Category</label>
+                    <select class="form-select" formControlName="category" name="category">
+                        <option *ngFor="let category of categories" [value]="category.value">{{ category.name }}</option>
+                    </select>
+                    
+                </div>
+
+
+                  <div class="col">
+                    <label for="exampleInputEmail1">Brand</label>
+                    <input type="text" class="form-control" placeholder="stock" formControlName="brand" name="brand">
+                  </div>
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1"><b>Choose Thumbnail</b> &nbsp;</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="thumbnail"
+                    (change)="onThumbnailSelected($event)" enctype="multipart/form-data">
+                  <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
+                </div>
+                <br>
+                <div class="form-group">
+                  <label for="exampleFormControlFile1"><b> More images </b>&nbsp;</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name="images" multiple
+                    (change)="onImagesSelected($event)">
+                  <img [src]="thumbnailPreview" *ngIf="thumbnailPreview" />
+                </div>
+                <br>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btns btns-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btns btns-primary" (click)="updateProduct()">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

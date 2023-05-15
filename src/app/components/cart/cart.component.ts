@@ -29,8 +29,9 @@ export class CartComponent implements OnInit {
 
   getcartItems() {
     let seller = this.auth.getSellerId().id
-
+    console.log(seller);
     this.productApi.getCartItems(seller).subscribe(res => {
+      console.log(res);
       this.products = res
       this.totalCart = this.products.length
       this.products.forEach((element : any) => {

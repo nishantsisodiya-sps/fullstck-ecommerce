@@ -26,9 +26,9 @@ export class MyOrdersComponent implements OnInit {
       this.order.getOrderInfo(id).subscribe(res=>{
         this.orders.push(res)
         this.orderProducts = this.orders[0].products
+        console.log(this.orderProducts);
         this.totalAmount = this.orders[0].amount
         this.name = this.orders[0].name
-        console.log(this.totalAmount);
 
       })
     })

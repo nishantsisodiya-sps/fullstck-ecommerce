@@ -1,32 +1,4 @@
 
-/* .slider {
-    margin: auto;
-    width: 100vw;
-    margin: 12px auto;
-    overflow: hidden;
-} */
-.carousel-caption {
-    background-color: #0000007d;
-    border-radius: 10px;
-  }
-  .carousel-control-next-icon, .carousel-control-prev-icon{
-    background-color: black;
-    border-radius: 5px;
-  }
-  .product-header-image{
-    object-fit: contain;
-    width: 100%;
-    height: 399px;
-    margin-top: 2%;
-
-}
-.my-2 {
-    margin: 26px 0;
-    background-color: aquamarine;
-}
-
-
-
 body{
 
 	background-color: #eee;
@@ -254,12 +226,4 @@ body{
 	font-size: 14px;
 	position: relative;
 	bottom: 5px;
-}
-.spanBtn{
-  position: absolute;
-  right: 0;
-}
-.container{
-	width: 100%;
-	cursor: pointer;
 }

@@ -1,5 +1,5 @@
-<div class="container" style="padding: 3%;"> 
- <div class="row justify-content-center">
+<div class="container" style="padding: 3%;">
+    <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -14,14 +14,28 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                     <form [formGroup]="sellerLoginForm">
+
+
                         <div class="form-outline mb-4">
-                            <input type="email" id="loginName" class="form-control" name="email" formControlName="email"/>
                             <label class="form-label" for="loginName">Email</label>
+                            <input type="email" id="loginName" class="form-control" name="email"
+                                formControlName="email" />
+                            <small class="text-danger"
+                                *ngIf="!sellerLoginForm.get('email')?.valid && sellerLoginForm.get('email')?.touched">*Please
+                                Enter Email</small>
                         </div>
+
+
                         <div class="form-outline mb-4">
-                            <input type="password" id="loginPassword" class="form-control" name="password" formControlName="password"/>
                             <label class="form-label" for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" class="form-control" name="password"
+                                formControlName="password" />
+                            <small class="text-danger"
+                                *ngIf="!sellerLoginForm.get('password')?.valid && sellerLoginForm.get('password')?.touched">*Please
+                                Enter Password</small>
                         </div>
+
+
                         <div class="row mb-4">
                             <div class="col-md-6 d-flex justify-content-center">
                             </div>
@@ -30,8 +44,9 @@
                             </div>
                         </div>
                         <div class="form-check d-flex justify-content-center mb-4">
-                
-                            <button type="submit" class="btns btns-primary btns-block mb-4" (click)="loginseller($event)">Sign in</button>
+
+                            <button type="submit" class="btns btns-primary btns-block mb-4"
+                                (click)="loginseller($event)">Sign in</button>
                         </div>
 
                     </form>
@@ -41,34 +56,51 @@
 
                 <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
                     <form [formGroup]="sellerSignupForm">
-                
+
                         <div class="form-outline mb-4">
-                            <input type="text" id="registerName" class="form-control" name="name" formControlName="name" />
                             <label class="form-label" for="registerName">Name</label>
+                            <input type="text" id="registerName" class="form-control" name="name"
+                                formControlName="name" />
+                            <small class="text-danger"
+                                *ngIf="!sellerSignupForm.get('name')?.valid && sellerSignupForm.get('name')?.touched">*Please
+                                Enter Name</small>
                         </div>
 
 
                         <div class="form-outline mb-4">
-                            <input type="email" id="registerEmail" class="form-control" name="email" formControlName="email" />
                             <label class="form-label" for="registerEmail">Email</label>
+                            <input type="email" id="registerEmail" class="form-control" name="email"
+                                formControlName="email" />
+                            <small class="text-danger"
+                                *ngIf="!sellerSignupForm.get('email')?.valid && sellerSignupForm.get('email')?.touched">*Please
+                                Enter Email</small>
                         </div>
 
 
                         <div class="form-outline mb-4">
-                            <input type="number" id="registerEmail" class="form-control" name="phone" formControlName="phone" />
                             <label class="form-label" for="registerEmail">Phone</label>
+                            <input type="number" id="registerEmail" class="form-control" name="phone"
+                                formControlName="phone" />
+                            <small class="text-danger"
+                                *ngIf="!sellerSignupForm.get('phone')?.valid && sellerSignupForm.get('phone')?.touched">*Please
+                                Enter Phone Number</small>
                         </div>
 
-                    
+
 
                         <div class="form-outline mb-4">
-                            <input type="password" id="registerPassword" class="form-control" name="password" formControlName="password" />
                             <label class="form-label" for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" class="form-control" name="password"
+                                formControlName="password" />
+                            <small class="text-danger"
+                                *ngIf="!sellerSignupForm.get('password')?.valid && sellerSignupForm.get('password')?.touched">*Please
+                                Enter Password</small>
                         </div>
 
                         <div class="form-check d-flex justify-content-center mb-4">
-                
-                            <button type="submit" class="btns btns-primary btns-block mb-3" (click)="submitseller()">Sign Up</button>
+
+                            <button type="submit" class="btns btns-primary btns-block mb-3"
+                                (click)="submitseller()">Sign Up</button>
                         </div>
                     </form>
                 </div>
