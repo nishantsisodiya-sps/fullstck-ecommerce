@@ -13,7 +13,7 @@ export class ProductService {
    return this.http.post(`${this.url}/cart/add` , data)
   }
 
-  getCartValue(id:any) : Observable <any>{
+  getCartValue(id:any) : Observable <any>{                    //to get the cat length
     return this.http.get(`${this.url}/cart/${id}`)
   }
 
