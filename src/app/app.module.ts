@@ -14,7 +14,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { PipePipe } from './service/pipe.pipe';
 import { DetailsComponent } from './components/details/details.component';
-import { SellerProductsComponent } from './seller-products/seller-products.component';
+import { SellerProductsComponent } from './components/profile/seller-products/seller-products.component';
 import { SellerAuthComponent } from './components/seller-auth/seller-auth.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -28,9 +28,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { UserDetailsComponent } from './components/user-details/user-details.component';
-import { SupportComponent } from './components/support/support.component'
+import { MyOrdersComponent } from './components/profile/my-orders/my-orders.component';
+import { UserDetailsComponent } from './components/profile/user-details/user-details.component';
+import { SupportComponent } from './components/support/support.component';
+import { OrderlistComponent } from './components/profile/orderlist/orderlist.component';
+import { DashboardComponent } from './components/profile/dashboard/dashboard.component';
+import { CategoryProductsComponent } from './components/category-products/category-products.component';
+import { SpecialCharacterDirective } from './service/special-character.directive'
 
 
 @NgModule({
@@ -52,6 +56,10 @@ import { SupportComponent } from './components/support/support.component'
     MyOrdersComponent,
     UserDetailsComponent,
     SupportComponent,
+    OrderlistComponent,
+    DashboardComponent,
+    CategoryProductsComponent,
+    SpecialCharacterDirective,
 
 
   ],

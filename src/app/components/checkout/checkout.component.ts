@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, EmailValidator } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 
@@ -19,7 +19,6 @@ export class CheckoutComponent implements OnInit {
   cartData: any 
   products : any = []
   cartProduct : any
-
   showSpinner : boolean = false
 
     shipDetails = new FormGroup({
@@ -35,32 +34,41 @@ export class CheckoutComponent implements OnInit {
  
 
   constructor(private activate : ActivatedRoute , private http : HttpClient ,   
-    private auth : AuthTokenService ,
+    private auth : AuthTokenService , private router : Router
     ) { }
 
   ngOnInit(): void {
 
-    this.activate.queryParams.subscribe(params=>{
-      this.totalPrice = params['totalPrice']
-      this.cartProduct = params['products']
+    this.activate.queryParams.subscribe(params => {
+      this.totalPrice = params['totalPrice'];
+      this.cartProduct = JSON.parse(params['queryProduct']);
       console.log(this.cartProduct);
-    })
-
+    });
   }
 
+
   purchase() {
-    let userId =  this.auth.getSellerId().id;
-    let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
-    let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
-    this.showSpinner = true;
-    this.http.post('http://localhost:3838/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
-      console.log(data);
-      this.showSpinner = false;
-      if (data && data.orderId) {
-        console.log(data.razorpayOrderId.id);
-        this.openRazorpay(data.razorpayOrderId);
-      }
-    });
+
+    let seller = this.auth.getSellerId().role
+   if(seller === 'seller'){
+    alert('Please login as user')
+    this.router.navigate(['/userAuth'])
+   }
+
+   else{
+     let userId =  this.auth.getSellerId().id;
+     let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
+     let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
+     this.showSpinner = true;
+     this.http.post('http://localhost:3838/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
+       console.log(data);
+       this.showSpinner = false;
+       if (data && data.orderId) {
+         console.log(data.razorpayOrderId.id);
+         this.openRazorpay(data.razorpayOrderId);
+       }
+     });
+   }
   }
   
   openRazorpay(razorpayOrderId : any) {
@@ -100,7 +108,7 @@ export class CheckoutComponent implements OnInit {
       totalAmount: this.totalPrice,
       status: 'pending',
       paymentId: paymentId,
-      testMode: true // set test mode flag to true
+      testMode: true 
     };
   
     // Call your backend API to save the order in your database
@@ -109,9 +117,6 @@ export class CheckoutComponent implements OnInit {
       this.showSpinner = false;
     });
   }
-  
-
-
 }
 
 

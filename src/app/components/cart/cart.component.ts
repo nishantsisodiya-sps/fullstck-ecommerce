@@ -29,13 +29,13 @@ export class CartComponent implements OnInit {
 
   getcartItems() {
     let seller = this.auth.getSellerId().id
-    console.log(seller);
     this.productApi.getCartItems(seller).subscribe(res => {
-      console.log(res);
       this.products = res
       this.totalCart = this.products.length
+      console.log(this.products);
       this.products.forEach((element : any) => {
-          this.queryProduct.push(element.product.id)
+          console.log(element.product);
+          this.queryProduct.push(element.product)
           console.log(this.queryProduct);
         });
 
@@ -67,7 +67,12 @@ export class CartComponent implements OnInit {
   }
 
   checkout(totalPrice: number) {
-    this.router.navigate(['/checkout'], { queryParams: { totalPrice: totalPrice, products: this.queryProduct , quantity : this.quantity } })
+    const queryParams = {
+      totalPrice: totalPrice,
+      queryProduct: JSON.stringify(this.queryProduct),
+      quantity: this.quantity
+    };
+    this.router.navigate(['/checkout'], { queryParams: queryParams })
   }
 }
 

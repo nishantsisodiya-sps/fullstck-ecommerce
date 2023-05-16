@@ -34,7 +34,7 @@
 
         <div class="email">
           <label for="name">Email</label>
-          <input type="email" NoSpecialCharacter name="address" formControlName="email">
+          <input type="email" name="address" formControlName="email">
           <small class="text-danger"
             *ngIf="!shipDetails.get('email')?.valid && shipDetails.get('email')?.touched">*Please
             Enter Street</small>
