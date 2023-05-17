@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   {
     path: 'profile', component: ProfileComponent, children: [
+      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'sellerProducts', component: SellerProductsComponent },
       { path: 'MyOrderList', component: OrderlistComponent },
       { path: 'MyOrderList/:id', component: MyOrdersComponent },

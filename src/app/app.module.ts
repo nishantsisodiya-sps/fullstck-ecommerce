@@ -35,7 +35,9 @@ import { OrderlistComponent } from './components/profile/orderlist/orderlist.com
 import { DashboardComponent } from './components/profile/dashboard/dashboard.component';
 import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { SpecialCharacterDirective } from './service/special-character.directive'
-
+import {MatCardModule} from '@angular/material/card';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DefaultArcObject } from 'd3-shape';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,8 @@ import { SpecialCharacterDirective } from './service/special-character.directive
     MatExpansionModule,
     MatInputModule,
     FormsModule,
-
+    MatCardModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
-import { HttpParams } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-cart',
