@@ -38,6 +38,7 @@ import { SpecialCharacterDirective } from './service/special-character.directive
 import {MatCardModule} from '@angular/material/card';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DefaultArcObject } from 'd3-shape';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,9 @@ import { DefaultArcObject } from 'd3-shape';
     MatInputModule,
     FormsModule,
     MatCardModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatTableModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

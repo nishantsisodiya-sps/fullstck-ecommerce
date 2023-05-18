@@ -15,6 +15,15 @@ import { SupportComponent } from './components/support/support.component';
 import { OrderlistComponent } from './components/profile/orderlist/orderlist.component';
 import { DashboardComponent } from './components/profile/dashboard/dashboard.component';
 import { CategoryProductsComponent } from './components/category-products/category-products.component';
+// const token = localStorage.getItem('token')
+
+// let route:string;
+// if(token){
+//   route='dashboard'
+// }
+// else{
+//   route='myOrderList'
+// }
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -27,7 +36,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   {
     path: 'profile', component: ProfileComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
+      { path: '', pathMatch: 'full', redirectTo:  'dashboard' },
       { path: 'sellerProducts', component: SellerProductsComponent },
       { path: 'MyOrderList', component: OrderlistComponent },
       { path: 'MyOrderList/:id', component: MyOrdersComponent },

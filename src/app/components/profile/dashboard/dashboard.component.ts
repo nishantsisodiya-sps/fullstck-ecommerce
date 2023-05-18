@@ -11,10 +11,14 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
+  
+
   sellerProducts: any = []
   productStatus: any = []
   single: any = [];
-
+  details : any = []
 
   multi?: any[];
   view: [number, number] = [800, 250];
@@ -50,8 +54,12 @@ export class DashboardComponent implements OnInit {
       products: this.api.getSellerProducts(id),
       status: this.sellerStatus.getSellerProductStatus(id)
     }).subscribe((res: any) => {
+      this.details.push(res) 
+        console.log('detail' , this.details);
+
       this.sellerProducts = res.products;
       this.productStatus = res.status;
+
 
       this.single = this.sellerProducts.map((item: any) => ({
         name: item.title,
@@ -66,7 +74,9 @@ export class DashboardComponent implements OnInit {
     for (const status of this.productStatus) {
       const productIndex = this.single.findIndex((item: any) => item.name === status.product.title);
       if (productIndex !== -1) {
-        const revenue = status.product.price * 80 * (status.quantitySold || 0);
+        let discount = status.product.price * status.product.discountPercentage / 100
+        let price =  status.product.price - discount
+        const revenue = Math.round(price * 80 * (status.quantitySold || 0));
         this.single[productIndex].value = revenue;
       }
     }
@@ -78,10 +88,15 @@ export class DashboardComponent implements OnInit {
   calculateTotalRevenue(): number {
     let totalRevenue = 0;
     for (const status of this.productStatus) {
-      const revenue = status.product.price * 80 * (status.quantitySold || 0);
-      totalRevenue += revenue;
+
+      let discount = status.product.price * status.product.discountPercentage / 100
+      let price =  status.product.price - discount
+      const revenue = Math.round(price * 80 * (status.quantitySold || 0));
+      totalRevenue +=  revenue;
+
     }
     return totalRevenue;
+
   }
   
   calculateTotalQuantitySold(): number {
@@ -90,6 +105,17 @@ export class DashboardComponent implements OnInit {
       totalQuantitySold += status.quantitySold || 0;
     }
     return totalQuantitySold;
+  }
+
+
+  calculatePriceAfterDiscount(item: any): number {
+    const discount = item.price * item.discountPercentage / 100;
+    return Math.round(item.price - discount) ;
+  }
+  
+  calculateRevenue(item: any): number {
+    const priceAfterDiscount = this.calculatePriceAfterDiscount(item);
+    return Math.round(priceAfterDiscount * 80 * (item.quantitySold || 0));
   }
 
   }
