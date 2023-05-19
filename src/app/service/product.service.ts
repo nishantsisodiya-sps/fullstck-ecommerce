@@ -38,6 +38,11 @@ export class ProductService {
   }
 
 
+  updateCartItem(itemId : any , quantity:number):Observable<any>{
+    return this.http.put(`${this.url}/cart/${itemId}` , { quantity })
+  }
+
+
   deleteFromCart(itemId : any):Observable<any>{
     return this.http.delete<any>(`${this.url}/cart/${itemId}`)
   }
