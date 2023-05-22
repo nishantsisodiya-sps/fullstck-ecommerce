@@ -54,12 +54,10 @@ export class DashboardComponent implements OnInit {
       products: this.api.getSellerProducts(id),
       status: this.sellerStatus.getSellerProductStatus(id)
     }).subscribe((res: any) => {
-      this.details.push(res) 
-        console.log('detail' , this.details);
-
+      this.details.push(res.products[0]) 
       this.sellerProducts = res.products;
       this.productStatus = res.status;
-
+     
 
       this.single = this.sellerProducts.map((item: any) => ({
         name: item.title,
@@ -74,9 +72,9 @@ export class DashboardComponent implements OnInit {
     for (const status of this.productStatus) {
       const productIndex = this.single.findIndex((item: any) => item.name === status.product.title);
       if (productIndex !== -1) {
-        let discount = status.product.price * status.product.discountPercentage / 100
-        let price =  status.product.price - discount
-        const revenue = Math.round(price * 80 * (status.quantitySold || 0));
+
+        let discountedPrice = Math.round( status.product.price - (status.product.price * status.product.discountPercentage) / 100)
+        const revenue = Math.round(discountedPrice * (status.quantitySold || 0 ) * 80);
         this.single[productIndex].value = revenue;
       }
     }
@@ -109,13 +107,30 @@ export class DashboardComponent implements OnInit {
 
 
   calculatePriceAfterDiscount(item: any): number {
-    const discount = item.price * item.discountPercentage / 100;
-    return Math.round(item.price - discount) ;
+    // Calculate price after discount
+    let discountedPrice = item.price - (item.price * item.discountPercentage) / 100;
+
+    return Math.round(discountedPrice);
+  }
+  
+  getProductSold(item: any): number {
+
+    // Find the corresponding product status based on item ID
+
+    const productStatus = this.productStatus.find((status: any) => status._id === item._id);
+    if (productStatus) {
+      return productStatus.quantitySold;
+    }
+    return 0;
   }
   
   calculateRevenue(item: any): number {
+    const productSold = this.getProductSold(item);
     const priceAfterDiscount = this.calculatePriceAfterDiscount(item);
-    return Math.round(priceAfterDiscount * 80 * (item.quantitySold || 0));
+    const revenue = priceAfterDiscount * productSold;
+    return revenue;
   }
+
+  
 
   }

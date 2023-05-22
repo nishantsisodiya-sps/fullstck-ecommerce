@@ -1,0 +1,20 @@
+<div class="mainOuter" >
+    <div class="card" style="width: 14rem;" *ngFor="let item of products" >
+        <div class="product-wrapper mb-45 text-center">
+            <div class="product-img"> <a data-abc="true"> <img 
+                        src="http://localhost:3838/uploads/{{item.thumbnail}}" width="100%" alt=""
+                        style="aspect-ratio: 10/10;"> </a> <span class="text-center"><i
+                        class="fa fa-rupee"></i>{{item.price | currencyConvert}}</span>
+                <div class="product-action">
+                    <div class="product-action-style">
+                        <a [routerLink]="['/details' , item._id]" title="View Product"> <i class="fa fa-eye"></i> </a>
+                        <a (click)="deleteFromWishlist(item._id)" title="Remove from Wishlist"> <i class="fa fa-times"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body text-center">
+            <p class="card-text">{{item.title}}</p>
+        </div>
+    </div>
+</div>
