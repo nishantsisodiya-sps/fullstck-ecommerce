@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -14,6 +14,9 @@ export class UserAuthComponent implements OnInit {
   signupForm !: FormGroup
   signupdata: [] = []
   showSpinner : any = false
+
+  @ViewChild('passwordInput', { static: false }) passwordInput: ElementRef | undefined;
+
   constructor(private fb: FormBuilder, private router: Router, private userAuthApi: UserAuthApiService, private http: HttpClient) {
 
     this.loginForm = this.fb.group({
@@ -71,6 +74,17 @@ export class UserAuthComponent implements OnInit {
           alert(response.message);
         }
       });
+  }
+
+
+
+  togglePassword(): void {
+    const passwordInput = this.passwordInput?.nativeElement;
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+    } else {
+      passwordInput.type = 'password';
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,11 +10,19 @@ export class OrderService {
   constructor(private http : HttpClient) { }
 
   getOrders(id : any):Observable<any>{
-    return this.http.get(`${this.url}/order/${id}`)
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(`${this.url}/order/${id}` , {headers})
   }
 
   getOrderInfo(id : any):Observable<any>{
-    return this.http.get(`${this.url}/order/singleOrder/${id}`)
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(`${this.url}/order/singleOrder/${id}` , {headers})
   }
 
 }

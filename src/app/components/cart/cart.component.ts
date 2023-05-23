@@ -32,11 +32,10 @@ export class CartComponent implements OnInit {
     this.productApi.getCartItems(seller).subscribe(res => {
       this.products = res
       this.totalCart = this.products.length
-      console.log(this.products);
+     
       this.products.forEach((element : any) => {
-          console.log(element.product);
           this.queryProduct.push(element.product)
-          console.log(this.queryProduct);
+       
         });
 
       let totalPrice = 0;
@@ -74,6 +73,30 @@ export class CartComponent implements OnInit {
     };
     this.router.navigate(['/checkout'], { queryParams: queryParams })
   }
+
+
+  increaseQuantity(item: any) {
+    item.quantity++;
+    this.updateCart(item);
+  }
+
+  decreaseQuantity(item: any) {
+    if (item.quantity > 1) {
+      item.quantity--;
+      this.updateCart(item);
+    }
+  }
+
+  updateCart(item: any) {
+    this.productApi.updateCartItem(item.id, item.quantity).subscribe(res => {
+      if (res) {
+        this.getcartItems();
+      } else {
+        console.log("Error occurred while updating cart item.");
+      }
+    });
+  }
+
 }
 
 

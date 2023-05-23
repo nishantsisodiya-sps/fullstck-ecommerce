@@ -1,8 +1,10 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
+import { WishlistService } from 'src/app/service/wishlist.service';
 
 @Component({
   selector: 'app-details',
@@ -13,8 +15,15 @@ export class DetailsComponent implements OnInit {
   product : any = []
   productQuantity: number = 1;
   quantity: number = 1
+
+
   constructor(private activate : ActivatedRoute , private api : UserAuthApiService , 
-    private auth : AuthTokenService , private productApi : ProductService ) { }
+    private auth : AuthTokenService , private productApi : ProductService ,
+    private wishlist : WishlistService
+    ) { }
+
+
+
   arr : [] = []
 
   ngOnInit(): void {
@@ -81,5 +90,37 @@ export class DetailsComponent implements OnInit {
     }
   }
   
+
+  // addTowishlist(id : any){
+  //   this.wishlist.addToWishlist(id).subscribe(res=>{
+  //     console.log(res);
+  //   })
+  // }
+
+
+  // getWishlist(): void {
+  //   this.wishlist.getWishlist().subscribe(
+  //     (response) => {
+  //       this.wishlist = response.wishlist;
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //     }
+  //   );
+  // }
+
+  
+
+  addToWishlist(productId: string): void {
+    this.wishlist.addToWishlist(productId).subscribe(
+      (response) => {
+        console.log(response.message);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 
 }

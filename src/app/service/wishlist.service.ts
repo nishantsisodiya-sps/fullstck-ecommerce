@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -13,11 +13,33 @@ export class WishlistService {
 
 
   addToWishlist(productId: string): Observable<any> {
-    return this.http.post<any>(`${this.url}/add`, { productId });
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+
+    return this.http.post<any>(`${this.url}/wishlist/add`, { productId } , {headers});
   }
 
-  getWishlist(): Observable<any> {
-    return this.http.get<any>(`${this.url}`);
+  getWishlist(id:any): Observable<any> {
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.url}/wishlist/${id}` , {headers});
+  }
+
+  deleteFromWishlist(id: any): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.delete(`${this.url}/wishlist/${id}`, { headers });
   }
 
 }

@@ -1,7 +1,7 @@
 <section class="gradient-custom">
     <div class="container py-5">
         <div class="row d-flex justify-content-center align-items-center" >
-            <div class="col-lg-10 col-xl-8">
+            <div class="col-lg-10 col-xl-10">
                 <div class="card" style="border-radius: 10px;">
                     <div class="card-header px-4 py-5">
                         <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">{{name | uppercase}}</span>!
@@ -15,23 +15,21 @@
                         <div class="card shadow-0 border mb-4" *ngFor="let product of orderProducts">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                         <img src="http://localhost:3838/uploads/{{product.thumbnail}}"
                                             class="img-fluid" alt="Phone">
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                                         <p class="text-muted mb-0">{{product.title}}</p>
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small">{{product.Brand}}</p>
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">{{product.brand}}</p>
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small">{{product.category}}</p>
+                                   
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                        <p class="text-muted mb-0 small">Qty: {{product.quantity}}</p>
                                     </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
-                                        <!-- <p class="text-muted mb-0 small">Qty: {{product.quantity}}</p> -->
-                                    </div>
-                                    <div class="col-md-2 text-center d-flex justify-content-center align-items-center">
+                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
                                         <p class="text-muted mb-0 small">&#8377; {{product.price | currencyConvert}}</p>
                                     </div>
                                 </div>

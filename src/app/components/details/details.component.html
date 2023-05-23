@@ -14,7 +14,7 @@
                 <div class="col-md-6">
                     <div class="p-3 right-side">
                         <div class="d-flex justify-content-between align-items-center">
-                            <h1>{{item.title}}</h1> <span class="heart"><i class='bx bx-heart'></i></span>
+                            <h1>{{item.title}}</h1> <button (click)="addToWishlist(item._id)" class="heart"><i class='bx bx-heart'></i></button>
                         </div>
                         <div class="mt-2 pr-3 content">
                             <h3 style="font-size: 1rem;">{{item.description}}</h3>

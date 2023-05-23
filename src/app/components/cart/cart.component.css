@@ -114,18 +114,7 @@ input:focus::-webkit-input-placeholder
     width: 100%;
 
 }
-/*  .btn:focus{
-    box-shadow: none;
-    outline: none;
-    box-shadow: none;
-    color: white;
-    -webkit-box-shadow: none;
-    -webkit-user-select: none;
-    transition: none; 
-}
-.btn:hover{
-    color: white;
-} */
+
 a{
     color: black; 
 }
@@ -139,3 +128,4 @@ a:hover{
     background-position-x: 95%;
     background-position-y: center;
 }
+

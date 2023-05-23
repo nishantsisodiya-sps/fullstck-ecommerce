@@ -17,6 +17,7 @@
                         <div class="row">{{item.product.title}}</div>
                         <div class="row">Qty : {{item.quantity}}</div>
                     </div>
+                    
                     <div class="col">
                         <!-- <div class="row"><b>Brand</b></div> -->
                             <a>{{item.product.brand}}</a>
@@ -27,6 +28,10 @@
                      
 
                     </div>
+                    <div class="row" style="width: auto;">
+                        <button class="btn btn-sm btn-secondary mr-1" (click)="decreaseQuantity(item)">-</button>
+                        <button class="btn btn-sm btn-secondary" (click)="increaseQuantity(item)">+</button>
+                      </div>
                     <span class="close">
                         <button class="btns" (click)="deleteFromCart(item.id)">Remove</button>
                     </span>

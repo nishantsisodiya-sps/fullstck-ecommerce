@@ -26,15 +26,14 @@ export class WishlistComponent implements OnInit {
     })
 
   }
-
-  deleteFromWishlist(id:any){
-    this.wishlist.deleteFromWishlist(id).subscribe(res=>{
-      if(res){
-        this.getWishlistProducts()
-      }else{
-        console.log("error occured");
+  deleteFromWishlist(id: any) {
+    this.wishlist.deleteFromWishlist(id).subscribe(
+      res => {
+        this.getWishlistProducts();
+      },
+      error => {
+        console.log('Error occurred', error);
       }
-    })
+    );
   }
-
 }

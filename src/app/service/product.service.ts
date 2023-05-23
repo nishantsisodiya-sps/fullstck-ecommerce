@@ -9,24 +9,67 @@ export class ProductService {
   public url  = 'http://localhost:3838'
   constructor(private http : HttpClient) { }
 
+
+        // <<<<<<<<<<<<<<<<<<<<<<<<<< Products routes >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    // =========================== to delete single product===========================
+
+    deleteProduct(id : any):Observable<any>{
+
+      const headers = new HttpHeaders({
+       
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      });
+      return this.http.delete(`${this.url}/products/${id}` , {headers})
+  
+    }
+
+    // =========================== to search products ===========================
+
+
+    searchProducts(query : any):Observable<any>{
+      return this.http.get(`${this.url}/products/search?title=${query}`)
+    }
+
+
+
+        // <<<<<<<<<<<<<<<<<<<<<<<<<< Cart routes >>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+  // =========================== to add product to the cart ===========================
+
+
   addToCart(data:any) : Observable < any>{
-   return this.http.post(`${this.url}/cart/add` , data)
-  }
-
-  getCartValue(id:any) : Observable <any>{                    //to get the cat length
-    return this.http.get(`${this.url}/cart/${id}`)
-  }
-
-
-  deleteProduct(id : any):Observable<any>{
-
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-     
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
+      'Authorization': `Bearer ${token}`
     });
-    return this.http.delete(`${this.url}/products/${id}` , {headers})
 
+   return this.http.post(`${this.url}/cart/add` , data , {headers})
   }
+
+
+
+
+  // =========================== to get the cart length ===========================
+
+
+  getCartValue(id:any) : Observable <any>{                    
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.url}/cart/${id}` ,{headers})
+  }
+
+
+  
+
+
+    // =========================== to get the cart items ===========================
 
 
   getCartItems(id : any){
@@ -38,17 +81,29 @@ export class ProductService {
   }
 
 
+    // =========================== to update the cart quantities ===========================
+
   updateCartItem(itemId : any , quantity:number):Observable<any>{
-    return this.http.put(`${this.url}/cart/${itemId}` , { quantity })
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.url}/cart/${itemId}` , { quantity } , {headers})
   }
 
+
+  // =========================== to get the cart length ===========================
 
   deleteFromCart(itemId : any):Observable<any>{
-    return this.http.delete<any>(`${this.url}/cart/${itemId}`)
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.delete<any>(`${this.url}/cart/${itemId}` , {headers})
   }
 
 
-  searchProducts(query : any):Observable<any>{
-    return this.http.get(`${this.url}/products/search?title=${query}`)
-  }
+
 }
