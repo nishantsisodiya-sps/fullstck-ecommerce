@@ -12,109 +12,89 @@ import { WishlistService } from 'src/app/service/wishlist.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  product : any = []
+  product: any = []
   productQuantity: number = 1;
   quantity: number = 1
+  arr: [] = []
 
 
-  constructor(private activate : ActivatedRoute , private api : UserAuthApiService , 
-    private auth : AuthTokenService , private productApi : ProductService ,
-    private wishlist : WishlistService
-    ) { }
+  constructor(private activate: ActivatedRoute, private api: UserAuthApiService,
+    private auth: AuthTokenService, private productApi: ProductService,
+    private wishlist: WishlistService
+  ) { }
 
 
-
-  arr : [] = []
 
   ngOnInit(): void {
 
-    this.activate.paramMap.subscribe(param=>{
-     let id = param.get('id')
+    this.activate.paramMap.subscribe(param => {
+      let id = param.get('id')
 
-     this.api.getSingleProduct(id).subscribe(res=>{
-      this.product.push(res)
+      this.api.getSingleProduct(id).subscribe(res => {
+        this.product.push(res)
+        console.log(this.product);
 
-      let image = this.product[0].images
-      this.arr = image
-     })
+        let image = this.product[0].images
+        this.arr = image
+      })
     })
   }
 
- 
-  handleQuantity(val : string){
-    if(this.productQuantity < 20 && val === 'plus'){
+
+  handleQuantity(val: string) {
+    if (this.productQuantity < 20 && val === 'plus') {
       this.productQuantity += 1
-    }else if(this.productQuantity > 1 && val === 'min'){
+    } else if (this.productQuantity > 1 && val === 'min') {
       this.productQuantity -= 1
     }
   }
 
-  changeImage(element:any,i:any){
+  changeImage(element: any, i: any) {
     this.product[0].thumbnail = element.arr[i]
   }
 
-  AddToCart(){
-    if(this.product){
+  AddToCart() {
+    if (this.product) {
       this.product[0].quantity = this.productQuantity
-       
-      let controll =  this.auth.getSellerId()
 
-      if(controll.role === 'user'){
+      let controll = this.auth.getSellerId()
+
+      if (controll.role === 'user') {
         //Getting user id 
         let user = controll.id
-        let cart : any = {
-          user : user,
-          seller : null,
-          quantity : this.productQuantity,
-          product : this.product[0],
+        let cart: any = {
+          user: user,
+          seller: null,
+          quantity: this.productQuantity,
+          product: this.product[0],
         }
-        this.productApi.addToCart(cart).subscribe((res)=>{
+        this.productApi.addToCart(cart).subscribe((res) => {
           console.log(res);
 
         })
-      }else if(controll.role === 'seller'){
-          //Getting user id 
-          let seller = controll.id
-          let cart : any = {
-            user : null,
-            seller : seller,
-            quantity : this.productQuantity,
-            product : this.product[0],
-          }
-          this.productApi.addToCart(cart).subscribe((res)=>{
-            console.log(res);
+      } else if (controll.role === 'seller') {
+        //Getting user id 
+        let seller = controll.id
+        let cart: any = {
+          user: null,
+          seller: seller,
+          quantity: this.productQuantity,
+          product: this.product[0],
+        }
+        this.productApi.addToCart(cart).subscribe((res) => {
+          console.log(res);
 
-          })
+        })
       }
 
     }
   }
-  
 
-  // addTowishlist(id : any){
-  //   this.wishlist.addToWishlist(id).subscribe(res=>{
-  //     console.log(res);
-  //   })
-  // }
-
-
-  // getWishlist(): void {
-  //   this.wishlist.getWishlist().subscribe(
-  //     (response) => {
-  //       this.wishlist = response.wishlist;
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
-
-  
 
   addToWishlist(productId: string): void {
     this.wishlist.addToWishlist(productId).subscribe(
       (response) => {
-        console.log(response.message);
+        console.log(response);
       },
       (error) => {
         console.log(error);

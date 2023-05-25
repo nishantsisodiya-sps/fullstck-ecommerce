@@ -40,6 +40,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DefaultArcObject } from 'd3-shape';
 import {MatTableModule} from '@angular/material/table';
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { WishlistComponent } from './components/profile/wishlist/wishlist.compon
     CategoryProductsComponent,
     SpecialCharacterDirective,
     WishlistComponent,
+    EditProfileComponent,
 
 
   ],

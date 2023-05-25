@@ -20,6 +20,7 @@ export class UserAuthApiService {
 
 
   getProducts():Observable<any>{
+    
     return this.http.get(`${this.ApiUrl}/products`)
   }
 
@@ -48,4 +49,16 @@ export class UserAuthApiService {
     return this.http.get(`${this.ApiUrl}/sellers/profile/${id}` , {headers})
 
   }
+
+
+  getUserProfile(id : any):Observable<any>{
+    
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.get(`${this.ApiUrl}/users/profile/${id}` , {headers})
+
+  }
+
+
 }

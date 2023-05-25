@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   menuType : string = 'default'
   sellerData: any = []
   searchResult : any
-  constructor( private router : Router , private api : UserAuthApiService ,
+  constructor( private router : Router ,
      private auth : AuthTokenService , private product : ProductService) { }
 
   ngOnInit(): void {
@@ -51,15 +51,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  getProfile(){
-
-    let id = this.auth.getSellerId().id
-
-    this.api.getSellerProfile(id).subscribe(response=>{
-      this.sellerData = response.seller
-      console.log(this.sellerData);
-    })
-  }
+  
 
   search(val : any){
     this.product.searchProducts(val).subscribe(res=>{
