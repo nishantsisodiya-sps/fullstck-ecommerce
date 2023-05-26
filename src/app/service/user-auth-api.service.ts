@@ -7,9 +7,32 @@ import { Observable } from 'rxjs';
 })
 export class UserAuthApiService {
 
-  public ApiUrl = 'http://localhost:3838'
+  public ApiUrl = 'https://ecombackend.softprodigyphp.in'
 
   constructor(private http: HttpClient) { }
+
+  private getHeadersWithAuthorization(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return headers;
+  }
+
+  getProducts(): Observable<any> {
+    const headers = this.getHeadersWithAuthorization();
+    return this.http.get(`${this.ApiUrl}/products`, { headers });
+  }
+
+  getSingleProduct(id: any): Observable<any> {
+    const headers = this.getHeadersWithAuthorization();
+    return this.http.get(`${this.ApiUrl}/products/${id}`, { headers });
+  }
+
+
+
+
 
   addProduct(data: any):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -19,15 +42,15 @@ export class UserAuthApiService {
 
 
 
-  getProducts():Observable<any>{
+  // getProducts():Observable<any>{
     
-    return this.http.get(`${this.ApiUrl}/products`)
-  }
+  //   return this.http.get(`${this.ApiUrl}/products`)
+  // }
 
 
-  getSingleProduct(id : any):Observable<any>{
-    return this.http.get(`${this.ApiUrl}/products/${id}`)
-  }
+  // getSingleProduct(id : any):Observable<any>{
+  //   return this.http.get(`${this.ApiUrl}/products/${id}`)
+  // }
 
 
   getSellerProducts(id : any):Observable<any>{

@@ -40,7 +40,7 @@ export class SellerAuthComponent implements OnInit {
     let data = this.sellerSignupForm.value;
 
     this.http.post<{ success: boolean, token: string }>
-      ('http://localhost:3838/sellers/register', data)
+      ('https://ecombackend.softprodigyphp.in/sellers/register', data)
       .subscribe(response => {
         if (response.success) {
           localStorage.removeItem('token')
@@ -60,7 +60,7 @@ export class SellerAuthComponent implements OnInit {
     event.preventDefault();
     let data = this.sellerLoginForm.value;
     this.http.post<{ success: boolean, message: string, token: string }>
-      ('http://localhost:3838/sellers/login', { email: data.email, password: data.password })
+      ('https://ecombackend.softprodigyphp.in/sellers/login', { email: data.email, password: data.password })
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('token', response.token);

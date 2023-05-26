@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  public url  = 'http://localhost:3838'
+  public url  = 'https://ecombackend.softprodigyphp.in'
   constructor(private http : HttpClient) { }
 
   getOrders(id : any):Observable<any>{

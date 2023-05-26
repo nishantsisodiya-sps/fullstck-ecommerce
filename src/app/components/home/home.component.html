@@ -3,7 +3,7 @@
         <ng-template *ngFor="let item of myProducts" ngbSlide>
             <div class="picsum-img-wrapper">
                 <a [routerLink]="['/details', item._id]"><img class="product-header-image"
-                        src="http://localhost:3838/uploads/{{item.thumbnail}}" alt="Random first slide" /></a>
+                        src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}" alt="Random first slide" /></a>
             </div>
             <div class="carousel-caption">
                 <h3>{{item.title}}</h3>
@@ -29,7 +29,7 @@
                             <span class="wishlist"><i class="fa fa-heart-o"></i></span>
                         </div>
                     </div>
-                    <img src="http://localhost:3838/uploads/{{item.thumbnail}}"
+                    <img src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}"
                         class="img-fluid rounded thumbnail-image" style="aspect-ratio: 10/10;">
                 </div>
                 <div class="product-detail-container p-2">

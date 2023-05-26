@@ -12,7 +12,7 @@
         <ul id="suggested-search" *ngIf="searchResult">
             <li *ngFor="let item of searchResult">
               <a (mousedown)="redirectToDetails(item._id)">
-                <img src="http://localhost:3838/uploads/{{item.thumbnail}}" width="15%" alt="">
+                <img src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}" width="15%" alt="">
                 {{item.title}}</a>
             </li>
           </ul>
