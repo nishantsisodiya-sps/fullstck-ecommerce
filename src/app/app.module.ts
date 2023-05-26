@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -41,6 +40,9 @@ import { DefaultArcObject } from 'd3-shape';
 import {MatTableModule} from '@angular/material/table';
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
+import {MatIconModule} from '@angular/material/icon';
+
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { EditProfileComponent } from './components/profile/edit-profile/edit-pro
     FormsModule,
     MatCardModule,
     NgxChartsModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule
     
   ],
   providers: [],

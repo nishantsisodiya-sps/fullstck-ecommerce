@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   productQuantity: number = 1;
   quantity: number = 1
   arr: [] = []
-
+  wishlisted : boolean = false
 
   constructor(private activate: ActivatedRoute, private api: UserAuthApiService,
     private auth: AuthTokenService, private productApi: ProductService,
@@ -32,10 +32,18 @@ export class DetailsComponent implements OnInit {
 
       this.api.getSingleProduct(id).subscribe(res => {
         this.product.push(res)
-        console.log(this.product);
+        console.log(this.product[0].isWishlist);
+        
+        if(this.product[0].isWishlist == true){
+          this.wishlisted = true
+        }else{
+          this.wishlisted = false
+        }
 
         let image = this.product[0].images
         this.arr = image
+
+      
       })
     })
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
@@ -9,10 +8,14 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+
   myProducts : any = []
   products : any = []
   sellerData : any = []
   categories : any = []
+
+
   constructor(private api : UserAuthApiService , private category : CategoryService) { }
 
   ngOnInit(): void {

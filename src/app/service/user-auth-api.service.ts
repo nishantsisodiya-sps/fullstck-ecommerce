@@ -32,8 +32,6 @@ export class UserAuthApiService {
 
 
 
-
-
   addProduct(data: any):Observable<any>{
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const options = { headers: headers };
