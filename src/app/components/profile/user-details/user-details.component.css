@@ -151,3 +151,8 @@ section {
     display: flex;
     justify-content: end;
   }
+
+
+  .modal{
+    width: 100%;
+  }

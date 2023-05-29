@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -60,7 +60,13 @@ export class CheckoutComponent implements OnInit {
      let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
      let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
      this.showSpinner = true;
-     this.http.post('http://localhost:3838/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true }).subscribe((data: any) => {
+
+     const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+
+     this.http.post('https://ecombackend.softprodigyphp.in/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true } , {headers}).subscribe((data: any) => {
        console.log(data);
        this.showSpinner = false;
        if (data && data.orderId) {
@@ -112,7 +118,12 @@ export class CheckoutComponent implements OnInit {
     };
   
     // Call your backend API to save the order in your database
-    this.http.post('http://localhost:3838/order/update-order', order).subscribe((response: any) => {
+
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    this.http.post('https://ecombackend.softprodigyphp.in/order/update-order', order , {headers}).subscribe((response: any) => {
       console.log('response order save====>', response);
       this.showSpinner = false;
     });

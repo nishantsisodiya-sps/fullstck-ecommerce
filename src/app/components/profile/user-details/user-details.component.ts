@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
@@ -11,6 +12,7 @@ export class UserDetailsComponent implements OnInit {
 
   profile : any = []
   isEditMode: boolean = false;
+
   constructor(private api : UserAuthApiService , private auth : AuthTokenService ) { }
 
   ngOnInit(): void {
@@ -41,5 +43,7 @@ export class UserDetailsComponent implements OnInit {
   toggleEditMode(): void {
     this.isEditMode = !this.isEditMode;
   }
+
+
 
 }

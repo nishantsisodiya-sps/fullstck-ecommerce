@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -93,22 +93,21 @@ export class DetailsComponent implements OnInit {
           console.log(res);
 
         })
-      }
-
-    }
-  }
+      }}}
 
 
   addToWishlist(productId: string): void {
     this.wishlist.addToWishlist(productId).subscribe(
       (response) => {
-        console.log(response);
+        if(response){
+          console.log(response);
+          this.product[0].isWishlist = response.isWishlist;
+          this.wishlisted = this.product[0].isWishlist;
+        }
       },
       (error) => {
         console.log(error);
       }
     );
   }
-
-
 }

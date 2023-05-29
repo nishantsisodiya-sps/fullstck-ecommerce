@@ -75,13 +75,9 @@ export class AddProductComponent implements OnInit {
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
 
-      console.log(this.productForm.value);
-      console.log(formData);
 
-
-    this.http.post('http://localhost:3838/products/add', formData, { headers }).subscribe(
+    this.http.post('https://ecombackend.softprodigyphp.in/products/add', formData, { headers }).subscribe(
       res => {
-        // console.log('res=====>' + res);
         console.log('Product created successfully!');
         this.productForm.reset()
       },

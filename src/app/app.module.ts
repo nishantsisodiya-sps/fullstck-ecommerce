@@ -43,6 +43,7 @@ import { EditProfileComponent } from './components/profile/edit-profile/edit-pro
 import {MatIconModule} from '@angular/material/icon';
 
 import {MatButtonModule} from '@angular/material/button';
+import { AddressComponent } from './components/profile/address/address.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {MatButtonModule} from '@angular/material/button';
     SpecialCharacterDirective,
     WishlistComponent,
     EditProfileComponent,
+    AddressComponent,
 
 
   ],

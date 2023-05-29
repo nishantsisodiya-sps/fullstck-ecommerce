@@ -90,7 +90,7 @@ categories: any = []
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    this.http.patch(`http://localhost:3838/products/${Id}`, formData , {headers} ).subscribe(
+    this.http.patch(`https://ecombackend.softprodigyphp.in/products/${Id}`, formData , {headers} ).subscribe(
       res => {
         console.log('Product Updated successfully!');
         this.productUpdateForm.reset()
