@@ -57,23 +57,23 @@ export class UserAuthComponent implements OnInit {
 
   loginUser(event: Event) {
     this.showSpinner = true
-    // event.preventDefault();
-    // let data = this.loginForm.value;
+    event.preventDefault();
+    let data = this.loginForm.value;
 
 
-    // this.http.post<{ success: boolean, message: string, token: string }>
-    //   ('https://ecombackend.softprodigyphp.in/users/login', { email: data.email, password: data.password })
-    //   .subscribe(response => {
-    //     if (response.success) {
-    //       localStorage.setItem('token', response.token);
-    //       this.router.navigate(['/']).then(()=>{
-    //         window.location.reload()
-    //         this.showSpinner = false
-    //       })
-    //     } else {
-    //       alert(response.message);
-    //     }
-    //   });
+    this.http.post<{ success: boolean, message: string, token: string }>
+      ('https://ecombackend.softprodigyphp.in/users/login', { email: data.email, password: data.password })
+      .subscribe(response => {
+        if (response.success) {
+          localStorage.setItem('token', response.token);
+          this.router.navigate(['/']).then(()=>{
+            window.location.reload()
+            this.showSpinner = false
+          })
+        } else {
+          alert(response.message);
+        }
+      });
   }
 
 
