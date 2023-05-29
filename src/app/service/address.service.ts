@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AddressService {
-  // public ApiUrl = 'https://ecombackend.softprodigyphp.in'
-  public ApiUrl = 'http://localhost:3838'
+  public ApiUrl = 'https://ecombackend.softprodigyphp.in'
+  // public ApiUrl = 'http://localhost:3838'
   constructor(private http : HttpClient) { }
 
 
@@ -20,5 +20,16 @@ export class AddressService {
 
     return this.http.post(`${this.ApiUrl}/address/add` , data , {headers})
   }
+
+
+  getAddresses(){
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+
+    return this.http.get(`${this.ApiUrl}/address/get` , {headers})
+
+}
 
 }

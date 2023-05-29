@@ -1,5 +1,7 @@
-<div class="loadingindicator"><mat-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-spinner></div>
 <div class="section">
+    <div class="loadingindicator">
+        <mat-progress-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-progress-spinner>
+    </div>
     <div class="container">
         <div class="row full-height justify-content-center">
             <div class="col-12 text-center align-self-center">

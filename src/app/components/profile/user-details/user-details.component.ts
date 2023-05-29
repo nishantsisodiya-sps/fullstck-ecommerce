@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AddressService } from 'src/app/service/address.service';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
@@ -10,32 +11,36 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  profile : any = []
+  profile: any = []
   isEditMode: boolean = false;
+  myAddress: any = []
 
-  constructor(private api : UserAuthApiService , private auth : AuthTokenService ) { }
+  constructor(private api: UserAuthApiService, private auth: AuthTokenService,
+    private address: AddressService
+  ) { }
 
   ngOnInit(): void {
     this.getProfile()
+    this.getAddress()
   }
 
 
-  getProfile(){
+  getProfile() {
 
     let user = this.auth.getSellerId()
     let id = user.id
     let role = user.role
 
-    if(role === 'seller'){
-      this.api.getSellerProfile(id).subscribe(response=>{
+    if (role === 'seller') {
+      this.api.getSellerProfile(id).subscribe(response => {
         this.profile.push(response)
-    })
+      })
     }
-    else if(role === 'user'){
-      this.api.getUserProfile(id).subscribe(res=>{
+    else if (role === 'user') {
+      this.api.getUserProfile(id).subscribe(res => {
         this.profile.push(res)
-        console.log(this.profile);
-        
+
+
       })
     }
 
@@ -45,5 +50,13 @@ export class UserDetailsComponent implements OnInit {
   }
 
 
-
+  getAddress() {
+    this.address.getAddresses().subscribe(res => {
+      const data = res as any
+      this.address = data.addresses
+      
+     
+    }
+    )
+  }
 }

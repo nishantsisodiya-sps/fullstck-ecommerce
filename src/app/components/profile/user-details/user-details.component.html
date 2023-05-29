@@ -22,20 +22,21 @@
                                     <li class="display-28"><span
                                             class="display-26 text-secondary me-2 font-weight-600">Phone:</span>
                                         {{item.phone}}</li>
-                                    <hr>
-                                </ul>
-
-                                <ul class="list-unstyled mb-1-9">
-                                    <li class="mb-2 mb-xl-3 display-28"><span
-                                            class="display-26 text-secondary me-2 font-weight-600">Address
-                                            1:</span>Address
-                                        <div>
-                                            <button class="btns"><i class="fa-solid fa-pen-to-square"></i></button>
-                                            <button class="btns"><i class="fa-solid fa-trash"></i></button>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
+                        </div>
+                        <hr>
+                        <div *ngFor="let add of myAddress">
+                            <ul class="list-unstyled mb-1-9">
+                                <li class="mb-2 mb-xl-3 display-28"><span
+                                        class="display-26 text-secondary me-2 font-weight-600">Address
+                                        1: {{add.fullName}}</span>
+                                    <div>
+                                        <button class="btns"><i class="fa-solid fa-pen-to-square"></i></button>
+                                        <button class="btns"><i class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <button class="btns" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
@@ -44,7 +45,3 @@
             </div>
         </div>
     </div>
-
-
-
-
