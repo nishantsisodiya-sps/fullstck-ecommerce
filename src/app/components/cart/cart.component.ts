@@ -1,9 +1,10 @@
 import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
-import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
+
 
 
 @Component({
@@ -12,31 +13,41 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-
+  showSpinner: boolean = false
   products: any = [];
   totalCart: any
   PriceAfterDiscount: any
   totalPrice: number = 0;
   totalDiscount: number = 0;
   queryProduct: any = []
-  quantity : any
-  constructor(private api: UserAuthApiService, private productApi: ProductService,
-    private auth: AuthTokenService, private router: Router) { }
+  quantity: any
+
+
+  constructor(
+
+    private productApi: ProductService,
+    private auth: AuthTokenService,
+    private router: Router,
+
+  ) { }
+
+
 
   ngOnInit(): void {
     this.getcartItems()
   }
 
   getcartItems() {
+    this.showSpinner = true
     let seller = this.auth.getSellerId().id
     this.productApi.getCartItems(seller).subscribe(res => {
       this.products = res
       this.totalCart = this.products.length
-     
-      this.products.forEach((element : any) => {
-          this.queryProduct.push(element.product)
-       
-        });
+
+      this.products.forEach((element: any) => {
+        this.queryProduct.push(element.product)
+
+      });
 
       let totalPrice = 0;
       let totalDiscount = 0;
@@ -51,14 +62,19 @@ export class CartComponent implements OnInit {
       }
       this.totalPrice = totalPrice * 80 + 100;
       this.totalDiscount = totalDiscount;
+      this.showSpinner = false
     })
   }
 
   deleteFromCart(itemId: any) {
+    this.showSpinner = true
+
     this.productApi.deleteFromCart(itemId).subscribe(res => {
       if (res) {
         this.products = this.products.filter((item: any) => item.id !== itemId);
+       
         this.getcartItems()
+        this.showSpinner = false
       } else {
         console.log("error occured");
       }

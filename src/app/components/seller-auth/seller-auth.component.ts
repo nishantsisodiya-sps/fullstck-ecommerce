@@ -11,6 +11,7 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./seller-auth.component.css']
 })
 export class SellerAuthComponent implements OnInit {
+  showSpinner : boolean = false
   sellerLoginForm !: FormGroup
   sellerSignupForm !: FormGroup
   signupdata: [] = []
@@ -37,6 +38,7 @@ export class SellerAuthComponent implements OnInit {
 
 
   submitseller() {
+    this.showSpinner = true
     let data = this.sellerSignupForm.value;
 
     this.http.post<{ success: boolean, token: string }>
@@ -47,6 +49,7 @@ export class SellerAuthComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload();
+            this.showSpinner = false
           })
         } else {
           alert("Something went wrong");
@@ -57,6 +60,7 @@ export class SellerAuthComponent implements OnInit {
 
 
   loginseller(event: Event) {
+    this.showSpinner = true
     event.preventDefault();
     let data = this.sellerLoginForm.value;
     this.http.post<{ success: boolean, message: string, token: string }>
@@ -66,6 +70,7 @@ export class SellerAuthComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.router.navigate(['/']).then(()=>{
             window.location.reload()
+            this.showSpinner = false
           })
         } else {
           alert(response.message);

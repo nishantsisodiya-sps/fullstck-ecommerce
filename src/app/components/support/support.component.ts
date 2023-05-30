@@ -9,7 +9,7 @@ import { AuthTokenService } from 'src/app/service/auth-token.service';
 })
 export class SupportComponent implements OnInit {
   supportForm !: FormGroup
-
+  showSpinner : boolean = false
   constructor(private fb : FormBuilder , private auth : AuthTokenService) {
 
     this.supportForm = this.fb.group({

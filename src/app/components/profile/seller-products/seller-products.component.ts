@@ -14,16 +14,17 @@ import { CategoryService } from 'src/app/service/category.service';
   styleUrls: ['./seller-products.component.css']
 })
 export class SellerProductsComponent implements OnInit {
-  sellerProducts : any = []
+  sellerProducts: any = []
   productUpdateForm !: FormGroup
-  thumbnailPreview : any
-  myproduct : any = []
-sellerId: any|string;
-productId : any 
-categories: any = []
-  constructor(private api : UserAuthApiService , private productApi : ProductService,
-     private auth : AuthTokenService , private http : HttpClient , private fb:FormBuilder
-     ,private category: CategoryService) { }
+  thumbnailPreview: any
+  myproduct: any = []
+  sellerId: any | string;
+  productId: any
+  categories: any = []
+  showSpinner: boolean = false
+  constructor(private api: UserAuthApiService, private productApi: ProductService,
+    private auth: AuthTokenService, private http: HttpClient, private fb: FormBuilder
+    , private category: CategoryService) { }
 
   ngOnInit(): void {
     this.fetchProducts()
@@ -43,14 +44,15 @@ categories: any = []
     });
   }
 
-  fetchProducts(){
+  fetchProducts() {
+    this.showSpinner = true
     const sellerId = this.auth.getSellerId()
     const id = sellerId.id
 
-    
-    this.api.getSellerProducts(id).subscribe(res=>{
+
+    this.api.getSellerProducts(id).subscribe(res => {
       this.sellerProducts = res
-      
+      this.showSpinner = false
     })
   }
 
@@ -61,7 +63,7 @@ categories: any = []
       this.productUpdateForm.get('thumbnail')?.setValue(file)
     }
   }
-  
+
   onImagesSelected(event: any) {
     const files = event.target.files;
     if (files?.length) {
@@ -70,7 +72,7 @@ categories: any = []
   }
 
   updateProduct() {
-
+    this.showSpinner = true
     let Id = this.productId
     const formData = new FormData();
     formData.append('title', this.productUpdateForm.get('title')?.value);
@@ -87,71 +89,70 @@ categories: any = []
       formData.append('images', imagesFiles[i]);
     }
     const headers = new HttpHeaders({
-     
+
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    this.http.patch(`https://ecombackend.softprodigyphp.in/products/${Id}`, formData , {headers} ).subscribe(
+    this.http.patch(`https://ecombackend.softprodigyphp.in/products/${Id}`, formData, { headers }).subscribe(
       res => {
         console.log('Product Updated successfully!');
         this.productUpdateForm.reset()
+        this.showSpinner = false
       },
-      err => {  
+      err => {
         console.error('Product creation failed:', err);
       }
     );
-  } 
-  
-  editProduct(id : any , i : any){
+  }
+
+  editProduct(id: any, i: any) {
 
     let data = this.sellerProducts[i]
-    console.log(data);
     let pId = data._id
     this.productId = pId
     this.productUpdateForm.setValue({
-      title : data.title,
-      description : data.description,
-      price : data.price,
-      discountPercentage : data.discountPercentage,
-      rating : data.rating,
-      stock : data.stock,
-      brand : data.brand,
-      category : data.category,
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      discountPercentage: data.discountPercentage,
+      rating: data.rating,
+      stock: data.stock,
+      brand: data.brand,
+      category: data.category,
       thumbnail: data.thumbnail,
-      images : data.images
+      images: data.images
     })
-    
+
   }
 
 
 
-  deleteProduct(id:any , i:any){
+  deleteProduct(id: any, i: any) {
+    this.showSpinner = true
     let data = this.sellerProducts[i]
     let pId = data._id
     this.productId = pId
     console.log(this.productId);
 
 
-    this.productApi.deleteProduct(this.productId).subscribe(res=>{
-      if(res){
+    this.productApi.deleteProduct(this.productId).subscribe(res => {
+      if (res) {
         this.fetchProducts()
-        if(this.fetchProducts.length == 0){
+        if (this.fetchProducts.length == 0) {
           console.log(0);
+          this.showSpinner = false
         }
       }
     })
-
-
   }
 
-
-
-
   getCaterogies() {
+    this.showSpinner = true
     this.category.getCategories().subscribe(res => {
       this.categories = res.map((category: any) => {
         return { name: category.name, value: category._id };
       });
-      console.log(this.categories);
+      this.showSpinner = false
+    
     })
   }
 

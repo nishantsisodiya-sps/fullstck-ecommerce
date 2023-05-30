@@ -1,7 +1,9 @@
+
+<!-- <div class="loadingindicator">
+    <mat-progress-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-progress-spinner>
+</div> -->
+<div class="loader" *ngIf="showSpinner"></div>
 <div class="section">
-    <div class="loadingindicator">
-        <mat-progress-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-progress-spinner>
-    </div>
     <div class="container">
         <div class="row full-height justify-content-center">
             <div class="col-12 text-center align-self-center">
@@ -22,7 +24,8 @@
                                                 <input type="email" name="logemail" class="form-style"
                                                     placeholder="Your Email" id="logemail" autocomplete="off"
                                                     formControlName="email">
-                                                <i class="input-icon uil uil-at"></i>
+                                                    <i class="input-icon uil uil-at"></i>
+                                                   
                                                 <small class="text-danger"
                                                     *ngIf="!loginForm.get('email')?.valid && loginForm.get('email')?.touched">*Please
                                                     Enter Email</small>

@@ -11,9 +11,7 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-
-  
+  showSpinner :boolean = false
 
   sellerProducts: any = []
   productStatus: any = []
@@ -46,6 +44,7 @@ export class DashboardComponent implements OnInit {
 
 
   fetchData() {
+    this.showSpinner = true
     const sellerId = this.auth.getSellerId();
     const id = sellerId.id;
 
@@ -65,6 +64,7 @@ export class DashboardComponent implements OnInit {
       }));
 
       this.updateSingleArray();
+      this.showSpinner = false
     });
   }
 

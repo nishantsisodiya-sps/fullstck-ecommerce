@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
-
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 declare var Razorpay : any
 
@@ -12,9 +12,19 @@ declare var Razorpay : any
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
+  // providers: [
+  //   {
+  //     provide: STEPPER_GLOBAL_OPTIONS,
+  //     useValue: {showError: true},
+  //   },
+  // ],
+  // standalone: true,
 })
+
+
 export class CheckoutComponent implements OnInit {
+  isLinear = false;
   totalPrice: any;
   cartData: any 
   products : any = []
@@ -31,10 +41,16 @@ export class CheckoutComponent implements OnInit {
       zip: new FormControl(null, [Validators.required, Validators.pattern(/^([1-9])(\d{2})(\d{3})$/)])
   });
 
- 
+  // firstFormGroup = this._formBuilder.group({
+  //   firstCtrl: ['', Validators.required],
+  // });
+  // secondFormGroup = this._formBuilder.group({
+  //   secondCtrl: ['', Validators.required],
+  // });
+
 
   constructor(private activate : ActivatedRoute , private http : HttpClient ,   
-    private auth : AuthTokenService , private router : Router
+    private auth : AuthTokenService , private router : Router, private _formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {

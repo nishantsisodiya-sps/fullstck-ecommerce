@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfo()
-    // this.getOrders()
+
 
     let seller = this.auth.getSellerId().role
     if(seller === 'seller'){
@@ -40,33 +40,6 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  // getOrders(){
-  //   let id  = this.auth.getSellerId().id
-
-  //   this.order.getOrders(id).subscribe(res=>{
-  //     this.myorder = res
-      
-  //     if(this.myorder[0].status == 'PAID'){
-  //       this.paid = true
-  //     }
-
-  //     this.orderLength = this.myorder.length
-
-
-  //     //Getting cart item length
-  //     this.product.getCartItems(id).subscribe(res=>{
-  //       this.cartItems = res
-  //       this.cartLength = this.cartItems.length
-  //     })
-    
-  //   })
-
-  // }
-
-
-  // getOrderInfo(id:any){
-  //   console.log(id);
-  // }
 
 
 }

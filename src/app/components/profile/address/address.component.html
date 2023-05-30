@@ -1,21 +1,21 @@
-<div class="loadingindicator"><mat-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-spinner></div>
+<div class="loader" *ngIf="showSpinner"></div>
 <div class="mainbox">
   <div class="wrapper">
     <div class="container">
-      <form [formGroup]="shipDetails" (ngSubmit)="submitDetails()">
+      <form [formGroup]="shipDetails">
         <h1>
-            <i class="fas fa-shipping-fast"></i>
-            Add Address
+          <i class="fas fa-shipping-fast"></i>
+          Add Address
         </h1>
-      
+
 
         <div class="fullname">
-            <label for="f-name">Full Name</label>
-            <input type="text" NoSpecialCharacter name="fullName" formControlName="fullName">
-            <small class="text-danger"
-              *ngIf="!shipDetails.get('fullName')?.valid && shipDetails.get('fullName')?.touched">*Please
-              Enter full Name</small>
-          </div>
+          <label for="f-name">Full Name</label>
+          <input type="text" NoSpecialCharacter name="fullName" formControlName="fullName">
+          <small class="text-danger"
+            *ngIf="!shipDetails.get('fullName')?.valid && shipDetails.get('fullName')?.touched">*Please
+            Enter full Name</small>
+        </div>
 
 
         <div class="street">
@@ -52,13 +52,14 @@
           <div>
             <label for="zip">Postal Code</label>
             <input type="number" NoSpecialCharacter name="postalCode" formControlName="postalCode">
-            <small class="text-danger" *ngIf="!shipDetails.get('postalCode')?.valid && shipDetails.get('postalCode')?.touched">*Please
+            <small class="text-danger"
+              *ngIf="!shipDetails.get('postalCode')?.valid && shipDetails.get('postalCode')?.touched">*Please
               Enter postal Code</small>
           </div>
         </div>
 
 
-          <div class="name">
+        <div class="name">
           <div>
             <label for="f-name">Country</label>
             <input type="text" NoSpecialCharacter name="country" formControlName="country">
@@ -74,12 +75,36 @@
               Enter phone number</small>
           </div>
         </div>
-      
-      
+
+
         <!-- <div class="btns2"> -->
-          <button type="submit" [disabled]="shipDetails.invalid">Add Address</button>
+        <button type="submit" [disabled]="shipDetails.invalid" (click)="submitDetails()" *ngIf="!editmode">Add Address</button>
+        <button type="submit" [disabled]="shipDetails.invalid" *ngIf="editmode"  (click)="updateDeatials()">Update Address</button>
         <!-- </div> -->
       </form>
     </div>
   </div>
 </div>
+<br>
+
+
+<mat-card>
+
+  <mat-card-content *ngFor="let item of Myaddress let i = index">
+    <div class="maindiv">
+      <div class="address">
+        <h6>Address{{i+1}}: </h6>
+        <br>
+        {{item.fullName}} , {{item.addressLine1}} , {{item.addressLine2}} , {{item.city}} , {{item.state}} ,
+        {{item.country}} - {{item.postalCode}} , {{item.phone}}
+
+      </div>
+      <div class="buttons">
+        <!-- <button class="btns"></button> -->
+        <!-- <button class="btns"></button> -->
+        <button class="btns" (click)="editAddress(item)"><i class="fa-solid fa-pen-to-square" ></i></button>
+        <button class="btns" (click)="deleteAddress(item._id)"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card> 

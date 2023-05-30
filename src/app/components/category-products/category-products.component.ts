@@ -10,7 +10,7 @@ import { CategoryService } from 'src/app/service/category.service';
 export class CategoryProductsComponent implements OnInit {
 
   products : any = []
-
+  showSpinner : boolean = false
   constructor(private category : CategoryService , private ActivatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -19,6 +19,7 @@ export class CategoryProductsComponent implements OnInit {
 
 
   getProducts(){
+    this.showSpinner = true
     this.ActivatedRoute.paramMap.subscribe(params=>{
       let id = params.get('id')
 
@@ -26,6 +27,7 @@ export class CategoryProductsComponent implements OnInit {
 
       this.category.getProductsByCategory(id).subscribe(res=>{
         this.products = res
+        this.showSpinner = false
       })
     })
   }

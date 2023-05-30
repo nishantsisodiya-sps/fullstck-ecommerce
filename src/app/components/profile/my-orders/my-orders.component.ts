@@ -12,6 +12,7 @@ export class MyOrdersComponent implements OnInit {
   orders : any = []
   orderProducts : any = []
   totalAmount : any
+  showSpinner : boolean = false
   constructor(private order : OrderService , private activateRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class MyOrdersComponent implements OnInit {
 
 
   getInfo(){
+    this.showSpinner = true
     this.activateRoute.paramMap.subscribe(params=>{
       let id = params.get('id')
       
@@ -29,7 +31,7 @@ export class MyOrdersComponent implements OnInit {
         console.log(this.orderProducts);
         this.totalAmount = this.orders[0].amount
         this.name = this.orders[0].name
-
+        this.showSpinner = false
       })
     })
   }

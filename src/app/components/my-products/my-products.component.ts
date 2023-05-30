@@ -8,7 +8,7 @@ import { PipePipe } from 'src/app/service/pipe.pipe';
   styleUrls: ['./my-products.component.css']
 })
 export class MyProductsComponent implements OnInit {
-
+  showSpinner : boolean = false
   products : any = []
 
   constructor(private api : UserAuthApiService) { }
@@ -18,8 +18,10 @@ export class MyProductsComponent implements OnInit {
   }
 
   getProducts(){
+    this.showSpinner = true
     this.api.getProducts().subscribe(response=>{
       this.products = response.products
+      this.showSpinner = false
      
     })
   }

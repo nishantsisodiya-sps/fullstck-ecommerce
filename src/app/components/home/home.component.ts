@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   products : any = []
   sellerData : any = []
   categories : any = []
-
+  showSpinner : boolean = false
 
   constructor(private api : UserAuthApiService , private category : CategoryService) { }
 
@@ -24,17 +24,21 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts(){
+    this.showSpinner = true
     return this.api.getProducts().subscribe(response =>{
       this.myProducts = response.products
       this.products =  response.products.slice(4,8)
+      this.showSpinner = false
     })
   
   }
 
 
   getCategories(){
+    this.showSpinner = true
     this.category.getCategories().subscribe(res=>{
       this.categories = res
+      this.showSpinner = false
     })
   }
 

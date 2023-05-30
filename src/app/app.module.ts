@@ -36,14 +36,16 @@ import { CategoryProductsComponent } from './components/category-products/catego
 import { SpecialCharacterDirective } from './service/special-character.directive'
 import {MatCardModule} from '@angular/material/card';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { DefaultArcObject } from 'd3-shape';
 import {MatTableModule} from '@angular/material/table';
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import {MatIconModule} from '@angular/material/icon';
-
 import {MatButtonModule} from '@angular/material/button';
 import { AddressComponent } from './components/profile/address/address.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+
+
 
 @NgModule({
   declarations: [
@@ -93,8 +95,10 @@ import { AddressComponent } from './components/profile/address/address.component
     NgxChartsModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatStepperModule,
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./orderlist.component.css']
 })
 export class OrderlistComponent implements OnInit {
-
+  showSpinner : boolean = false
   userData : any = []
   myorder : any = []
   cartItems : any = []
@@ -44,6 +44,7 @@ export class OrderlistComponent implements OnInit {
 
 
   getOrders(){
+    this.showSpinner = true
     let id  = this.auth.getSellerId().id
 
     this.order.getOrders(id).subscribe(res=>{
@@ -61,7 +62,7 @@ export class OrderlistComponent implements OnInit {
         this.cartItems = res
         this.cartLength = this.cartItems.length
       })
-    
+      this.showSpinner = false
     })
 
   }

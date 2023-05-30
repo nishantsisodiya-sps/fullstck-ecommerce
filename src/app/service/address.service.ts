@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class AddressService {
   public ApiUrl = 'https://ecombackend.softprodigyphp.in'
-  // public ApiUrl = 'http://localhost:3838'
+
   constructor(private http : HttpClient) { }
 
 
@@ -31,5 +31,26 @@ export class AddressService {
     return this.http.get(`${this.ApiUrl}/address/get` , {headers})
 
 }
+
+  updateAddress(id : any , data:any){
+   
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    return this.http.put(`${this.ApiUrl}/address/${id}` ,data , {headers})
+  }
+
+
+  deleteAddress(id : any){
+    
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+
+    return this.http.delete(`${this.ApiUrl}/address/${id}` , {headers})
+
+  }
 
 }

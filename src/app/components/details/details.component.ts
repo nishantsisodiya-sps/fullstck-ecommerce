@@ -1,6 +1,7 @@
-import { HttpHeaders } from '@angular/common/http';
+
 import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -16,34 +17,41 @@ export class DetailsComponent implements OnInit {
   productQuantity: number = 1;
   quantity: number = 1
   arr: [] = []
-  wishlisted : boolean = false
+  wishlisted: boolean = false
+  showSpinner: boolean = false
 
-  constructor(private activate: ActivatedRoute, private api: UserAuthApiService,
-    private auth: AuthTokenService, private productApi: ProductService,
-    private wishlist: WishlistService
+  constructor(
+
+    private activate: ActivatedRoute,
+    private api: UserAuthApiService,
+    private auth: AuthTokenService,
+    private productApi: ProductService,
+    private wishlist: WishlistService,
+ 
+
   ) { }
 
 
 
   ngOnInit(): void {
-
+    this.showSpinner = true
     this.activate.paramMap.subscribe(param => {
       let id = param.get('id')
 
       this.api.getSingleProduct(id).subscribe(res => {
         this.product.push(res)
         console.log(this.product[0].isWishlist);
-        
-        if(this.product[0].isWishlist == true){
+
+        if (this.product[0].isWishlist == true) {
           this.wishlisted = true
-        }else{
+        } else {
           this.wishlisted = false
         }
 
         let image = this.product[0].images
         this.arr = image
+        this.showSpinner = false
 
-      
       })
     })
   }
@@ -58,7 +66,9 @@ export class DetailsComponent implements OnInit {
   }
 
   changeImage(element: any, i: any) {
+    this.showSpinner = true
     this.product[0].thumbnail = element.arr[i]
+    this.showSpinner = false
   }
 
   AddToCart() {
@@ -90,16 +100,23 @@ export class DetailsComponent implements OnInit {
           product: this.product[0],
         }
         this.productApi.addToCart(cart).subscribe((res) => {
-          console.log(res);
+         
+          if(res){
+            console.log(res);
+         
+
+          }
 
         })
-      }}}
+      }
+    }
+  }
 
 
   addToWishlist(productId: string): void {
     this.wishlist.addToWishlist(productId).subscribe(
       (response) => {
-        if(response){
+        if (response) {
           console.log(response);
           this.product[0].isWishlist = response.isWishlist;
           this.wishlisted = this.product[0].isWishlist;

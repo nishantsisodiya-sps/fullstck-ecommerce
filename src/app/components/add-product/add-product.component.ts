@@ -17,6 +17,7 @@ export class AddProductComponent implements OnInit {
   myproduct: any = []
   sellerId: any | string;
   categories: any = []
+  showSpinner : boolean = false
   constructor(private fb: FormBuilder, private http: HttpClient,
     private category: CategoryService) {
   }
@@ -55,6 +56,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
+    this.showSpinner = true
     const formData = new FormData();
     formData.append('title', this.productForm.get('title')?.value);
     formData.append('description', this.productForm.get('description')?.value);
@@ -80,6 +82,7 @@ export class AddProductComponent implements OnInit {
       res => {
         console.log('Product created successfully!');
         this.productForm.reset()
+        this.showSpinner = false
       },
       err => {
         console.error('Product creation failed:', err);
