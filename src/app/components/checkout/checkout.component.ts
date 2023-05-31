@@ -3,9 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
-import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
-declare var Razorpay : any
+declare var Razorpay: any
 
 
 
@@ -26,19 +26,19 @@ declare var Razorpay : any
 export class CheckoutComponent implements OnInit {
   isLinear = false;
   totalPrice: any;
-  cartData: any 
-  products : any = []
-  cartProduct : any
-  showSpinner : boolean = false
+  cartData: any
+  products: any = []
+  cartProduct: any
+  showSpinner: boolean = false
 
-    shipDetails = new FormGroup({
-      firstName: new FormControl(null, [Validators.required]),
-      lastName: new FormControl(null, [Validators.required]),
-      street: new FormControl(null, [Validators.required]),
-      city: new FormControl(null, [Validators.required]),
-      state: new FormControl(null, [Validators.required]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      zip: new FormControl(null, [Validators.required, Validators.pattern(/^([1-9])(\d{2})(\d{3})$/)])
+  shipDetails = new FormGroup({
+    firstName: new FormControl(null, [Validators.required]),
+    lastName: new FormControl(null, [Validators.required]),
+    street: new FormControl(null, [Validators.required]),
+    city: new FormControl(null, [Validators.required]),
+    state: new FormControl(null, [Validators.required]),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    zip: new FormControl(null, [Validators.required, Validators.pattern(/^([1-9])(\d{2})(\d{3})$/)])
   });
 
   // firstFormGroup = this._formBuilder.group({
@@ -49,9 +49,9 @@ export class CheckoutComponent implements OnInit {
   // });
 
 
-  constructor(private activate : ActivatedRoute , private http : HttpClient ,   
-    private auth : AuthTokenService , private router : Router, private _formBuilder: FormBuilder
-    ) { }
+  constructor(private activate: ActivatedRoute, private http: HttpClient,
+    private auth: AuthTokenService, private router: Router, private _formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
 
@@ -65,35 +65,28 @@ export class CheckoutComponent implements OnInit {
 
   purchase() {
 
-    let seller = this.auth.getSellerId().role
-   if(seller === 'seller'){
-    alert('Please login as user')
-    this.router.navigate(['/userAuth'])
-   }
+    let userId = this.auth.getSellerId().id;
+    let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
+    let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
+    this.showSpinner = true;
 
-   else{
-     let userId =  this.auth.getSellerId().id;
-     let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
-     let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
-     this.showSpinner = true;
+    const headers = new HttpHeaders({
 
-     const headers = new HttpHeaders({
-     
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
 
-     this.http.post('https://ecombackend.softprodigyphp.in/order/create-order', { name : name ,amount: this.totalPrice , userId : userId , address : address, products : this.cartProduct , testMode: true } , {headers}).subscribe((data: any) => {
-       console.log(data);
-       this.showSpinner = false;
-       if (data && data.orderId) {
-         console.log(data.razorpayOrderId.id);
-         this.openRazorpay(data.razorpayOrderId);
-       }
-     });
-   }
+    this.http.post('https://ecombackend.softprodigyphp.in/order/create-order', { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
+      console.log(data);
+      this.showSpinner = false;
+      if (data && data.orderId) {
+        console.log(data.razorpayOrderId.id);
+        this.openRazorpay(data.razorpayOrderId);
+      }
+    });
+
   }
-  
-  openRazorpay(razorpayOrderId : any) {
+
+  openRazorpay(razorpayOrderId: any) {
     const razorpay = new Razorpay({
       key: 'rzp_test_Tiv5oHxAC3kTlH',
       name: 'My e-Commerce',
@@ -120,7 +113,7 @@ export class CheckoutComponent implements OnInit {
 
     razorpay.open();
   }
-  
+
   saveOrder(paymentId: string) {
     this.showSpinner = true;
     let userId = this.auth.getSellerId().id;
@@ -130,16 +123,16 @@ export class CheckoutComponent implements OnInit {
       totalAmount: this.totalPrice,
       status: 'pending',
       paymentId: paymentId,
-      testMode: true 
+      testMode: true
     };
-  
+
     // Call your backend API to save the order in your database
 
     const headers = new HttpHeaders({
-     
+
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    this.http.post('https://ecombackend.softprodigyphp.in/order/update-order', order , {headers}).subscribe((response: any) => {
+    this.http.post('https://ecombackend.softprodigyphp.in/order/update-order', order, { headers }).subscribe((response: any) => {
       console.log('response order save====>', response);
       this.showSpinner = false;
     });

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -11,11 +11,20 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./seller-auth.component.css']
 })
 export class SellerAuthComponent implements OnInit {
-  showSpinner : boolean = false
+  showSpinner: boolean = false
   sellerLoginForm !: FormGroup
   sellerSignupForm !: FormGroup
   signupdata: [] = []
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router , private api : UserAuthApiService) {
+
+
+  @ViewChild('loginPasswordInput', { static: false }) loginPasswordInput: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('signupPasswordInput', { static: false }) signupPasswordInput: ElementRef<HTMLInputElement> | undefined;
+
+  constructor(private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private renderer: Renderer2
+  ) {
 
     this.sellerLoginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -47,7 +56,7 @@ export class SellerAuthComponent implements OnInit {
         if (response.success) {
           localStorage.removeItem('token')
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/']).then(()=>{
+          this.router.navigate(['/']).then(() => {
             window.location.reload();
             this.showSpinner = false
           })
@@ -68,7 +77,7 @@ export class SellerAuthComponent implements OnInit {
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/']).then(()=>{
+          this.router.navigate(['/']).then(() => {
             window.location.reload()
             this.showSpinner = false
           })
@@ -79,7 +88,10 @@ export class SellerAuthComponent implements OnInit {
   }
 
 
- 
+  togglePassword(passwordInput: HTMLInputElement): void {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    this.renderer.setProperty(passwordInput, 'type', type);
+  }
 
 
 }

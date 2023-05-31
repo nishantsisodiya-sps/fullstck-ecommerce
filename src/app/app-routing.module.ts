@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
@@ -18,39 +19,67 @@ import { CategoryProductsComponent } from './components/category-products/catego
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
 import { UserDetailsComponent } from './components/profile/user-details/user-details.component';
 import { AddressComponent } from './components/profile/address/address.component';
-// const token = localStorage.getItem('token')
+import { AuthGuard } from './Guards/auth.guard';
+import { AuthTokenService } from './service/auth-token.service';
+import { Observable } from 'rxjs';
 
-// let route:string;
-// if(token){
-//   route='dashboard'
-// }
-// else{
-//   route='myOrderList'
-// }
+
+@Injectable({ providedIn: 'root' })
+export class HomeRouteResolver implements Resolve<any> {
+  constructor(private token: AuthTokenService , private router : Router) { }
+
+  getProfileHomeRoute(): any {
+    const userRole = this.token.getSellerId().role;
+    console.log(userRole);
+    if (userRole === 'user') {
+  
+      this.router.navigate(['/profile/MyOrderList'])
+      return 'MyOrderList';
+    } else if (userRole === 'seller') {
+   
+      this.router.navigate(['/profile/dashboard'])
+      return 'dashboard';
+    }
+  }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<string> | string {
+    return this.getProfileHomeRoute();
+  }
+
+}
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'userAuth', component: UserAuthComponent },
   { path: 'sellerAuth', component: SellerAuthComponent },
-  { path: 'addproduct', component: AddProductComponent },
+  { path: 'addproduct', component: AddProductComponent , canActivate: [AuthGuard], data: { roles: 'seller' } },
   { path: 'MyProducts', component: MyProductsComponent },
   { path: 'details/:id', component: DetailsComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent ,canActivate: [AuthGuard] },
   {
-    path: 'profile', component: ProfileComponent, children: [
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
-      { path: 'sellerProducts', component: SellerProductsComponent },
+    path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard], children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        // canActivate: [AuthGuard],
+        // data: { roles: 'seller' },
+        resolve: {
+          homeRoute: HomeRouteResolver 
+        },
+        redirectTo: '',
+      },
+      { path: 'sellerProducts', component: SellerProductsComponent , canActivate: [AuthGuard], data: { roles: 'seller' } },
       { path: 'MyOrderList', component: OrderlistComponent },
       { path: 'MyOrderList/:id', component: MyOrdersComponent },
       { path: 'support', component: SupportComponent },
       { path: 'userDetails', component: UserDetailsComponent },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard], data: { roles: 'seller' }},
       { path: 'wishlist', component: WishlistComponent },
       { path: 'address', component: AddressComponent },
     ]
   },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'checkout', component: CheckoutComponent }, 
   { path: 'category-products/:id', component: CategoryProductsComponent },
 ]
 
@@ -58,4 +87,11 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+
+
+export class AppRoutingModule {}
+
+
+
+

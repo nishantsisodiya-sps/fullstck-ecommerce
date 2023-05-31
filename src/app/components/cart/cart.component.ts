@@ -72,7 +72,7 @@ export class CartComponent implements OnInit {
     this.productApi.deleteFromCart(itemId).subscribe(res => {
       if (res) {
         this.products = this.products.filter((item: any) => item.id !== itemId);
-       
+
         this.getcartItems()
         this.showSpinner = false
       } else {

@@ -427,7 +427,7 @@ ul {
   width: 300px;
   border: 3px solid #73AD21;
   padding: 10px;
-  border: 16px solid #F3F3F3;
+  /* border: 16px solid #F3F3F3; */
   border-radius: 50%;
   border-top: 16px solid blue;
   border-bottom: 16px solid blue;

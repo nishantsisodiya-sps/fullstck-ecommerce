@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css?family=Arimo');
+@import url('https://fonts.googleapis.com/css?family=Arimo');
  body {
 	 display: flex;
 	 justify-content: center;
@@ -161,8 +161,5 @@
 	}
 }
  
- */
 
- .mat-mdc-form-field {
-	margin-top: 16px;
-  }
+

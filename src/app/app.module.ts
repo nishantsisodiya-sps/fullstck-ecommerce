@@ -8,7 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { PipePipe } from './service/pipe.pipe';
@@ -19,13 +19,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MyOrdersComponent } from './components/profile/my-orders/my-orders.component';
 import { UserDetailsComponent } from './components/profile/user-details/user-details.component';
@@ -34,16 +34,16 @@ import { OrderlistComponent } from './components/profile/orderlist/orderlist.com
 import { DashboardComponent } from './components/profile/dashboard/dashboard.component';
 import { CategoryProductsComponent } from './components/category-products/category-products.component';
 import { SpecialCharacterDirective } from './service/special-character.directive'
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
 import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { AddressComponent } from './components/profile/address/address.component';
-import {MatStepperModule} from '@angular/material/stepper';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations"
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 
 
 

@@ -28,11 +28,12 @@ export class UserDetailsComponent implements OnInit {
     let user = this.auth.getSellerId()
     let id = user.id
     let role = user.role
+    console.log(role);
 
     if (role === 'seller') {
       this.api.getSellerProfile(id).subscribe(response => {
-        this.profile.push(response)
-
+        this.profile.push(response.seller)
+        this.showSpinner = false
       })
     }
     else if (role === 'user') {

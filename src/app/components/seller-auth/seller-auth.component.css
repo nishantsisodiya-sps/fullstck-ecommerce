@@ -6,3 +6,9 @@
     margin: 3%;
 }
 
+.eye{
+    cursor: pointer;
+    position: absolute;
+    right: 31%;
+    bottom: 52%;
+}

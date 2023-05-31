@@ -28,21 +28,22 @@ export class DetailsComponent implements OnInit {
     private productApi: ProductService,
     private wishlist: WishlistService,
  
-
   ) { }
 
 
-
   ngOnInit(): void {
+    this.data()
+  }
+
+  data(){
     this.showSpinner = true
     this.activate.paramMap.subscribe(param => {
       let id = param.get('id')
 
       this.api.getSingleProduct(id).subscribe(res => {
         this.product.push(res)
-        console.log(this.product[0].isWishlist);
 
-        if (this.product[0].isWishlist == true) {
+        if (res.isWishlist == true) {
           this.wishlisted = true
         } else {
           this.wishlisted = false
@@ -55,6 +56,7 @@ export class DetailsComponent implements OnInit {
       })
     })
   }
+
 
 
   handleQuantity(val: string) {
@@ -120,6 +122,7 @@ export class DetailsComponent implements OnInit {
           console.log(response);
           this.product[0].isWishlist = response.isWishlist;
           this.wishlisted = this.product[0].isWishlist;
+          this.data()
         }
       },
       (error) => {

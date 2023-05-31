@@ -35,15 +35,14 @@
                                             <div class="form-group mt-2">
                                                 <input type="password" name="logpass" class="form-style"
                                                     placeholder="Your Password" id="logpass" autocomplete="off"
-                                                    formControlName="password" #passwordInput>
+                                                    formControlName="password" #loginPasswordInput>
                                                 <i class="eye fa-solid fa-eye" style="color: white;"
-                                                    (click)="togglePassword()"></i>
+                                                    (click)="togglePassword(loginPasswordInput)"></i>
                                                 <i class="input-icon uil uil-lock-alt"></i>
                                                 <small class="text-danger"
                                                     *ngIf="!loginForm.get('password')?.valid && loginForm.get('password')?.touched">*Please
                                                     Enter Password</small>
                                             </div>
-
 
                                             <button class="btns mt-4" type="submit" (click)="loginUser($event)"
                                                 [disabled]="loginForm.invalid">submit</button>
@@ -92,10 +91,10 @@
                                             <div class="form-group mt-2">
                                                 <input type="password" name="password" class="form-style"
                                                     placeholder="Your Password" id="logpass" autocomplete="off"
-                                                    formControlName="password" #passwordInput>
+                                                    formControlName="password" #signupPasswordInput>
                                                 <span>
                                                     <i class="eye fa-solid fa-eye" style="color: white;"
-                                                        (click)="togglePassword()"></i>
+                                                    (click)="togglePassword(signupPasswordInput)"></i>
                                                 </span>
 
                                                 <i class="input-icon uil uil-lock-alt"></i>

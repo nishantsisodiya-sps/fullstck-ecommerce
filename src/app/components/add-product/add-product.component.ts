@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
-import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 
 @Component({
@@ -18,6 +16,7 @@ export class AddProductComponent implements OnInit {
   sellerId: any | string;
   categories: any = []
   showSpinner : boolean = false
+
   constructor(private fb: FormBuilder, private http: HttpClient,
     private category: CategoryService) {
   }
@@ -96,7 +95,7 @@ export class AddProductComponent implements OnInit {
       this.categories = res.map((category: any) => {
         return { name: category.name, value: category._id };
       });
-      console.log(this.categories);
+     
     })
   }
 

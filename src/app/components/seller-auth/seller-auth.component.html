@@ -1,4 +1,5 @@
 <div class="loader" *ngIf="showSpinner"></div>
+<div>
     <div class="container" style="padding: 3%;">
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8">
@@ -32,8 +33,10 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="loginPassword">Password</label>
                                 <input type="password" id="loginPassword" class="form-control" name="password"
-                                    formControlName="password">
-                                <i class="eye fa-solid fa-eye"></i>
+                                    formControlName="password" #loginPasswordInput>
+                                <span>
+                                    <i class="eye fa-solid fa-eye" (click)="togglePassword(loginPasswordInput)"></i>
+                                </span>
                                 <small class="text-danger"
                                     *ngIf="!sellerLoginForm.get('password')?.valid && sellerLoginForm.get('password')?.touched">*Please
                                     Enter Password</small>
@@ -95,8 +98,10 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="registerPassword">Password</label>
                                 <input type="password" id="registerPassword" class="form-control" name="password"
-                                    formControlName="password">
-                                <i class="eye fa-solid fa-eye"></i>
+                                    formControlName="password" #signupPasswordInput>
+                                <span>
+                                    <i class="eye fa-solid fa-eye" (click)="togglePassword(signupPasswordInput)"></i>
+                                </span>
                                 <small class="text-danger"
                                     *ngIf="!sellerSignupForm.get('password')?.valid && sellerSignupForm.get('password')?.touched">*Please
                                     Enter Password</small>
@@ -113,3 +118,4 @@
             </div>
         </div>
     </div>
+</div>

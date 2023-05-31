@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts(){
+
     this.showSpinner = true
     return this.api.getProducts().subscribe(response =>{
       this.myProducts = response.products
@@ -34,6 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
 
+
   getCategories(){
     this.showSpinner = true
     this.category.getCategories().subscribe(res=>{
@@ -41,5 +43,4 @@ export class HomeComponent implements OnInit {
       this.showSpinner = false
     })
   }
-
 }

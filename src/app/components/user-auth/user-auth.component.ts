@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -13,11 +13,18 @@ export class UserAuthComponent implements OnInit {
   loginForm !: FormGroup
   signupForm !: FormGroup
   signupdata: [] = []
-  showSpinner : any = false
+  showSpinner: any = false
 
-  @ViewChild('passwordInput', { static: false }) passwordInput: ElementRef | undefined;
+  @ViewChild('loginPasswordInput', { static: false }) loginPasswordInput: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('signupPasswordInput', { static: false }) signupPasswordInput: ElementRef<HTMLInputElement> | undefined;
 
-  constructor(private fb: FormBuilder, private router: Router, private userAuthApi: UserAuthApiService, private http: HttpClient) {
+
+
+  constructor(private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private renderer: Renderer2
+  ) {
 
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -44,7 +51,7 @@ export class UserAuthComponent implements OnInit {
       .subscribe(response => {
         if (response.message) {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/']).then(()=>{
+          this.router.navigate(['/']).then(() => {
             window.location.reload()
             this.showSpinner = false
           })
@@ -66,7 +73,7 @@ export class UserAuthComponent implements OnInit {
       .subscribe(response => {
         if (response.success) {
           localStorage.setItem('token', response.token);
-          this.router.navigate(['/']).then(()=>{
+          this.router.navigate(['/']).then(() => {
             window.location.reload()
             this.showSpinner = false
           })
@@ -77,14 +84,9 @@ export class UserAuthComponent implements OnInit {
   }
 
 
-
-  togglePassword(): void {
-    const passwordInput = this.passwordInput?.nativeElement;
-    if (passwordInput.type === 'password') {
-      passwordInput.type = 'text';
-    } else {
-      passwordInput.type = 'password';
-    }
+  togglePassword(passwordInput: HTMLInputElement): void {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    this.renderer.setProperty(passwordInput, 'type', type);
   }
 
 }
