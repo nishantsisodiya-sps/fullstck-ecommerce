@@ -116,13 +116,28 @@ export class DetailsComponent implements OnInit {
 
 
   addToWishlist(productId: string): void {
+    this.showSpinner = true
     this.wishlist.addToWishlist(productId).subscribe(
       (response) => {
         if (response) {
           console.log(response);
           this.product[0].isWishlist = response.isWishlist;
           this.wishlisted = this.product[0].isWishlist;
-          this.data()
+ 
+          this.activate.paramMap.subscribe(param => {
+            let id = param.get('id')
+      
+            this.api.getSingleProduct(id).subscribe(res => {
+              if (res.isWishlist == true) {
+                this.wishlisted = true
+                this.showSpinner = false
+              } else {
+                this.wishlisted = false
+                this.showSpinner = false
+              }
+
+            })
+          })
         }
       },
       (error) => {
