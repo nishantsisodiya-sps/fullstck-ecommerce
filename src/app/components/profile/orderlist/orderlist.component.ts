@@ -48,6 +48,7 @@ export class OrderlistComponent implements OnInit {
     let id  = this.auth.getSellerId().id
 
     this.order.getOrders(id).subscribe(res=>{
+      console.log('res=>' , res);
       this.myorder = res
       
       if(this.myorder[0].status == 'PAID'){
@@ -59,10 +60,15 @@ export class OrderlistComponent implements OnInit {
 
       //Getting cart item length
       this.product.getCartItems(id).subscribe(res=>{
+        if(!res){
+          this.showSpinner = false
+          alert('No order found')
+        }
         this.cartItems = res
-        this.cartLength = this.cartItems.length
+          this.cartLength = this.cartItems.length
+          this.showSpinner = false
       })
-      this.showSpinner = false
+      
     })
 
   }

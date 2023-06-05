@@ -31,11 +31,11 @@ export class AddressComponent implements OnInit {
   }
 
   getAddress() {
-    this.showSpinner = true
+    // this.showSpinner = true
     this.address.getAddresses().subscribe(res => {
       const data = res as any
       this.Myaddress = data.addresses
-      this.showSpinner = false
+      // this.showSpinner = false
 
     }
     )

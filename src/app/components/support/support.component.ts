@@ -28,12 +28,12 @@ export class SupportComponent implements OnInit {
   sendMessage(){
     let user = this.auth.getSellerId()
     let data =this.supportForm.value
-    console.log(user);
     if(user.role === 'user'){
       data.userId = user.id
       this.auth.contactus(data).subscribe(res=>{
         if(res){
           alert("Message sent")
+          this.supportForm.reset()
         }
       })
 
@@ -42,6 +42,7 @@ export class SupportComponent implements OnInit {
       this.auth.contactus(data).subscribe(res=>{
         if(res){
           alert("Message sent")
+          this.supportForm.reset()
         }
       })
     }

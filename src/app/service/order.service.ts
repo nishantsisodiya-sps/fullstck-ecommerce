@@ -21,6 +21,8 @@ export class OrderService {
     return this.http.get(`${this.url}/order/${id}` , {headers})
   }
 
+
+  
   getOrderInfo(id : any):Observable<any>{
     const headers = new HttpHeaders({
      

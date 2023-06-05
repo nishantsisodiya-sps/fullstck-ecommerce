@@ -97,6 +97,7 @@ export class SellerProductsComponent implements OnInit {
         console.log('Product Updated successfully!');
         this.productUpdateForm.reset()
         this.showSpinner = false
+        this.fetchProducts()
       },
       err => {
         console.error('Product creation failed:', err);
@@ -121,7 +122,7 @@ export class SellerProductsComponent implements OnInit {
       thumbnail: data.thumbnail,
       images: data.images
     })
-
+   
   }
 
 

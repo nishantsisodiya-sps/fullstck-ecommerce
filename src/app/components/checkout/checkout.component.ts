@@ -31,6 +31,8 @@ export class CheckoutComponent implements OnInit {
   cartProduct: any
   showSpinner: boolean = false
 
+  redirect_url : any
+
   shipDetails = new FormGroup({
     firstName: new FormControl(null, [Validators.required]),
     lastName: new FormControl(null, [Validators.required]),
@@ -48,6 +50,8 @@ export class CheckoutComponent implements OnInit {
   //   secondCtrl: ['', Validators.required],
   // });
 
+  // public url = 'https://ecombackend.softprodigyphp.in'
+  public url = 'http://localhost:3838'
 
   constructor(private activate: ActivatedRoute, private http: HttpClient,
     private auth: AuthTokenService, private router: Router, private _formBuilder: FormBuilder
@@ -75,7 +79,7 @@ export class CheckoutComponent implements OnInit {
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
 
-    this.http.post('https://ecombackend.softprodigyphp.in/order/create-order', { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
+    this.http.post(`${this.url}/order/create-order`, { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
       console.log(data);
       this.showSpinner = false;
       if (data && data.orderId) {
@@ -132,11 +136,23 @@ export class CheckoutComponent implements OnInit {
 
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    this.http.post('https://ecombackend.softprodigyphp.in/order/update-order', order, { headers }).subscribe((response: any) => {
+    this.http.post(`${this.url}/order/update-order`, order, { headers }).subscribe((response: any) => {
       console.log('response order save====>', response);
       this.showSpinner = false;
-    });
+      // this.router.navigate(['/home']);
+
+      if (response.orderId == null) {
+        console.log('if');
+         this.redirect_url = '/cart';
+      } else {
+        console.log('else');
+         this.redirect_url = '/home';
+      }
+      location.href = this.redirect_url;
+    }
+    )
   }
+
 }
 
 
