@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { AddressService } from 'src/app/service/address.service';
 
 declare var Razorpay: any
 
@@ -13,12 +14,12 @@ declare var Razorpay: any
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
-  // providers: [
-  //   {
-  //     provide: STEPPER_GLOBAL_OPTIONS,
-  //     useValue: {showError: true},
-  //   },
-  // ],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
+  ],
   // standalone: true,
 })
 
@@ -30,8 +31,12 @@ export class CheckoutComponent implements OnInit {
   products: any = []
   cartProduct: any
   showSpinner: boolean = false
+  addresses: any = []
+  selectedId: any
+  selectedAddress: any = []
+  redirect_url: any
 
-  redirect_url : any
+
 
   shipDetails = new FormGroup({
     firstName: new FormControl(null, [Validators.required]),
@@ -43,50 +48,58 @@ export class CheckoutComponent implements OnInit {
     zip: new FormControl(null, [Validators.required, Validators.pattern(/^([1-9])(\d{2})(\d{3})$/)])
   });
 
-  // firstFormGroup = this._formBuilder.group({
-  //   firstCtrl: ['', Validators.required],
-  // });
-  // secondFormGroup = this._formBuilder.group({
-  //   secondCtrl: ['', Validators.required],
-  // });
+  firstFormGroup = this._formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: ['', Validators.required],
+  });
 
   // public url = 'https://ecombackend.softprodigyphp.in'
   public url = 'http://localhost:3838'
 
-  constructor(private activate: ActivatedRoute, private http: HttpClient,
-    private auth: AuthTokenService, private router: Router, private _formBuilder: FormBuilder
+  constructor(private activate: ActivatedRoute,
+    private http: HttpClient,
+    private auth: AuthTokenService,
+    private router: Router,
+    private _formBuilder: FormBuilder,
+    private address: AddressService
   ) { }
 
   ngOnInit(): void {
-
+    this.getAddress()
     this.activate.queryParams.subscribe(params => {
       this.totalPrice = params['totalPrice'];
       this.cartProduct = JSON.parse(params['queryProduct']);
-      console.log(this.cartProduct);
+
     });
   }
 
 
   purchase() {
+    if (this.selectedAddress) {
 
-    let userId = this.auth.getSellerId().id;
-    let address = this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value;
-    let name = this.shipDetails.get('firstName')?.value + ' ' + this.shipDetails.get('lastName')?.value
-    this.showSpinner = true;
+      let userId = this.auth.getSellerId().id;
+      let address = this.selectedAddress[0].addressLine1 + ', ' + this.selectedAddress[0].addressLine2 + ', ' + this.selectedAddress[0].city + ' , ' + this.selectedAddress[0].state + ' , ' + this.selectedAddress[0].country + ' - ' + this.selectedAddress[0].postalCode + ' , ' + this.selectedAddress[0].phone;
+      let name = this.selectedAddress[0].fullName
+      this.showSpinner = true;
 
-    const headers = new HttpHeaders({
+      const headers = new HttpHeaders({
 
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      });
 
-    this.http.post(`${this.url}/order/create-order`, { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
-      console.log(data);
-      this.showSpinner = false;
-      if (data && data.orderId) {
-        console.log(data.razorpayOrderId.id);
-        this.openRazorpay(data.razorpayOrderId);
-      }
-    });
+      this.http.post(`${this.url}/order/create-order`, { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
+
+        this.showSpinner = false;
+        if (data && data.orderId) {
+          console.log(data.razorpayOrderId.id);
+          this.openRazorpay(data.razorpayOrderId);
+        }
+      });
+    } else {
+      alert('please add address')
+    }
 
   }
 
@@ -103,12 +116,12 @@ export class CheckoutComponent implements OnInit {
         this.saveOrder(response.razorpay_payment_id);
       },
       prefill: {
-        name: this.shipDetails.get('firstname')?.value + ' ' + this.shipDetails.get('lastname')?.value,
-        email: this.shipDetails.get('email')?.value,
-        contact: '',
+        name: this.selectedAddress[0].fullName,
+        email: '',
+        contact: this.selectedAddress[0].phone,
       },
       notes: {
-        address: this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value
+        address: this.selectedAddress[0].addressLine1 + ', ' + this.selectedAddress[0].addressLine2 + ', ' + this.selectedAddress[0].city + ' , ' + this.selectedAddress[0].state + ' , ' + this.selectedAddress[0].country + ' - ' + this.selectedAddress[0].postalCode + ' , ' + this.selectedAddress[0].phone
       },
       theme: {
         color: '#F37254'
@@ -123,7 +136,7 @@ export class CheckoutComponent implements OnInit {
     let userId = this.auth.getSellerId().id;
     const order = {
       userId: userId,
-      address: this.shipDetails.get('street')?.value + ', ' + this.shipDetails.get('city')?.value + ', ' + this.shipDetails.get('state')?.value + ' - ' + this.shipDetails.get('zip')?.value,
+      address: this.selectedAddress[0].addressLine1 + ', ' + this.selectedAddress[0].addressLine2 + ', ' + this.selectedAddress[0].city + ' , ' + this.selectedAddress[0].state + ' , ' + this.selectedAddress[0].country + ' - ' + this.selectedAddress[0].postalCode + ' , ' + this.selectedAddress[0].phone,
       totalAmount: this.totalPrice,
       status: 'pending',
       paymentId: paymentId,
@@ -139,18 +152,56 @@ export class CheckoutComponent implements OnInit {
     this.http.post(`${this.url}/order/update-order`, order, { headers }).subscribe((response: any) => {
       console.log('response order save====>', response);
       this.showSpinner = false;
-      // this.router.navigate(['/home']);
+
+      //Redirecting to home after successfull payment
 
       if (response.orderId == null) {
         console.log('if');
-         this.redirect_url = '/cart';
+        this.redirect_url = '/cart';
       } else {
         console.log('else');
-         this.redirect_url = '/home';
+        this.redirect_url = '/home';
       }
       location.href = this.redirect_url;
     }
     )
+  }
+
+
+  getAddress() {
+    this.address.getAddresses().subscribe(res => {
+      this.addresses = res['addresses']
+    })
+  }
+
+  // getId(id: any) {
+
+  //   const radioBtn = document.getElementById(id);
+  //   // if (radioBtn) {
+  //   //   radioBtn.click();
+  //   // }
+  //   this.selectedId = id
+  //   this.selectedAddress = []
+
+  //   this.address.getSingleAddress(this.selectedId).subscribe(res => {
+
+  //     this.selectedAddress.push(res.address)
+  //     console.log(this.selectedAddress);
+  //   })
+  // }
+
+  selectAddress(id: any) {
+    const radioBtn = document.getElementById(id) as HTMLInputElement;
+    if (radioBtn) {
+      radioBtn.checked = true;
+    }
+    this.selectedId = id;
+    this.selectedAddress = [];
+  
+    this.address.getSingleAddress(this.selectedId).subscribe(res => {
+      this.selectedAddress.push(res.address);
+      console.log(this.selectedAddress);
+    });
   }
 
 }

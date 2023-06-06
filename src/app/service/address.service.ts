@@ -23,7 +23,7 @@ export class AddressService {
   }
 
 
-  getAddresses(){
+  getAddresses():Observable<any>{
     const headers = new HttpHeaders({
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -33,7 +33,7 @@ export class AddressService {
 
 }
 
-  updateAddress(id : any , data:any){
+  updateAddress(id : any , data:any):Observable<any>{
    
     const headers = new HttpHeaders({
      
@@ -43,7 +43,7 @@ export class AddressService {
   }
 
 
-  deleteAddress(id : any){
+  deleteAddress(id : any):Observable<any>{
     
     const headers = new HttpHeaders({
      
@@ -53,5 +53,13 @@ export class AddressService {
     return this.http.delete(`${this.ApiUrl}/address/${id}` , {headers})
 
   }
+
+  getSingleAddress(id : any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+      });
+      return this.http.get(`${this.ApiUrl}/address/${id}` , {headers})
+  }
+
 
 }
