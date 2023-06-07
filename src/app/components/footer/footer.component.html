@@ -18,8 +18,13 @@
             <div class="col-md-5 col-12">
               <!-- Email input -->
               <div class="form-outline mb-4">
-                <input type="email" id="form5Example27" class="form-control" />
+                
+                <input type="email" id="form5Example27" class="form-control" name="email" [(ngModel)]="email"/>
+                <small *ngIf="show">
+                  <p class="text-danger">Please Enter Valid Email</p>
+                </small>
                 <label class="form-label" for="form5Example27">Email address</label>
+            
               </div>
             </div>
             <!--Grid column-->
@@ -27,7 +32,7 @@
             <!--Grid column-->
             <div class="col-auto">
               <!-- Submit button -->
-              <button type="submit" class="btns btns-primary mb-4">
+              <button type="submit" class="btns btns-primary mb-4" (click)="subscribeMe()">
                 Subscribe
               </button>
             </div>

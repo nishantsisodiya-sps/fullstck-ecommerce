@@ -1,82 +1,74 @@
 <div class="loader" *ngIf="showSpinner"></div>
 <div>
-<h3>Dashboard</h3>
-<hr>
+  <h3>Dashboard</h3>
+  <hr>
 
 
-<div class="cards">
+  <div class="cards">
 
     <mat-card>
-        <mat-card-content>
-            <b>Total Revenue </b>| This Month
-            <hr>
-            <br>
-            <div class="ord">
-                <i class="fa-solid fa-sack-dollar"></i>
-                &nbsp;<span > &#8377; {{ calculateTotalRevenue() }}</span>
-            </div>
-        </mat-card-content>
+      <mat-card-content>
+        <b>Total Revenue </b>| This Month
+        <hr>
+        <br>
+        <div class="ord">
+          <i class="fa-solid fa-sack-dollar"></i>
+          &nbsp;<span> &#8377; {{ calculateTotalRevenue() }}</span>
+        </div>
+      </mat-card-content>
     </mat-card>
 
 
-      <mat-card>
-        <mat-card-content>
-            <b>Total orders </b>| This Month
-            <hr>
-            <br>
-            <div class="ord text-success">
-                <i class="fa-solid fa-cart-shopping"></i>
-                &nbsp;<span style="color: #063970;"> {{ calculateTotalQuantitySold() }}</span>
-            </div>
-        
-        </mat-card-content>
-      </mat-card>
+    <mat-card>
+      <mat-card-content>
+        <b>Total orders </b>| This Month
+        <hr>
+        <br>
+        <div class="ord text-success">
+          <i class="fa-solid fa-cart-shopping"></i>
+          &nbsp;<span style="color: #063970;"> {{ calculateTotalQuantitySold() }}</span>
+        </div>
 
-</div>
-<br>
-<div class="chart">
+      </mat-card-content>
+    </mat-card>
 
-    <ngx-charts-bar-horizontal
-    [view]="view"
-    [xScaleMax]="scale"
-    [scheme]="colorScheme"
-    [results]="single"
-    [gradient]="gradient"
-    [xAxis]="showXAxis"
-    [yAxis]="showYAxis"
-    [legend]="false"
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-  >
-  </ngx-charts-bar-horizontal>
-</div>
-
-<br>
-<div class="tabledata">
-  <!-- {{details[0].products[0].title}}test -->
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">No.</th>
-        <th scope="col">Name</th>
-        <th scope="col">Price</th>
-        <th scope="col">Item sold</th>
-        <th scope="col">Revenue</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of sellerProducts let i = index">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>{{ item.title }}</td>
-        <td>&#8377; {{calculatePriceAfterDiscount(item) | currencyConvert}}</td>
-        <td>{{ getProductSold(item) }}</td>
-        <td>{{ calculateRevenue(item) | currencyConvert }}</td> 
-      
-      </tr>
-    </tbody>
-  </table>
-      
   </div>
+  <br>
+  <div class="chart">
+
+    <ngx-charts-bar-horizontal [view]="view" [xScaleMax]="scale" [scheme]="colorScheme" [results]="single"
+      [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="false" [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+    </ngx-charts-bar-horizontal>
+  </div>
+
+  <br>
+  <div class="tabledata">
+    <!-- {{details[0].products[0].title}}test -->
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">No.</th>
+          <th scope="col">Name</th>
+          <th scope="col">Price</th>
+          <th scope="col">Item sold</th>
+          <th scope="col">Revenue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of sellerProducts let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ item.title }}</td>
+          <td>&#8377; {{calculatePriceAfterDiscount(item) | currencyConvert}}</td>
+          <td>{{ getProductSold(item) }}</td>
+          <td>{{ calculateRevenue(item) | currencyConvert }}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+ 
+
+
 </div>

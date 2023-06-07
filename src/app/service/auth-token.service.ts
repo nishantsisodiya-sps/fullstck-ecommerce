@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 export class AuthTokenService {
   public decodedToken: any;
 
-  public url = 'https://ecombackend.softprodigyphp.in'
+  // public url = 'https://ecombackend.softprodigyphp.in'
+  public url = 'http://localhost:3838'
 
   constructor(private http : HttpClient) { 
 
@@ -32,5 +33,9 @@ export class AuthTokenService {
     return this.http.post(`${this.url}/support/contactUs` , data)
   }
 
-  
+  subscribeUser(email : any):Observable<any>{
+    const body = { email: email };
+    return this.http.post(`${this.url}/support/subscribe` , body)
+  }
+
 }

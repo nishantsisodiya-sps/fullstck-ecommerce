@@ -20,8 +20,6 @@ export class AuthguardService {
     return !!token; 
   }
 
-  getUserRole(){
-    
-  }
+  
 }
 
