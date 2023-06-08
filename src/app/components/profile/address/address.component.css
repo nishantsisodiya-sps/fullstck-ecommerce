@@ -21,17 +21,7 @@
 	 box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	 animation: slideUp 2000ms ease;
 }
- /* @keyframes slideUp {
-	 0% {
-		 -webkit-transform: translateY(100%);
-		 transform: translateY(100%);
-		 visibility: visible;
-	}
-	 100% {
-		 -webkit-transform: translateY(0);
-		 transform: translateY(0);
-	}
-} */
+
  .container {
 	 width: 65%;
 	 padding: 5% 10%;
@@ -166,7 +156,7 @@
 	padding: 2%;
 	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 	display: inline-flex;
-	width: 80%;
+	width: 79%;
 }
 
 .btns {

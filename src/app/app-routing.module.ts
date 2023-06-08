@@ -22,6 +22,8 @@ import { AddressComponent } from './components/profile/address/address.component
 import { AuthGuard } from './Guards/auth.guard';
 import { AuthTokenService } from './service/auth-token.service';
 import { Observable } from 'rxjs';
+import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admin-home.component';
+import { SuperAdminAuthComponent } from './superAmin/super-admin-auth/super-admin-auth.component';
 
 
 @Injectable({ providedIn: 'root' })
@@ -62,8 +64,6 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        // canActivate: [AuthGuard],
-        // data: { roles: 'seller' },
         resolve: {
           homeRoute: HomeRouteResolver 
         },
@@ -81,6 +81,9 @@ const routes: Routes = [
   },
   { path: 'checkout', component: CheckoutComponent }, 
   { path: 'category-products/:id', component: CategoryProductsComponent },
+  { path: 'superAdmin', component: SuperAdminHomeComponent },
+  { path: 'superAdminAuth', component: SuperAdminAuthComponent },
+
 ]
 
 @NgModule({

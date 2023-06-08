@@ -23,3 +23,13 @@
 	width: 20%;
 	cursor: pointer;
 }
+.plus{
+	text-align: center;
+	font-size: 90;
+}
+.nextbtn{
+	position: absolute;
+	left: 33%;
+	width: 33%;
+	
+}

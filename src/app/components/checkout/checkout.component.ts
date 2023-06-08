@@ -90,10 +90,9 @@ export class CheckoutComponent implements OnInit {
       });
 
       this.http.post(`${this.url}/order/create-order`, { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
-
+        console.log('myData' , data);
         this.showSpinner = false;
         if (data && data.orderId) {
-          console.log(data.razorpayOrderId.id);
           this.openRazorpay(data.razorpayOrderId);
         }
       });
@@ -112,6 +111,8 @@ export class CheckoutComponent implements OnInit {
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',
       order_id: razorpayOrderId.id,
       handler: (response: any) => {
+        console.log(response)
+        console.log(response.razorpay_payment_id)
         // Callback function for successful payment
         this.saveOrder(response.razorpay_payment_id);
       },
@@ -174,21 +175,7 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  // getId(id: any) {
-
-  //   const radioBtn = document.getElementById(id);
-  //   // if (radioBtn) {
-  //   //   radioBtn.click();
-  //   // }
-  //   this.selectedId = id
-  //   this.selectedAddress = []
-
-  //   this.address.getSingleAddress(this.selectedId).subscribe(res => {
-
-  //     this.selectedAddress.push(res.address)
-  //     console.log(this.selectedAddress);
-  //   })
-  // }
+  
 
   selectAddress(id: any) {
     const radioBtn = document.getElementById(id) as HTMLInputElement;

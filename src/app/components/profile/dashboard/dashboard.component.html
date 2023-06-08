@@ -68,7 +68,29 @@
     </table>
 
   </div>
- 
 
+  <div class="tabledata">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Order id</th>
+          <th scope="col">Item</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Payment status</th>
+          <th scope="col">Order status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productStatus let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{item}}</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>

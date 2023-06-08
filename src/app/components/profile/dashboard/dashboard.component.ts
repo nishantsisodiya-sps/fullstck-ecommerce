@@ -11,12 +11,12 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  showSpinner :boolean = false
+  showSpinner: boolean = false
 
   sellerProducts: any = []
   productStatus: any = []
   single: any = [];
-  details : any = []
+  details: any = []
 
   multi?: any[];
   view: [number, number] = [800, 250];
@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  scale : any;
+  scale: any;
   showLegend = false;
   showXAxisLabel = true;
   xAxisLabel = 'Revenue';
@@ -34,7 +34,11 @@ export class DashboardComponent implements OnInit {
     domain: ['#a8385d', '#aae3f5', '#7aa3e5', '#a27ea8']
   };
 
-  constructor(private sellerStatus: SellerDashboardService, private auth: AuthTokenService, private api: UserAuthApiService) {
+  constructor(
+    private sellerStatus: SellerDashboardService,
+    private auth: AuthTokenService,
+    private api: UserAuthApiService
+  ) {
 
   }
 
@@ -53,10 +57,11 @@ export class DashboardComponent implements OnInit {
       products: this.api.getSellerProducts(id),
       status: this.sellerStatus.getSellerProductStatus(id)
     }).subscribe((res: any) => {
-      this.details.push(res.products[0]) 
+      console.log(res);
+      this.details.push(res.products[0])
       this.sellerProducts = res.products;
       this.productStatus = res.status;
-     
+
 
       this.single = this.sellerProducts.map((item: any) => ({
         name: item.title,
@@ -73,12 +78,12 @@ export class DashboardComponent implements OnInit {
       const productIndex = this.single.findIndex((item: any) => item.name === status.product.title);
       if (productIndex !== -1) {
 
-        let discountedPrice = Math.round( status.product.price - (status.product.price * status.product.discountPercentage) / 100)
-        const revenue = Math.round(discountedPrice * (status.quantitySold || 0 ) * 80);
+        let discountedPrice = Math.round(status.product.price - (status.product.price * status.product.discountPercentage) / 100)
+        const revenue = Math.round(discountedPrice * (status.quantitySold || 0) * 80);
         this.single[productIndex].value = revenue;
       }
     }
-   
+
 
   }
 
@@ -88,15 +93,15 @@ export class DashboardComponent implements OnInit {
     for (const status of this.productStatus) {
 
       let discount = status.product.price * status.product.discountPercentage / 100
-      let price =  status.product.price - discount
+      let price = status.product.price - discount
       const revenue = Math.round(price * 80 * (status.quantitySold || 0));
-      totalRevenue +=  revenue;
+      totalRevenue += revenue;
 
     }
     return totalRevenue;
 
   }
-  
+
   calculateTotalQuantitySold(): number {
     let totalQuantitySold = 0;
     for (const status of this.productStatus) {
@@ -112,7 +117,7 @@ export class DashboardComponent implements OnInit {
 
     return Math.round(discountedPrice);
   }
-  
+
   getProductSold(item: any): number {
 
     // Find the corresponding product status based on item ID
@@ -123,7 +128,7 @@ export class DashboardComponent implements OnInit {
     }
     return 0;
   }
-  
+
   calculateRevenue(item: any): number {
     const productSold = this.getProductSold(item);
     const priceAfterDiscount = this.calculatePriceAfterDiscount(item);
@@ -131,6 +136,6 @@ export class DashboardComponent implements OnInit {
     return revenue;
   }
 
-  
 
-  }
+
+}

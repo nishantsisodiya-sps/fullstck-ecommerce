@@ -45,6 +45,8 @@ import { AddressComponent } from './components/profile/address/address.component
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { SuperAdminAuthComponent } from './superAmin/super-admin-auth/super-admin-auth.component';
+import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admin-home.component';
 
 
 
@@ -74,6 +76,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
     WishlistComponent,
     EditProfileComponent,
     AddressComponent,
+    SuperAdminAuthComponent,
+    SuperAdminHomeComponent,
 
 
   ],
