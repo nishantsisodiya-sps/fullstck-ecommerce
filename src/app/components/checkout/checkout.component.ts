@@ -105,7 +105,7 @@ export class CheckoutComponent implements OnInit {
   openRazorpay(razorpayOrderId: any) {
     const razorpay = new Razorpay({
       key: 'rzp_test_Tiv5oHxAC3kTlH',
-      name: 'My e-Commerce',
+      name: 'HUUT',
       description: 'Purchase description',
       currency: 'INR',
       image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png',

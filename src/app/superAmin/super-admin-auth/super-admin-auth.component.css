@@ -22,7 +22,8 @@ body {
 
 .forms-inputs input {
     height: 50px;
-    border: 2px solid #eee
+    border: 2px solid #eee;
+    width : 100%;
 }
 
 .forms-inputs input:focus {
@@ -42,4 +43,10 @@ body {
 
 .bxs-badge-check {
     font-size: 90px
+}
+.fa-solid{
+    position: absolute;
+    top: 35%;
+    right: 7px;
+    cursor: pointer;
 }
