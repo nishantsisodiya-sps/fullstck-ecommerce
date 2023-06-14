@@ -22,23 +22,27 @@ import { AddressComponent } from './components/profile/address/address.component
 import { AuthGuard } from './Guards/auth.guard';
 import { AuthTokenService } from './service/auth-token.service';
 import { Observable } from 'rxjs';
-import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admin-home.component';
-import { SuperAdminAuthComponent } from './superAmin/super-admin-auth/super-admin-auth.component';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { SuperAdminHomeComponent } from './super-admin/super-admin-home/super-admin-home.component';
+import { UsersListingComponent } from './super-admin/users-listing/users-listing.component';
+import { SuperAdminAuthComponent } from './super-admin/super-admin-auth/super-admin-auth.component';
+import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
+
 
 
 @Injectable({ providedIn: 'root' })
 export class HomeRouteResolver implements Resolve<any> {
-  constructor(private token: AuthTokenService , private router : Router) { }
+  constructor(private token: AuthTokenService, private router: Router) { }
 
   getProfileHomeRoute(): any {
     const userRole = this.token.getSellerId().role;
     console.log(userRole);
     if (userRole === 'user') {
-  
+
       this.router.navigate(['/profile/MyOrderList'])
       return 'MyOrderList';
     } else if (userRole === 'seller') {
-   
+
       this.router.navigate(['/profile/dashboard'])
       return 'dashboard';
     }
@@ -55,35 +59,40 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'userAuth', component: UserAuthComponent },
   { path: 'sellerAuth', component: SellerAuthComponent },
-  { path: 'addproduct', component: AddProductComponent , canActivate: [AuthGuard], data: { roles: 'seller' } },
+  { path: 'addproduct', component: AddProductComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
   { path: 'MyProducts', component: MyProductsComponent },
   { path: 'details/:id', component: DetailsComponent },
-  { path: 'cart', component: CartComponent ,canActivate: [AuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
   {
-    path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard], children: [
+    path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], children: [
       {
         path: '',
         pathMatch: 'full',
         resolve: {
-          homeRoute: HomeRouteResolver 
+          homeRoute: HomeRouteResolver
         },
         redirectTo: '',
       },
-      { path: 'sellerProducts', component: SellerProductsComponent , canActivate: [AuthGuard], data: { roles: 'seller' } },
+      { path: 'sellerProducts', component: SellerProductsComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
       { path: 'MyOrderList', component: OrderlistComponent },
       { path: 'MyOrderList/:id', component: MyOrdersComponent },
       { path: 'support', component: SupportComponent },
       { path: 'userDetails', component: UserDetailsComponent },
-      { path: 'dashboard', component: DashboardComponent , canActivate: [AuthGuard], data: { roles: 'seller' }},
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'address', component: AddressComponent },
     ]
   },
-  { path: 'checkout', component: CheckoutComponent }, 
+  { path: 'checkout', component: CheckoutComponent },
   { path: 'category-products/:id', component: CategoryProductsComponent },
-  { path: 'superAdmin', component: SuperAdminHomeComponent },
   { path: 'superAdminAuth', component: SuperAdminAuthComponent },
-
+  {
+    path: 'superAdmin', component: SuperAdminComponent, children: [
+      { path: 'superAdminHome', component: SuperAdminHomeComponent },
+      { path: 'userList', component: UsersListingComponent },
+      { path: 'SellerList', component: SellersListingComponent }
+    ]
+  }
 ]
 
 @NgModule({
@@ -93,7 +102,7 @@ const routes: Routes = [
 
 
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 
 
 

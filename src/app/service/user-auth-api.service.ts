@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class UserAuthApiService {
 
-  public ApiUrl = 'https://ecombackend.softprodigyphp.in'
-  // public ApiUrl = 'http://localhost:3838'
+  // public ApiUrl = 'https://ecombackend.softprodigyphp.in'
+  public ApiUrl = 'http://localhost:3838'
 
   constructor(private http: HttpClient) { }
 
@@ -68,6 +68,20 @@ export class UserAuthApiService {
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     return this.http.get(`${this.ApiUrl}/users/profile/${id}` , {headers})
+
+  }
+
+
+  getAllUsers():Observable<any>{
+
+    return this.http.get(`${this.ApiUrl}/users/Allusers`)
+
+  }
+
+
+  getAllSellers():Observable<any>{
+
+    return this.http.get(`${this.ApiUrl}/sellers/AllSellers`)
 
   }
 

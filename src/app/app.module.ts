@@ -45,9 +45,14 @@ import { AddressComponent } from './components/profile/address/address.component
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import { SuperAdminAuthComponent } from './superAmin/super-admin-auth/super-admin-auth.component';
-import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admin-home.component';
-
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { SuperAdminAuthComponent } from './super-admin/super-admin-auth/super-admin-auth.component';
+import { SuperAdminHomeComponent } from './super-admin/super-admin-home/super-admin-home.component';
+import { UsersListingComponent } from './super-admin/users-listing/users-listing.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
 
 
 @NgModule({
@@ -78,6 +83,10 @@ import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admi
     AddressComponent,
     SuperAdminAuthComponent,
     SuperAdminHomeComponent,
+    UsersListingComponent,
+    SuperAdminComponent,
+    SuperAdminComponent,
+    SellersListingComponent,
 
 
   ],
@@ -103,7 +112,10 @@ import { SuperAdminHomeComponent } from './superAmin/super-admin-home/super-admi
     MatButtonModule,
     MatStepperModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatToolbarModule,
+    MatSlideToggleModule,
+    MatSidenavModule
 
 
   ],

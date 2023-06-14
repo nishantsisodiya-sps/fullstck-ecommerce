@@ -11,7 +11,7 @@ export class SellerDashboardService {
 
 
   getSellerProductStatus(id:any):Observable<any>{
-    return this.http.get(`https://ecombackend.softprodigyphp.in/sellers/sold-products/${id}`)
+    return this.http.get(`http://localhost:3838/sellers/sold-products/${id}`)
   }
 
 }

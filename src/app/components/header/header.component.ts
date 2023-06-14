@@ -10,7 +10,7 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  admin : boolean = true
   menuType : string = 'default'
   sellerData: any = []
   searchResult : any
@@ -30,6 +30,8 @@ export class HeaderComponent implements OnInit {
       
     }else if(tokendata.role === 'seller'){
       this.menuType = 'seller'
+    }else if(tokendata.role === 'superAdmin'){
+      this.menuType = 'superAdmin'
     }
     else{
       this.menuType = 'default'

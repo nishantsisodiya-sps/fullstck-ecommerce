@@ -11,8 +11,8 @@ export class FooterComponent implements OnInit {
   email : any
   emailFormControl!: FormControl;
   show : boolean = false
-  
-  constructor(private support : AuthTokenService ) { 
+  isAdmin : boolean = false
+  constructor(private support : AuthTokenService) { 
     
   }
 
@@ -20,6 +20,16 @@ export class FooterComponent implements OnInit {
     this.emailFormControl = new FormControl('', [
       Validators.email
     ]);
+
+    let role = this.support.getSellerId().role
+
+
+    if(role === 'superAdmin'){
+      this.isAdmin = true
+    }else{
+      this.isAdmin = false
+    }
+
   }
 
 
@@ -27,10 +37,8 @@ export class FooterComponent implements OnInit {
     let email = this.email
     let reg = new RegExp(/^[^@]+@[^@]+\.[^@\.]{2,}$/)
     let result = reg.test(email)
-    console.log(email);
     if(result == true){
       this.support.subscribeUser(this.email).subscribe(res=>{
-        console.log(res);
     })
 
     }else{
