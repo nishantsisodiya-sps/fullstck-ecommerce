@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { SuperAdminService } from 'src/app/service/super-admin.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class SellersListingComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: any | MatPaginator;
 
-  constructor(private auth: UserAuthApiService) { }
+  constructor(private auth: UserAuthApiService , private superAdmin : SuperAdminService) { }
 
   ngOnInit(): void {
     this.getAllSellers();
@@ -36,12 +37,14 @@ export class SellersListingComponent implements OnInit, AfterViewInit {
     );
   }
 
-  deleteSeller(id: any): void {
+  deleteSeller(id: any) {
     console.log(id);
   }
 
-  blockSeller(id: any): void {
-    console.log(id);
+  blockSeller(id: any) {
+    this.superAdmin.blockSeller(id).subscribe(res=>{
+      console.log(res);
+    })
   }
 }
 

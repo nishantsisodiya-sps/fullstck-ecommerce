@@ -4,7 +4,8 @@
         <ng-template *ngFor="let item of myProducts" ngbSlide>
             <div class="picsum-img-wrapper">
                 <a [routerLink]="['/details', item._id]"><img class="product-header-image"
-                        src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}" alt="Random first slide" /></a>
+                        src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}"
+                        alt="Random first slide" /></a>
             </div>
             <div class="carousel-caption">
                 <h3>{{item.title}}</h3>
@@ -86,15 +87,15 @@
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-1">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" >        
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="col mb-5" *ngFor="let item of categories" [routerLink]="['/category-products' , item._id]">
-                <div class="card h-100" >                  
+                <div class="card h-100">
                     <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale
-                    </div> 
-                    <img class="card-img-top" src="https://source.unsplash.com/450x300/?{{item.name}} "alt="..." />                     
+                    </div>
+                    <img class="card-img-top" src="https://source.unsplash.com/450x300/?{{item.name}} " alt="..." />
                     <div class="card-body p-4">
-                        <div class="text-center">                      
-                            <h5 class="fw-bolder">{{item.name | titlecase}}</h5>                       
+                        <div class="text-center">
+                            <h5 class="fw-bolder">{{item.name | titlecase}}</h5>
                             <span class="text-muted text-decoration-line-through">12% &nbsp;</span>
                             UPTO 20 % off
                         </div>

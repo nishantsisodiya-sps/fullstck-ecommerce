@@ -71,6 +71,7 @@ export class CheckoutComponent implements OnInit {
     this.activate.queryParams.subscribe(params => {
       this.totalPrice = params['totalPrice'];
       this.cartProduct = JSON.parse(params['queryProduct']);
+      console.log(this.cartProduct);
 
     });
   }

@@ -87,6 +87,7 @@ export class CartComponent implements OnInit {
       queryProduct: JSON.stringify(this.queryProduct),
       quantity: this.quantity
     };
+    console.log(queryParams);
     this.router.navigate(['/checkout'], { queryParams: queryParams })
   }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MenutypeService } from '../service/menutype.service';
 
 @Component({
   selector: 'app-super-admin',
@@ -8,13 +10,20 @@ import { Component, OnInit } from '@angular/core';
 export class SuperAdminComponent implements OnInit {
   isSidebarHidden = false;
 
-  constructor() { }
+  constructor(private router : Router , private menuService: MenutypeService) { }
 
   ngOnInit(): void {
   }
 
   toggleSidebar(): void {
     this.isSidebarHidden = !this.isSidebarHidden;
+  }
+
+
+  logout() {
+    localStorage.removeItem('token');
+    this.menuService.updateMenuType('default');
+    this.router.navigate(['/home']);
   }
 
 }

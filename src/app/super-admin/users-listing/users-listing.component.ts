@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
+import { SuperAdminService } from 'src/app/service/super-admin.service';
 
 
 export interface User {
@@ -30,7 +31,7 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
 
   @ViewChild(MatPaginator) paginator : any | MatPaginator;
 
-  constructor(private auth : UserAuthApiService) { }
+  constructor(private auth : UserAuthApiService , private superAdmin : SuperAdminService) { }
 
   ngOnInit(): void {
     this.getAllUsers()
@@ -59,7 +60,8 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
   }
 
   blockUser(id:any){
-    console.log(id);
+    this.superAdmin.blockUser(id).subscribe(res=>{
+      console.log(res);
+    })
   }
-
 }
