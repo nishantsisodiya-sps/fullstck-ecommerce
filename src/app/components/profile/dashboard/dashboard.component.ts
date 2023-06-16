@@ -11,6 +11,9 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  productStatusForSeller : any = []
+
+
   showSpinner: boolean = false
 
   sellerProducts: any = []
@@ -44,6 +47,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData()
+    this.getStatus()
   }
 
 
@@ -57,7 +61,7 @@ export class DashboardComponent implements OnInit {
       products: this.api.getSellerProducts(id),
       status: this.sellerStatus.getSellerProductStatus(id)
     }).subscribe((res: any) => {
-      console.log(res);
+    
       this.details.push(res.products[0])
       this.sellerProducts = res.products;
       this.productStatus = res.status;
@@ -136,6 +140,17 @@ export class DashboardComponent implements OnInit {
     return revenue;
   }
 
+
+
+  getStatus(){
+
+    let id = this.auth.getSellerId().id
+
+    this.sellerStatus.getproductInfo(id).subscribe(res=>{
+      console.log(res);
+      this.productStatusForSeller = res
+    })
+  }
 
 
 }

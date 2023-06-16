@@ -7,11 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class SellerDashboardService {
 
+  public url = 'https://ecombackend.softprodigyphp.in'
+  // public url = 'http://localhost:3838'
+
   constructor(private http : HttpClient) { }
 
 
   getSellerProductStatus(id:any):Observable<any>{
-    return this.http.get(`http://localhost:3838/sellers/sold-products/${id}`)
+    return this.http.get(`${this.url}/sellers/sold-products/${id}`)
+  }
+
+
+
+  getproductInfo(id:any):Observable<any>{
+    return this.http.get(`${this.url}/sellers/sold-productsNew/${id}`)
   }
 
 }

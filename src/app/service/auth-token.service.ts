@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class AuthTokenService {
   public decodedToken: any;
 
-  // public url = 'https://ecombackend.softprodigyphp.in'
-  public url = 'http://localhost:3838'
+  public url = 'https://ecombackend.softprodigyphp.in'
+  // public url = 'http://localhost:3838'
 
   constructor(private http : HttpClient) { 
 

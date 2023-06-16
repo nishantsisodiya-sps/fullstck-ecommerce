@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AddressService {
-  // public ApiUrl = 'https://ecombackend.softprodigyphp.in'
-  public ApiUrl = 'http://localhost:3838'
+  public ApiUrl = 'https://ecombackend.softprodigyphp.in'
+  // public ApiUrl = 'http://localhost:3838'
 
   constructor(private http : HttpClient) { }
 

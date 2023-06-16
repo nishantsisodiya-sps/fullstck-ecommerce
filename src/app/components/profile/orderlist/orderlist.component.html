@@ -5,8 +5,8 @@
             <div class="text-uppercase">My recent orders</div>
             <div class="order my-3 bg-light" *ngFor="let item of myorder let i = index">
                 <div class="row">
-                    <div class="text-primary ms-auto text-uppercase" *ngIf="paid">Paid</div>
-                    <div class="text-primary ms-auto text-uppercase" *ngIf="!paid">Cash on Delivery</div>
+                    <div class="text-primary ms-auto text-uppercase"><span style="color: red;">Payment status :</span> {{item.PaymentStatus}}</div>
+                
 
                     <div class="col-lg-2 mt-2">
 

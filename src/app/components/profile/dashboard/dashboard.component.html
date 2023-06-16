@@ -79,15 +79,16 @@
           <th scope="col">Quantity</th>
           <th scope="col">Payment status</th>
           <th scope="col">Order status</th>
-          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of productStatus let i = index">
+        <tr *ngFor="let item of productStatusForSeller let i = index">
           <th scope="row">{{i + 1}}</th>
-          <td>{{item}}</td>
-          <td>Otto</td>
-          <td>@mdo</td>
+          <td>{{item.product.paymentId}}</td>
+          <td>{{item.product.title}}</td>
+          <td>{{item.product.quantity}}</td>
+          <td>{{item.product.paymentStatus}}</td>
+          <td>{{item.product.status}}</td>
         </tr>
       </tbody>
     </table>

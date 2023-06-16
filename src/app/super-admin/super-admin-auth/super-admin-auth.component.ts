@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SuperAdminAuthComponent implements OnInit {
 
+  public url = 'https://ecombackend.softprodigyphp.in'
+  // public url = 'http://localhost:3838'
+
   adminForm !: FormGroup
 
   @ViewChild('loginPasswordInput', { static: false }) loginPasswordInput: ElementRef<HTMLInputElement> | undefined;
@@ -34,7 +37,7 @@ export class SuperAdminAuthComponent implements OnInit {
   loginAdmin(){
     let data = this.adminForm.value
     this.http.post<{success: boolean, message: string, token: string}>
-    (`http://localhost:3838/superAdmin/login` , data).subscribe(Response=>{
+    (`${this.url}/superAdmin/login` , data).subscribe(Response=>{
       if(Response.success){
         localStorage.setItem('token' , Response.token)
         this.router.navigate(['/superAdmin']).then(() => {

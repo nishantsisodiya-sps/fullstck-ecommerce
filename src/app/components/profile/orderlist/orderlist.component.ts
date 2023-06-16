@@ -50,12 +50,12 @@ export class OrderlistComponent implements OnInit {
     this.order.getOrders(id).subscribe(res=>{
       console.log('res=>' , res);
       this.myorder = res
-      
-      if(this.myorder[0].status == 'PAID'){
-        this.paid = true
-      }
-
       this.orderLength = this.myorder.length
+
+
+      // change status 
+
+      
 
 
       //Getting cart item length
@@ -77,5 +77,8 @@ export class OrderlistComponent implements OnInit {
   getOrderInfo(id:any){
     console.log(id);
   }
+
+
+
 
 }
