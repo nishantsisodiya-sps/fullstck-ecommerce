@@ -26,10 +26,14 @@ export class HeaderComponent implements OnInit {
   }
 
   switchMenu(){
+    console.log(this.menuType);
 
     let tokendata = this.auth.getSellerId()
 
-    if(tokendata.role === 'user'){
+    if(!tokendata){
+      this.menuType = 'default'
+    }
+    else if(tokendata.role === 'user'){
       this.menuType = 'user'
       
     }else if(tokendata.role === 'seller'){
@@ -38,9 +42,6 @@ export class HeaderComponent implements OnInit {
     else if(tokendata.role === 'superAdmin'){
       this.admin = true
       this.menuType = 'superAdmin'
-    }
-    else{
-      this.menuType = 'default'
     }
   
     this.menuService.updateMenuType(this.menuType);
