@@ -24,8 +24,10 @@ export class MyOrdersComponent implements OnInit {
     this.showSpinner = true
     this.activateRoute.paramMap.subscribe(params=>{
       let id = params.get('id')
+      let productId = params.get('productId')
+
       
-      this.order.getOrderInfo(id).subscribe(res=>{
+      this.order.getOrderInfo(id , productId).subscribe(res=>{
         this.orders.push(res)
         this.orderProducts = this.orders[0].products
         console.log(this.orderProducts);

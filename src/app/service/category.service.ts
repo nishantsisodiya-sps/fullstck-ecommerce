@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  public url = 'https://ecombackend.softprodigyphp.in'
+  // public url = 'https://ecombackend.softprodigyphp.in'
+  public url = 'http://localhost:3838'
   constructor(private http : HttpClient) { }
 
 

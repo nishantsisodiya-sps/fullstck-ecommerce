@@ -53,6 +53,8 @@ import { UsersListingComponent } from './super-admin/users-listing/users-listing
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
+import { OrderByUsersComponent } from './components/profile/dashboard/order-by-users/order-by-users.component';
+import { StockComponent } from './components/profile/dashboard/stock/stock.component';
 
 
 @NgModule({
@@ -87,6 +89,8 @@ import { SellersListingComponent } from './super-admin/sellers-listing/sellers-l
     SuperAdminComponent,
     SuperAdminComponent,
     SellersListingComponent,
+    OrderByUsersComponent,
+    StockComponent,
 
 
   ],

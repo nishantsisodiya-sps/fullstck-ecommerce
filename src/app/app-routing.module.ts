@@ -27,6 +27,8 @@ import { SuperAdminHomeComponent } from './super-admin/super-admin-home/super-ad
 import { UsersListingComponent } from './super-admin/users-listing/users-listing.component';
 import { SuperAdminAuthComponent } from './super-admin/super-admin-auth/super-admin-auth.component';
 import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
+import { OrderByUsersComponent } from './components/profile/dashboard/order-by-users/order-by-users.component';
+import { StockComponent } from './components/profile/dashboard/stock/stock.component';
 
 
 
@@ -75,10 +77,14 @@ const routes: Routes = [
       },
       { path: 'sellerProducts', component: SellerProductsComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
       { path: 'MyOrderList', component: OrderlistComponent },
-      { path: 'MyOrderList/:id', component: MyOrdersComponent },
+      { path: 'MyOrderList/:id/:productId', component: MyOrdersComponent },
       { path: 'support', component: SupportComponent },
       { path: 'userDetails', component: UserDetailsComponent },
-      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
+      {
+        path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard], data: { roles: 'seller' }
+      },
+      { path: 'orderByUsers', component: OrderByUsersComponent },
+      { path: 'stock', component: StockComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'address', component: AddressComponent },
     ]

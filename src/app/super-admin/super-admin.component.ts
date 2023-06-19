@@ -23,6 +23,7 @@ export class SuperAdminComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     this.menuService.updateMenuType('default');
+    window.location.reload()
     this.router.navigate(['/home']);
   }
 

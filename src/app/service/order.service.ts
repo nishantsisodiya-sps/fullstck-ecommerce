@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class OrderService {
 
-  public url  = 'https://ecombackend.softprodigyphp.in'
-  // public url  = 'http://localhost:3838'
+  // public url  = 'https://ecombackend.softprodigyphp.in'
+  public url  = 'http://localhost:3838'
 
 
   constructor(private http : HttpClient) { }
@@ -23,12 +23,13 @@ export class OrderService {
 
 
   
-  getOrderInfo(id : any):Observable<any>{
+  getOrderInfo(id : any , productId : any):Observable<any>{
     const headers = new HttpHeaders({
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-    return this.http.get(`${this.url}/order/singleOrder/${id}` , {headers})
+    
+    return this.http.get(`${this.url}/order/singleOrder/${id}-${productId}` , {headers})
   }
 
 }

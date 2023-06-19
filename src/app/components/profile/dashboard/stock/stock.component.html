@@ -1,0 +1,42 @@
+<div class="main">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="stocks">
+            <!-- Name Column -->
+            <ng-container matColumnDef="_id">
+                <th mat-header-cell *matHeaderCellDef> Id </th>
+                <td mat-cell *matCellDef="let stock"> {{stock._id}} </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let stock"> {{stock.title}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="thumbnail">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let stock"> <img src="https://ecombackend.softprodigyphp.in/uploads/{{stock.thumbnail}}" width="100" alt=""> </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="sold">
+                <th mat-header-cell *matHeaderCellDef> Sold count </th>
+                <td mat-cell *matCellDef="let stock"> {{stock.sold}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="stock">
+                <th mat-header-cell *matHeaderCellDef> Stock Count </th>
+                <td mat-cell *matCellDef="let stock"> {{stock.stock}} </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator style="padding: 2%;" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData()
-    this.getStatus()
+  
   }
 
 
@@ -142,15 +142,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  getStatus(){
-
-    let id = this.auth.getSellerId().id
-
-    this.sellerStatus.getproductInfo(id).subscribe(res=>{
-      console.log(res);
-      this.productStatusForSeller = res
-    })
-  }
+ 
 
 
 }

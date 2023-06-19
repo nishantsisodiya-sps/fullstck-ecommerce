@@ -1,0 +1,27 @@
+
+
+
+<div class="tabledata">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Order id</th>
+          <th scope="col">Item</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Payment status</th>
+          <th scope="col">Order status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of productStatusForSeller let i = index">
+          <th scope="row">{{i + 1}}</th>
+          <td>{{item.product.paymentId}}</td>
+          <td>{{item.product.title}}</td>
+          <td>{{item.product.quantity}}</td>
+          <td>{{item.product.paymentStatus}}</td>
+          <td>{{item.product.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

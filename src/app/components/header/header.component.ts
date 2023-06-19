@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
   }
 
   switchMenu(){
-    console.log(this.menuType);
 
     let tokendata = this.auth.getSellerId()
 
