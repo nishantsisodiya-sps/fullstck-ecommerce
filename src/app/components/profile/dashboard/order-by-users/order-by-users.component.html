@@ -1,27 +1,90 @@
 
 
+  <div class="main">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="orders">
+            <!-- Name Column -->
+            <ng-container matColumnDef="orderId">
+                <th mat-header-cell  *matHeaderCellDef> Order Id </th>
+                <td mat-cell *matCellDef="let order"> {{order.product.paymentId}} </td>
+            </ng-container>
 
-<div class="tabledata">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Order id</th>
-          <th scope="col">Item</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Payment status</th>
-          <th scope="col">Order status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of productStatusForSeller let i = index">
-          <th scope="row">{{i + 1}}</th>
-          <td>{{item.product.paymentId}}</td>
-          <td>{{item.product.title}}</td>
-          <td>{{item.product.quantity}}</td>
-          <td>{{item.product.paymentStatus}}</td>
-          <td>{{item.product.status}}</td>
-        </tr>
-      </tbody>
-    </table>
+            <!-- Name Column -->
+            <ng-container matColumnDef="title" class="db">
+                <th mat-header-cell *matHeaderCellDef> Item Name </th>
+                <td mat-cell *matCellDef="let order"> {{order.product.title}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="thumbnail">
+                <th mat-header-cell *matHeaderCellDef> Image </th>
+                <td mat-cell *matCellDef="let order"> <img src="https://ecombackend.softprodigyphp.in/uploads/{{order.product.thumbnail}}" width="100" alt=""> </td>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="Quantity">
+                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                <td mat-cell *matCellDef="let order"> {{order.product.quantity}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Payment">
+                <th mat-header-cell *matHeaderCellDef> Payment status </th>
+                <td mat-cell *matCellDef="let order"> {{order.product.paymentStatus}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Order status </th>
+                <td mat-cell *matCellDef="let order"> {{order.product.status}} &nbsp;
+                  <a style="cursor: pointer;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pencil"></i></a>
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator style="padding: 2%;" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+    
+ 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change Order Status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        <div class="form-group" >
+          <label for="orderStatus">Select an option:</label>
+          <select class="form-control custom-select" id="orderStatus" [(ngModel)]="selectedOption">
+            <option value="yes" *ngFor="let item of dropdown">{{item}}</option>
+          </select>
+        </div>
+        <br>
+
+        <div class="input-group mb-3">
+          <label for="company">Seller</label>
+          <input id="company" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <label for="address"></label>
+          <input id="address" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
   </div>
+</div>
+</div>

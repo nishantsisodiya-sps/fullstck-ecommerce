@@ -77,7 +77,7 @@ const routes: Routes = [
       },
       { path: 'sellerProducts', component: SellerProductsComponent, canActivate: [AuthGuard], data: { roles: 'seller' } },
       { path: 'MyOrderList', component: OrderlistComponent },
-      { path: 'MyOrderList/:id/:productId', component: MyOrdersComponent },
+      { path: 'MyOrder', component: MyOrdersComponent },
       { path: 'support', component: SupportComponent },
       { path: 'userDetails', component: UserDetailsComponent },
       {

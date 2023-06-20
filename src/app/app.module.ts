@@ -55,6 +55,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
 import { OrderByUsersComponent } from './components/profile/dashboard/order-by-users/order-by-users.component';
 import { StockComponent } from './components/profile/dashboard/stock/stock.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -119,8 +120,8 @@ import { StockComponent } from './components/profile/dashboard/stock/stock.compo
     MatPaginatorModule,
     MatToolbarModule,
     MatSlideToggleModule,
-    MatSidenavModule
-
+    MatSidenavModule,
+    MatDialogModule
 
   ],
   providers: [],

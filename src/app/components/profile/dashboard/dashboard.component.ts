@@ -83,7 +83,7 @@ export class DashboardComponent implements OnInit {
       if (productIndex !== -1) {
 
         let discountedPrice = Math.round(status.product.price - (status.product.price * status.product.discountPercentage) / 100)
-        const revenue = Math.round(discountedPrice * (status.quantitySold || 0) * 80);
+        const revenue = Math.round(discountedPrice * (status.quantitySold || 0));
         this.single[productIndex].value = revenue;
       }
     }
@@ -98,7 +98,7 @@ export class DashboardComponent implements OnInit {
 
       let discount = status.product.price * status.product.discountPercentage / 100
       let price = status.product.price - discount
-      const revenue = Math.round(price * 80 * (status.quantitySold || 0));
+      const revenue = Math.round(price * (status.quantitySold || 0));
       totalRevenue += revenue;
 
     }
@@ -139,10 +139,6 @@ export class DashboardComponent implements OnInit {
     const revenue = priceAfterDiscount * productSold;
     return revenue;
   }
-
-
-
- 
 
 
 }

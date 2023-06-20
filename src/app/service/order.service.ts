@@ -24,12 +24,18 @@ export class OrderService {
 
   
   getOrderInfo(id : any , productId : any):Observable<any>{
+
     const headers = new HttpHeaders({
      
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
+
+    const body = { orderId: id, productId: productId };
+    // const options = { headers: {headers}, body: body };
+ 
     
-    return this.http.get(`${this.url}/order/singleOrder/${id}-${productId}` , {headers})
+    
+    return this.http.post(`${this.url}/order/singleOrder` , body , {headers} )
   }
 
 }

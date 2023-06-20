@@ -30,9 +30,7 @@ export class HomeComponent implements OnInit {
       this.myProducts = response.products
       this.products =  response.products.slice(4,8)
       this.showSpinner = false
-    })
-  
-  }
+    })}
 
 
 

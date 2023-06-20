@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { OrderService } from 'src/app/service/order.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -19,7 +20,7 @@ export class OrderlistComponent implements OnInit {
   paid : boolean = false
 
   constructor(private auth : AuthTokenService , private order : OrderService,
-    private product : ProductService) { }
+    private product : ProductService , private router : Router) { }
 
   ngOnInit(): void {
 
@@ -48,12 +49,8 @@ export class OrderlistComponent implements OnInit {
     let id  = this.auth.getSellerId().id
 
     this.order.getOrders(id).subscribe(res=>{
-      console.log('res=>' , res);
       this.myorder = res
       this.orderLength = this.myorder.length
-
-
-      // change status 
 
       
 
@@ -74,8 +71,12 @@ export class OrderlistComponent implements OnInit {
   }
 
 
-  getOrderInfo(id:any){
-    console.log(id);
+  sendId(id:any , productId:any){
+    const navigationExtras: NavigationExtras = {
+      queryParams: { id: id, productId: productId }
+    };
+    this.router.navigate(['profile/MyOrder'] , navigationExtras)
+
   }
 
 

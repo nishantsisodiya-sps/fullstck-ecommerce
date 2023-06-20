@@ -60,7 +60,7 @@ export class CartComponent implements OnInit {
         totalPrice += priceAfterDiscount
         totalDiscount += discountp
       }
-      this.totalPrice = totalPrice * 80 + 100;
+      this.totalPrice = totalPrice + 100;
       this.totalDiscount = totalDiscount;
       this.showSpinner = false
     })

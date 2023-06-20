@@ -59,9 +59,9 @@
         <tr *ngFor="let item of sellerProducts let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ item.title }}</td>
-          <td>&#8377; {{calculatePriceAfterDiscount(item) | currencyConvert}}</td>
+          <td>&#8377; {{calculatePriceAfterDiscount(item)}}</td>
           <td>{{ getProductSold(item) }}</td>
-          <td>{{ calculateRevenue(item) | currencyConvert }}</td>
+          <td>{{ calculateRevenue(item)}}</td>
 
         </tr>
       </tbody>

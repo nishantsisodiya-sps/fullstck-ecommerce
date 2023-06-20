@@ -22,13 +22,15 @@ export class MyOrdersComponent implements OnInit {
 
   getInfo(){
     this.showSpinner = true
-    this.activateRoute.paramMap.subscribe(params=>{
-      let id = params.get('id')
-      let productId = params.get('productId')
-
-      
+    this.activateRoute.queryParams.subscribe(params => {
+      console.log(params);
+      let id = params['id']
+      let productId = params['productId']
+       
       this.order.getOrderInfo(id , productId).subscribe(res=>{
+        console.log(res);
         this.orders.push(res)
+        console.log('order' ,this.orders);
         this.orderProducts = this.orders[0].products
         console.log(this.orderProducts);
         this.totalAmount = this.orders[0].amount

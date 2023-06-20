@@ -12,3 +12,35 @@
   border-radius: 20px;
   padding: 2%;
 }
+
+
+
+table {
+  width: 100%;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+}
+.main{
+  padding: 1%;
+  
+}
+.mat-elevation-z8{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+tr.mat-row, tr.mat-footer-row{
+  height: 75px;
+}
+tr.mat-header-row{
+  background-color: #5656c3;
+  color: white;
+}
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+  text-align: center;
+}
+
+
+.custom-select {
+  text-align: center; /* Center align the text */
+}
+option{
+  padding: 20px;
+}

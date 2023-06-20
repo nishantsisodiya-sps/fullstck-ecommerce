@@ -24,7 +24,7 @@
                     </div>
                     <div class="col">
                         <div class="row"><b>{{item.product.discountPercentage}} %</b></div>
-                        <a >&#8377; {{item.product.price | currencyConvert}}</a>
+                        <a >&#8377; {{item.product.price}}</a>
                      
 
                     </div>
@@ -40,7 +40,7 @@
 
             
         </div>
-        <div class="col-md-4 summary" style="height: 100%;">
+        <div class="col-md-4 summary" style="height: 100%;" *ngFor="let item of products">
             <div>
                 <h5><b>Summary</b></h5>
             </div>
@@ -54,8 +54,9 @@
                 <select>
                     <option class="text-muted">Standard-Delivery- &#8377;100</option>
                 </select>
-                <p><b>Total Discount : &#8377;  {{totalDiscount | currencyConvert}}</b></p>
-                    <!-- <div></div> -->
+                <p><b>Price : &#8377;  {{item.product.price}}</b></p>
+                <p><b>Total Discount : &#8377;  {{totalDiscount}}</b></p>
+                <p><b>Delivery : &#8377;  100</b></p>
             </form>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col"> <b>TOTAL PRICE</b><br>

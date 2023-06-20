@@ -12,3 +12,11 @@ table {
   tr.mat-row, tr.mat-footer-row{
     height: 75px;
   }
+  tr.mat-header-row{
+    background-color: #5656c3;
+    color: white;
+  }
+
+  th.mat-header-cell, td.mat-cell, td.mat-footer-cell {
+    text-align: center;
+  }
