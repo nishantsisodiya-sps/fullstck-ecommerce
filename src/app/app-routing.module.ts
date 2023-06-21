@@ -29,6 +29,7 @@ import { SuperAdminAuthComponent } from './super-admin/super-admin-auth/super-ad
 import { SellersListingComponent } from './super-admin/sellers-listing/sellers-listing.component';
 import { OrderByUsersComponent } from './components/profile/dashboard/order-by-users/order-by-users.component';
 import { StockComponent } from './components/profile/dashboard/stock/stock.component';
+import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 
 
 
@@ -92,6 +93,7 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'category-products/:id', component: CategoryProductsComponent },
   { path: 'superAdminAuth', component: SuperAdminAuthComponent },
+  { path: 'forgetPassword', component: EditProfileComponent },
   {
     path: 'superAdmin', component: SuperAdminComponent, children: [
       { path: 'superAdminHome', component: SuperAdminHomeComponent },

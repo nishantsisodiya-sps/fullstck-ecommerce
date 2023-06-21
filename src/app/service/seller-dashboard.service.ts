@@ -29,4 +29,10 @@ export class SellerDashboardService {
     return this.http.get(`${this.url}/sellers/getProductStockAndSoldCount/${id}`)
   }
 
+
+
+  updateStatus(data : any):Observable<any>{
+    return this.http.post(`${this.url}/sellers/updateStatus` , data)
+  }
+
 }

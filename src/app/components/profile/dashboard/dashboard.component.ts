@@ -87,15 +87,12 @@ export class DashboardComponent implements OnInit {
         this.single[productIndex].value = revenue;
       }
     }
-
-
   }
 
 
   calculateTotalRevenue(): number {
     let totalRevenue = 0;
     for (const status of this.productStatus) {
-
       let discount = status.product.price * status.product.discountPercentage / 100
       let price = status.product.price - discount
       const revenue = Math.round(price * (status.quantitySold || 0));

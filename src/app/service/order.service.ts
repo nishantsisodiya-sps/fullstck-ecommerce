@@ -38,4 +38,18 @@ export class OrderService {
     return this.http.post(`${this.url}/order/singleOrder` , body , {headers} )
   }
 
+
+
+
+  cancelOrder(data : any):Observable<any>{
+
+    const headers = new HttpHeaders({
+     
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+
+    return this.http.put(`${this.url}/order/cancel` , data , {headers})
+
+  }
+
 }

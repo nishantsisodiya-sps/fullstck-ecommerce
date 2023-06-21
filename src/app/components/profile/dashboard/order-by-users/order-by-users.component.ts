@@ -23,7 +23,14 @@ export interface order {
 
 
 export class OrderByUsersComponent implements OnInit {
+  showSpinner : boolean = false
+
+  productId : any
+  show : boolean = false
+  orderId : any
   selectedOption : any;
+  shippingAddress : any;
+  shippingCompany : any;
 
   dropdown : any = ['Placed', 'Packed', 'Shipped', 'Delivered']
 
@@ -48,7 +55,7 @@ export class OrderByUsersComponent implements OnInit {
 
 
   getStatus(){
-
+    this.showSpinner = true
     let id = this.auth.getSellerId().id
 
     this.sellerStatus.getproductInfo(id).subscribe(res=>{
@@ -56,10 +63,41 @@ export class OrderByUsersComponent implements OnInit {
       // this.productStatusForSeller = res
       this.orders = new MatTableDataSource<order>(res);
       this.orders.paginator = this.paginator;
+      this.showSpinner = false
+    })
+  }
+
+  getId(order : any){
+    this.orderId = order.product.oderId
+    this.productId = order.product._id
+  }
+
+  onDropdownChange(){
+    if(this.selectedOption !== 'Placed'){
+      this.show = true
+    }
+  }
+
+
+  updateStatus(){
+    this.showSpinner = true
+    let data = {
+      orderId : this.orderId,
+      productId : this.productId,
+      status : this.selectedOption,
+      shippingCompany : this.shippingCompany,
+      shippingCompanyAddress : this.shippingAddress
+    }
+    console.log(data);
+
+    this.sellerStatus.updateStatus(data).subscribe(res=>{
+      if(res){
+        this.showSpinner = false
+        alert('Order Updated')
+      }
     })
   }
 
 
-  
 
 }

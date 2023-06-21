@@ -20,7 +20,7 @@ export interface stock {
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
-
+  showSpinner : boolean = false
 
   stocks!: MatTableDataSource<stock>;
 
@@ -41,12 +41,14 @@ export class StockComponent implements OnInit {
 
 
   getStocks(){
+    this.showSpinner = true
     let id = this.auth.getSellerId().id
  
 
     this.stock.getStock(id).subscribe(res=>{
       this.stocks = new MatTableDataSource<stock>(res);
       this.stocks.paginator = this.paginator;
+      this.showSpinner = false
     })
   }
 
