@@ -1,14 +1,9 @@
 
-/* .slider {
-    margin: auto;
-    width: 100vw;
-    margin: 12px auto;
-    overflow: hidden;
-} */
+
 .carousel-caption {
     background-color: #0000007d;
     border-radius: 10px;
-  }
+  }  
   .carousel-control-next-icon, .carousel-control-prev-icon{
     background-color: black;
 	color: black;

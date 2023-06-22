@@ -1,7 +1,3 @@
-
-<!-- <div class="loadingindicator">
-    <mat-progress-spinner *ngIf="showSpinner" mode="indeterminate" color="primary"></mat-progress-spinner>
-</div> -->
 <div class="loader" *ngIf="showSpinner"></div>
 <div class="section">
     <div class="container">
@@ -46,7 +42,7 @@
 
                                             <button class="btns mt-4" type="submit" (click)="loginUser($event)"
                                                 [disabled]="loginForm.invalid">submit</button>
-                                            <p class="mb-0 mt-4 text-center"><a class="link">Forgot your
+                                            <p class="mb-0 mt-4 text-center" routerLink="/forgetPassword"><a class="link">Forgot your
                                                     password?</a></p>
                                         </form>
                                     </div>

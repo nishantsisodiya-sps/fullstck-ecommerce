@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { dataflow } from 'googleapis/build/src/apis/dataflow';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { UpdateProfileService } from 'src/app/service/update-profile.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
@@ -16,11 +17,19 @@ export class UserDetailsComponent implements OnInit {
   profile: any = []
   isEditMode: boolean = false;
   showSpinner : boolean = false
+
+
+
+
   constructor(
     private api: UserAuthApiService, 
     private auth: AuthTokenService,
     private update : UpdateProfileService
   ) {
+
+
+
+
 
     this.updateDetails = new FormGroup({
       email: new FormControl(''),
@@ -58,7 +67,6 @@ export class UserDetailsComponent implements OnInit {
     let user = this.auth.getSellerId()
     let id = user.id
     let role = user.role
-    console.log(role);
 
     if (role === 'seller') {
       this.api.getSellerProfile(id).subscribe(response => {
@@ -115,8 +123,27 @@ export class UserDetailsComponent implements OnInit {
 
   }
 
-  updatePasswod(){
-    
+
+
+
+
+  updatePassword() {
+    let user = this.auth.getSellerId();
+    let data = this.changePassword.value;
+  
+    if (user.role === 'user') {
+      let userId = user.id;
+  
+      this.update.changePassword(userId , null, data).subscribe(res => {
+        console.log(res);
+      });
+    } else if (user.role === 'seller') {
+      let sellerId = user.id;
+  
+      this.update.changePassword(null, sellerId, data).subscribe(res => {
+        console.log(res);
+      });
+    }
   }
  
 }

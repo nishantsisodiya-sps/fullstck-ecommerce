@@ -38,7 +38,6 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatTableModule , MatTableDataSource } from '@angular/material/table';
 import { WishlistComponent } from './components/profile/wishlist/wishlist.component';
-import { EditProfileComponent } from './components/profile/edit-profile/edit-profile.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { AddressComponent } from './components/profile/address/address.component';
@@ -56,6 +55,8 @@ import { SellersListingComponent } from './super-admin/sellers-listing/sellers-l
 import { OrderByUsersComponent } from './components/profile/dashboard/order-by-users/order-by-users.component';
 import { StockComponent } from './components/profile/dashboard/stock/stock.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     SellersListingComponent,
     OrderByUsersComponent,
     StockComponent,
+    ResetPasswordComponent,
 
 
   ],

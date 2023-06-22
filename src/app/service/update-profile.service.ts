@@ -36,14 +36,19 @@ export class UpdateProfileService {
 
 
 
-  changePassword(id : any , data:any){
+  changePassword(userId: string | null, sellerId: string | null, data: any) {
     const headers = new HttpHeaders({
-     
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
-
-    return this.http.put(`${this.url}//changePassword/${id}` , data , {headers})
-
+  
+    let url = `${this.url}/updateProfile/changePassword`;
+    if (userId) {
+      url += `/${userId}`;
+    } else if (sellerId) {
+      url += `/seller/${sellerId}`;
+    }
+  
+    return this.http.put(url, data, { headers });
   }
 
 }

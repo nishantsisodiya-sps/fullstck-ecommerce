@@ -118,6 +118,10 @@
                                     class="text-danger">Passwords do not match</div>
                             </div>
                    
+                            <div class="d-flex justify-content-center" routerLink="/forgetPassword">
+                                <a class="text-danger" style="cursor: pointer;" data-bs-target="#exampleModalToggle2"
+                                    data-bs-toggle="modal" data-bs-dismiss="modal">Forget password ?</a>
+                            </div>
 
                     </form>
 
@@ -125,7 +129,7 @@
                 </div>
                 <div class="modal-footer">
                     <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal" role="button">Back</a>
-                    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal" role="button" (click)="updatePasswod()">Update</a>
+                    <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModal" role="button" (click)="updatePassword()">Update</a>
                 </div>
             </div>
         </div>

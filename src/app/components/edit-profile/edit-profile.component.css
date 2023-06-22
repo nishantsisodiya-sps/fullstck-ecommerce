@@ -1,0 +1,8 @@
+.form-gap {
+    padding-top: 70px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+}

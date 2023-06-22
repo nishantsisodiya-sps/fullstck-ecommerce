@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, of } from 'rxjs';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { WishlistService } from 'src/app/service/wishlist.service';
 
@@ -8,7 +9,7 @@ import { WishlistService } from 'src/app/service/wishlist.service';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-
+  imageFound : boolean = true
   products:any = []
   showSpinner : boolean = false
   constructor(private wishlist : WishlistService , private auth : AuthTokenService) { }
@@ -22,7 +23,16 @@ export class WishlistComponent implements OnInit {
     this.showSpinner = true
     let user = this.auth.getSellerId().id
 
-    this.wishlist.getWishlist(user).subscribe(res=>{
+    this.wishlist.getWishlist(user).pipe(
+      catchError((error:any) => {
+        if (error.status === 404) {
+          // Handle case when no orders are found
+          this.showSpinner = false;
+          this.imageFound = false
+        }
+        return of([]); // Return an empty array as a fallback value
+      })
+    ).subscribe((res)=>{
       this.products = res.products
       this.showSpinner = false
     })
