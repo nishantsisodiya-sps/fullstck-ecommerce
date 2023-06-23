@@ -13,8 +13,16 @@ export class ForgetPasswordService {
 
 
   sendLinkToMail(email:any):Observable<any>{
-    console.log('email===>' , email);
+    
     return this.http.post(`${this.url}/reset-password/email` , {email : email})
+  }
+
+
+
+  resetPassword(data : any):Observable<any>{
+
+    return this.http.post(`${this.url}/reset-password` , data)
+
   }
 
 }
