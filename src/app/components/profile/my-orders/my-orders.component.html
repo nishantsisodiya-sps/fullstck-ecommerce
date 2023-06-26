@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                                 <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-                                
+
                                 <div class="container py-1 h-100">
                                     <div class="row d-flex justify-content-center align-items-center h-100">
                                         <div class="col-12">
@@ -44,15 +44,13 @@
 
                                                 <div class="card-body p-1">
 
+                                                    <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
+                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Placed' || orders[0]?.status === 'Packed' || orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step1"></li>
+                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Packed' || orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step2"></li>
+                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step3"></li>
+                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Delivered' }" id="step4"></li>
+                                                      </ul>
 
-
-                                                    <ul id="progressbar-2"
-                                                        class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                                                        <li class="step0 active text-center" id="step1"></li>
-                                                        <li class="step0 active text-center" id="step2"></li>
-                                                        <li class="step0 active text-center" id="step3"></li>
-                                                        <li class="step0 text-muted text-end" id="step4"></li>
-                                                    </ul>
 
                                                     <div class="d-flex justify-content-between">
                                                         <div class="d-lg-flex align-items-center">
@@ -93,28 +91,29 @@
                                         </div>
                                     </div>
                                 </div>
-                              
+
 
                             </div>
                         </div>
 
                         <div>
-                           
+
                             <div class="d-flex justify-content-between pt-2">
                                 <p class="text-muted mb-0"> <b>Payment id :</b> {{item.paymentId}}</p>
-                           
+
                             </div>
 
                             <div class="d-flex justify-content-between">
                                 <p class="text-muted mb-0"> <b>Order Date :</b> {{item.createdAt | date:'medium' }}</p>
-                                
+
                             </div>
 
-                            
+
                         </div>
                     </div>
                     <div class="card-footer border-0 px-4 py-5"
-                        style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;" *ngFor="let product of orderProducts">
+                        style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"
+                        *ngFor="let product of orderProducts">
                         <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
                             paid: <span class="h2 mb-0 ms-2">&#8377; {{product.price}}</span></h5>
                     </div>

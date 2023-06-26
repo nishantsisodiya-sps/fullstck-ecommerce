@@ -1,11 +1,12 @@
+<div class="loader" *ngIf="showSpinner"></div>
 <div class="maindiv">
 
   <mat-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Address is required.">
+      <div>
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Choose Address</ng-template>
 
-        <div>
 
           <div class="addressDiv">
             <div class="addressDiv2" *ngFor="let item of addresses" (click)="selectAddress(item._id)">
@@ -22,13 +23,18 @@
             </div>
 
           </div>
-          <button class="nextbtn" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
+          <button class="btns" id="nextbtn" mat-button matStepperNext>Next</button>
+        </form>
+      </div>
+      </mat-step>
+
+
+
     <mat-step [stepControl]="secondFormGroup" errorMessage="Check details.">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Details</ng-template>
+      <div class="tablediv">
+
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Details</ng-template>
 
         <div>
 
@@ -41,21 +47,38 @@
               Price : {{totalPrice}}
             </h2>
           </div>
-          <button mat-button matStepperNext>Next</button>
+          <br>
+          <button class="btns" matStepperNext>Next</button>
         </div>
 
 
-       
+
 
       </form>
+    </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Payment</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="purchase()">purchase</button>
+      <div class="tablediv2">
+
+        <div class="form-group" style="display: flex; justify-content: center;">
+          <label for="orderStatus">Select Payment Option:</label>
+          &nbsp; &nbsp;
+          <select class="form-control custom-select" id="orderStatus" style="width: 25%;" [(ngModel)]="selectedOption"
+          (change)="onDropdownChange()">
+          <option value={{item}} *ngFor="let item of paymentMethods">{{item}}</option>
+        </select>
       </div>
+      <br>
+      <br>
+      <p class="text-danger" *ngIf="done">You are now done.</p>
+      <br>
+      <br>
+      <div>
+        <button class="btns" matStepperPrevious>Back</button>&nbsp; &nbsp;
+        <button class="btns" (click)="purchase()">purchase</button>
+      </div>
+    </div>
     </mat-step>
   </mat-stepper>
 </div>

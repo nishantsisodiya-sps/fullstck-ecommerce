@@ -13,33 +13,54 @@ export class MyOrdersComponent implements OnInit {
   orderProducts : any = []
   totalAmount : any
   showSpinner : boolean = false
+  orderStatus : any
+
   constructor(private order : OrderService , private activateRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
    this.getInfo()
+  
   }
 
 
   getInfo(){
     this.showSpinner = true
     this.activateRoute.queryParams.subscribe(params => {
-      console.log(params);
       let id = params['id']
       let productId = params['productId']
-       
       this.order.getOrderInfo(id , productId).subscribe(res=>{
-        console.log(res);
         this.orders.push(res)
-        console.log('order' ,this.orders);
         this.orderProducts = this.orders[0].products
-        console.log(this.orderProducts);
         this.totalAmount = this.orders[0].amount
         this.name = this.orders[0].name
         this.showSpinner = false
+        this.orderStatus = res.status; // Assuming `status` is the property representing the order status
+
+        // Update the progress bar based on the order status
+        this.updateProgressBar();
       })
     })
   }
 
+
+
+  updateProgressBar() {
+    const progressBarElements = document.querySelectorAll('.card-stepper ul li');
+  
+    progressBarElements.forEach((element, index) => {
+      if (index === 0 && this.orderStatus === 'placed') {
+        element.classList.add('active');
+      } else if (index === 1 && this.orderStatus === 'packed') {
+        element.classList.add('active');
+      } else if (index === 2 && this.orderStatus === 'shipped') {
+        element.classList.add('active');
+      } else if (index === 3 && this.orderStatus === 'delivered') {
+        element.classList.add('active');
+      } else {
+        element.classList.remove('active');
+      }
+    });
+  }
   
 
 }

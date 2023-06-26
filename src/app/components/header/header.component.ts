@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   menuType : string = 'default'
   sellerData: any = []
   searchResult : any
+  cartlength : any
   constructor( private router : Router ,
      private auth : AuthTokenService , private product : ProductService , private menuService: MenutypeService) { }
 
@@ -23,6 +24,9 @@ export class HeaderComponent implements OnInit {
       this.menuType = menuType;
     });
     this.switchMenu()
+
+    let cart = localStorage.getItem('cartLength')
+    this.cartlength = cart
   }
 
   switchMenu(){

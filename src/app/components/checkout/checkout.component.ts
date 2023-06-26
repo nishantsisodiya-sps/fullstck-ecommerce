@@ -35,8 +35,9 @@ export class CheckoutComponent implements OnInit {
   selectedId: any
   selectedAddress: any = []
   redirect_url: any
-
-
+  selectedOption : any
+  paymentMethods : any = ['PayNow' , 'COD']
+  done : boolean = false
 
   shipDetails = new FormGroup({
     firstName: new FormControl(null, [Validators.required]),
@@ -62,7 +63,9 @@ export class CheckoutComponent implements OnInit {
     private http: HttpClient,
     private auth: AuthTokenService,
     private _formBuilder: FormBuilder,
-    private address: AddressService
+    private address: AddressService,
+    private router : Router
+    
   ) { }
 
   ngOnInit(): void {
@@ -77,6 +80,7 @@ export class CheckoutComponent implements OnInit {
 
 
   purchase() {
+    this.showSpinner = true
     if (this.selectedAddress) {
 
       let userId = this.auth.getSellerId().id;
@@ -88,7 +92,7 @@ export class CheckoutComponent implements OnInit {
 
         'Authorization': 'Bearer ' + localStorage.getItem('token')
       });
-
+      this.showSpinner = false
       this.http.post(`${this.url}/order/create-order`, { name: name, amount: this.totalPrice, userId: userId, address: address, products: this.cartProduct, testMode: true }, { headers }).subscribe((data: any) => {
         console.log('myData' , data);
         this.showSpinner = false;
@@ -100,9 +104,18 @@ export class CheckoutComponent implements OnInit {
       alert('please add address')
     }
 
+
   }
 
   openRazorpay(razorpayOrderId: any) {
+
+    if (this.selectedOption === 'COD') {
+      // this.saveOrder('');
+      console.log('done');
+      this.router.navigate(['/'])
+      return;
+    }
+
     const razorpay = new Razorpay({
       key: 'rzp_test_Tiv5oHxAC3kTlH',
       name: 'Apna market',
@@ -170,8 +183,10 @@ export class CheckoutComponent implements OnInit {
 
 
   getAddress() {
+    this.showSpinner = true
     this.address.getAddresses().subscribe(res => {
       this.addresses = res['addresses']
+      this.showSpinner = false
     })
   }
 
@@ -189,6 +204,13 @@ export class CheckoutComponent implements OnInit {
       this.selectedAddress.push(res.address);
       console.log(this.selectedAddress);
     });
+  }
+
+
+  onDropdownChange(){
+    if(this.selectedOption){
+      this.done = true
+    }
   }
 
 }

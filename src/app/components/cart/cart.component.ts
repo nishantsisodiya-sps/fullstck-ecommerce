@@ -1,6 +1,7 @@
 import { query } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { json } from 'd3';
 
 import { AuthTokenService } from 'src/app/service/auth-token.service';
 import { ProductService } from 'src/app/service/product.service';
@@ -43,6 +44,7 @@ export class CartComponent implements OnInit {
     this.productApi.getCartItems(seller).subscribe(res => {
       this.products = res
       this.totalCart = this.products.length
+      localStorage.setItem('cartLength' , JSON.stringify(this.totalCart))
 
       this.products.forEach((element: any) => {
         this.queryProduct.push(element.product)
