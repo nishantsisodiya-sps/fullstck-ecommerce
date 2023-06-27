@@ -4,6 +4,7 @@ table {
   }
   .main{
     padding: 2%;
+    border-radius: 18px;
     
   }
   .mat-elevation-z8{

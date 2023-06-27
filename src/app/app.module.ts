@@ -57,6 +57,10 @@ import { StockComponent } from './components/profile/dashboard/stock/stock.compo
 import {MatDialogModule} from '@angular/material/dialog';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { OrdersComponent } from './super-admin/orders/orders.component';
+import { ProductsComponent } from './super-admin/products/products.component';
+import { CategoryComponent } from './super-admin/category/category.component';
+
 
 
 @NgModule({
@@ -94,7 +98,9 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     OrderByUsersComponent,
     StockComponent,
     ResetPasswordComponent,
-
+    OrdersComponent,
+    ProductsComponent,
+    CategoryComponent,
 
   ],
   imports: [

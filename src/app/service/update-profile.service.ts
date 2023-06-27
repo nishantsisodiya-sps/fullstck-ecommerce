@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class UpdateProfileService {
 
-  public url = 'http://localhost:3838'
+  // public url = 'http://localhost:3838'
+  public url = 'https://ecombackend.softprodigyphp.in'
+
 
   constructor(private http:HttpClient) { }
 

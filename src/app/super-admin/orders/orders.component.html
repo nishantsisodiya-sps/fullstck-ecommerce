@@ -1,0 +1,31 @@
+<div class="loader" *ngIf="showSpinner"></div>
+    <div class="card border-1 mb-2">
+        <div class="col-md-12">
+
+        
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col"><b>pay Id</b></th>
+                        <th scope="col"><b>Image</b></th>
+                        <th scope="col"><b>Product Name</b></th>
+                        <th scope="col"><b>Price(&#8377;)</b></th>
+                        <th scope="col"><b>Buyer</b></th>
+                        <th scope="col"><b>Status</b></th>
+                        <th scope="col"><b>Payment</b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of orders">
+                        <td>{{item.orderDetails.paymentId}}</td>
+                        <td><img id="img" src="https://ecombackend.softprodigyphp.in/uploads/{{item.productDetails.product.thumbnail}}" alt="" height="55px"></td>
+                        <td>{{item.productDetails.product.title}}</td>
+                        <td>{{item.productDetails.product.price}}</td>
+                        <td>{{item.orderDetails.name | uppercase}}</td>
+                        <td>{{item.productDetails.status}}</td>
+                        <td>{{item.orderDetails.PaymentStatus}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>

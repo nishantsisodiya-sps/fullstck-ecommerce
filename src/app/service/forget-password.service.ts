@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class ForgetPasswordService {
 
-  public url = 'http://localhost:3838/updateProfile'
+  // public url = 'http://localhost:3838/updateProfile'
+  public url = 'https://ecombackend.softprodigyphp.in/updateProfile'
 
   constructor(private http:HttpClient) { }
 

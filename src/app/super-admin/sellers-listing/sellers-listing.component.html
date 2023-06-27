@@ -1,5 +1,6 @@
+<div class="loader" *ngIf="showSpinner"></div>
 <div class="main">
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8" style="border-radius: 18px;">
         <table mat-table [dataSource]="sellers">
 
            
@@ -24,16 +25,16 @@
 
             <ng-container matColumnDef="createdAt">
                 <th mat-header-cell *matHeaderCellDef> Joined </th>
-                <td mat-cell *matCellDef="let seller"> {{seller.createdAt}} </td>
+                <td mat-cell *matCellDef="let seller"> {{seller.createdAt | date:'longDate'}} </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
                 <th mat-header-cell *matHeaderCellDef> Action </th>
                 <td mat-cell *matCellDef="let seller">
-                    <button mat-icon-button color="warn" (click)="deleteSeller(seller._id)">
+                    <button mat-icon-button color="warn" title="DELETE USER" (click)="deleteSeller(seller._id)">
                         <mat-icon>delete</mat-icon>
                     </button>
-                    <button mat-icon-button color="primary" (click)="blockSeller(seller._id)">
+                    <button mat-icon-button color="primary" title="BLOCK USER" (click)="blockSeller(seller._id)">
                         <mat-icon>block</mat-icon>
                     </button>
                 </td>

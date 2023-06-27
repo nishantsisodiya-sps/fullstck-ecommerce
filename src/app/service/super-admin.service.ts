@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class SuperAdminService {
 
-  public url = 'https://ecombackend.softprodigyphp.in'
-  // public url = 'http://localhost:3838'
+  // public url = 'https://ecombackend.softprodigyphp.in/superAdmin'
+  public url = 'http://localhost:3838/superAdmin'
 
   constructor(private http : HttpClient) { }
 
@@ -22,7 +22,7 @@ export class SuperAdminService {
 
     const options = { headers: headers };
 
-    return this.http.post(`${this.url}/superAdmin/blockUser/${id}` ,  null, options)
+    return this.http.post(`${this.url}/blockUser/${id}` ,  null, options)
   }
 
 
@@ -35,7 +35,23 @@ export class SuperAdminService {
 
     const options = { headers: headers };
 
-    return this.http.post(`${this.url}/superAdmin/blockSeller/${id}` , null, options)
+    return this.http.post(`${this.url}/blockSeller/${id}` , null, options)
+  }
+
+
+
+  getAllOrders():Observable<any>{
+    
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const options = { headers: headers };
+
+    return this.http.get(`${this.url}/getAllOrder` , options)
+
+
   }
 
 }

@@ -23,7 +23,7 @@ export interface User {
 
 
 export class UsersListingComponent implements OnInit , AfterViewInit {
-
+  showSpinner : any
   users!: MatTableDataSource<User>;
 
   displayedColumns: string[] = ['name', 'email', 'phone', 'createdAt' , 'action'];
@@ -43,10 +43,12 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
   }
 
   getAllUsers(): void {
+    this.showSpinner = true
     this.auth.getAllUsers().subscribe(
       (res: User[]) => {
         this.users = new MatTableDataSource<User>(res);
         this.users.paginator = this.paginator;
+        this.showSpinner = false
       },
       (error: any) => {
         console.log('Get users error', error);
@@ -60,8 +62,10 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
   }
 
   blockUser(id:any){
+    this.showSpinner = true
     this.superAdmin.blockUser(id).subscribe(res=>{
       console.log(res);
+      this.showSpinner = false
     })
   }
 }

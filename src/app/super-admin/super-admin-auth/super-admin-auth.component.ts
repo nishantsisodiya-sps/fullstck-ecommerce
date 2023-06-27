@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class SuperAdminAuthComponent implements OnInit {
 
+  showSpinner : any
+
   public url = 'https://ecombackend.softprodigyphp.in'
   // public url = 'http://localhost:3838'
 
@@ -35,11 +37,13 @@ export class SuperAdminAuthComponent implements OnInit {
 
   
   loginAdmin(){
+    this.showSpinner = true
     let data = this.adminForm.value
     this.http.post<{success: boolean, message: string, token: string}>
     (`${this.url}/superAdmin/login` , data).subscribe(Response=>{
       if(Response.success){
         localStorage.setItem('token' , Response.token)
+        this.showSpinner = false
         this.router.navigate(['/superAdmin']).then(() => {
           window.location.reload()
          

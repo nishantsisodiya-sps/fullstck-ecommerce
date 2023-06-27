@@ -10,6 +10,9 @@ import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
   styleUrls: ['./sellers-listing.component.css']
 })
 export class SellersListingComponent implements OnInit, AfterViewInit {
+
+  showSpinner : any
+
   sellers!: MatTableDataSource<Seller>;
   displayedColumns: string[] = ['name', 'email', 'phone', 'createdAt', 'action'];
 
@@ -26,10 +29,12 @@ export class SellersListingComponent implements OnInit, AfterViewInit {
   }
 
   getAllSellers(): void {
+    this.showSpinner = true
     this.auth.getAllSellers().subscribe(
       (res: Seller[]) => {
         this.sellers = new MatTableDataSource<Seller>(res);
         this.sellers.paginator = this.paginator;
+        this.showSpinner = false
       },
       (error: any) => {
         console.log('Get users error', error);
@@ -42,8 +47,10 @@ export class SellersListingComponent implements OnInit, AfterViewInit {
   }
 
   blockSeller(id: any) {
+    this.showSpinner = true
     this.superAdmin.blockSeller(id).subscribe(res=>{
       console.log(res);
+      this.showSpinner = false
     })
   }
 }

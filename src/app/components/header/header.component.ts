@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit {
   switchMenu(){
 
     let tokendata = this.auth.getSellerId()
+    console.log(tokendata.role);
 
     if(!tokendata){
       this.menuType = 'default'

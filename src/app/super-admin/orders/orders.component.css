@@ -1,0 +1,22 @@
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.content{
+    display: flex;
+    justify-content: center;
+}
+#btnproduct{
+    position: absolute;
+    right: 0%;
+    bottom: -1%;
+}
+#inputfile{
+    width: 22em;
+}
+#img{
+    height: 55px !important; 
+}
+#h2{
+    position: relative;
+    top: 7px;
+}

@@ -31,6 +31,8 @@ import { OrderByUsersComponent } from './components/profile/dashboard/order-by-u
 import { StockComponent } from './components/profile/dashboard/stock/stock.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { OrdersComponent } from './super-admin/orders/orders.component';
+import { CategoryComponent } from './super-admin/category/category.component';
 
 
 
@@ -101,7 +103,10 @@ const routes: Routes = [
     path: 'superAdmin', component: SuperAdminComponent, children: [
       { path: 'superAdminHome', component: SuperAdminHomeComponent },
       { path: 'userList', component: UsersListingComponent },
-      { path: 'SellerList', component: SellersListingComponent }
+      { path: 'SellerList', component: SellersListingComponent },
+      { path: 'orders', component: OrdersComponent },
+      { path: 'MyProducts', component: MyProductsComponent },
+      { path: 'category', component: CategoryComponent },
     ]
   }
 ]
