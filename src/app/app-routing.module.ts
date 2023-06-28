@@ -33,6 +33,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { OrdersComponent } from './super-admin/orders/orders.component';
 import { CategoryComponent } from './super-admin/category/category.component';
+import { AdminDashboardComponent } from './super-admin/admin-dashboard/admin-dashboard.component';
 
 
 
@@ -101,12 +102,14 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   {
     path: 'superAdmin', component: SuperAdminComponent, children: [
+      {path : '' , redirectTo : 'adminDashboard' , pathMatch: 'full' },
       { path: 'superAdminHome', component: SuperAdminHomeComponent },
       { path: 'userList', component: UsersListingComponent },
       { path: 'SellerList', component: SellersListingComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'MyProducts', component: MyProductsComponent },
       { path: 'category', component: CategoryComponent },
+      { path: 'adminDashboard', component: AdminDashboardComponent },
     ]
   }
 ]

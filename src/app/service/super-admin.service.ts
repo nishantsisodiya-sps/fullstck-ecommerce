@@ -54,4 +54,15 @@ export class SuperAdminService {
 
   }
 
+
+  getRevuenue():Observable<any>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    const options = { headers: headers };
+
+    return this.http.get(`${this.url}/getRevenue` , options)
+  }
 }
