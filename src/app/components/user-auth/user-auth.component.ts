@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
@@ -23,7 +24,8 @@ export class UserAuthComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private router: Router,
     private http: HttpClient,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private _snackBar: MatSnackBar
   ) {
 
     this.loginForm = this.fb.group({
@@ -78,6 +80,8 @@ export class UserAuthComponent implements OnInit {
             this.showSpinner = false
           })
         } else {
+          this._snackBar.open('Invalid username and Password', 'Close' , {duration : 3000});
+          console.log(response);
           alert(response.message);
         }
       });

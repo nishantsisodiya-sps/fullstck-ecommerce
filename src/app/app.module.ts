@@ -61,7 +61,7 @@ import { OrdersComponent } from './super-admin/orders/orders.component';
 import { ProductsComponent } from './super-admin/products/products.component';
 import { CategoryComponent } from './super-admin/category/category.component';
 import { AdminDashboardComponent } from './super-admin/admin-dashboard/admin-dashboard.component';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -131,7 +131,8 @@ import { AdminDashboardComponent } from './super-admin/admin-dashboard/admin-das
     MatToolbarModule,
     MatSlideToggleModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
 
   ],
   providers: [],

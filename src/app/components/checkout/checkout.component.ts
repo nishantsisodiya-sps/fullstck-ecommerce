@@ -164,7 +164,7 @@ export class CheckoutComponent implements OnInit {
       'Authorization': 'Bearer ' + localStorage.getItem('token')
     });
     this.http.post(`${this.url}/order/update-order`, order, { headers }).subscribe((response: any) => {
-      console.log('response order save====>', response);
+  
       this.showSpinner = false;
 
       //Redirecting to home after successfull payment

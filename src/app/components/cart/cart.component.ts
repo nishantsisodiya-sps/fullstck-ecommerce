@@ -84,6 +84,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(totalPrice: number) {
+    console.log(this.queryProduct);
     const queryParams = {
       totalPrice: totalPrice,
       queryProduct: JSON.stringify(this.queryProduct),

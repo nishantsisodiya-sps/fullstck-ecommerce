@@ -94,10 +94,8 @@ export class OrderByUsersComponent implements OnInit {
       if(res){
         this.showSpinner = false
         alert('Order Updated')
+        this.getStatus()
       }
     })
   }
-
-
-
 }

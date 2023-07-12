@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { single } from 'src/app/interface/singlt';
+import { SellerDashboardService } from 'src/app/service/seller-dashboard.service';
 import { SuperAdminService } from 'src/app/service/super-admin.service';
+import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -8,25 +10,19 @@ import { SuperAdminService } from 'src/app/service/super-admin.service';
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  single?: any[];
-  view: [number , number] = [500, 400];
-  
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  
-  colorScheme : any = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
-  };
 
   topOrders : any = []
   totalRevenue : any
   totalOrder : any
-  
-  constructor(private superAdmin : SuperAdminService) { }
+  allSellers : any = []
+  SellerProducts : any = []
+  constructor(private superAdmin : SuperAdminService , private userAuth : UserAuthApiService) { }
 
   ngOnInit(): void {
-    Object.assign(this, { single });
     this.getDetails()
+    this.getSellers()
+   
+    
   }
 
 
@@ -35,6 +31,20 @@ export class AdminDashboardComponent implements OnInit {
       this.topOrders = res.topProducts
       this.totalRevenue = res.totalRevenue
       this.totalOrder = res.totalOrderCount
+    })
+  }
+
+
+  getSellers(){
+    this.userAuth.getAllSellers().subscribe(res=>{
+      this.allSellers = res
+      this.allSellers[0].open = true;
+    })
+  }
+
+  getSellerProducts(id:any){
+    this.userAuth.getSellerProducts(id).subscribe(res=>{
+      this.SellerProducts =  res
     })
   }
 

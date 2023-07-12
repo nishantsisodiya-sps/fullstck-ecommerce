@@ -31,3 +31,7 @@ nav{
     margin-left: -10px; 
     margin-top: -5px;
 }
+.navbar-nav{
+  display: flex;
+  align-items: center;
+}

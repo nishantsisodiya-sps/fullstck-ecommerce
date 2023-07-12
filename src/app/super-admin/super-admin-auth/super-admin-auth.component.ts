@@ -41,6 +41,7 @@ export class SuperAdminAuthComponent implements OnInit {
     let data = this.adminForm.value
     this.http.post<{success: boolean, message: string, token: string}>
     (`${this.url}/superAdmin/login` , data).subscribe(Response=>{
+      console.log(Response.message);
       if(Response.success){
         localStorage.setItem('token' , Response.token)
         this.showSpinner = false
@@ -49,6 +50,7 @@ export class SuperAdminAuthComponent implements OnInit {
          
         })
       } else {
+        this.showSpinner = false
         alert(Response.message);
       }
       })
