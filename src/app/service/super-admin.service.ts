@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class SuperAdminService {
 
-  // public url = 'https://ecombackend.softprodigyphp.in/superAdmin'
-  public url = 'http://localhost:3838/superAdmin'
+  public url = 'https://ecombackend.softprodigyphp.in/superAdmin'
+  // public url = 'http://localhost:3838/superAdmin'
 
   constructor(private http : HttpClient) { }
 

@@ -59,6 +59,7 @@ export class UserAuthComponent implements OnInit {
           })
         } else {
           alert("something wrong");
+          this.showSpinner = false
         }
       })
   }

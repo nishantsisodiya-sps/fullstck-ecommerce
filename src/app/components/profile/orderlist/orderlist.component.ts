@@ -73,7 +73,8 @@ export class OrderlistComponent implements OnInit {
       })
     ).subscribe(res => {
       this.myorder = res
-      if (res[0].product.status === 'Cancelled') {
+      console.log(res);
+      if (res[1].product.status === 'Cancelled') {
         this.cancelled = true
       }
       this.orderLength = this.myorder.length

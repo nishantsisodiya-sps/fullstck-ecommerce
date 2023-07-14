@@ -15,9 +15,13 @@
                             aria-selected="false">Register</button>
                     </li>
                 </ul>
+
+
+
+
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                        <form [formGroup]="sellerLoginForm">
+                        <!-- <form [formGroup]="sellerLoginForm">
 
 
                             <div class="form-outline mb-4">
@@ -34,9 +38,8 @@
                                 <label class="form-label" for="loginPassword">Password</label>
                                 <input type="password" id="loginPassword" class="form-control" name="password"
                                     formControlName="password" #loginPasswordInput>
-                                <span>
                                     <i class="eye fa-solid fa-eye" (click)="togglePassword(loginPasswordInput)"></i>
-                                </span>
+                              
                                 <small class="text-danger"
                                     *ngIf="!sellerLoginForm.get('password')?.valid && sellerLoginForm.get('password')?.touched">*Please
                                     Enter Password</small>
@@ -56,13 +59,39 @@
                                     (click)="loginseller($event)">Sign in</button>
                             </div>
 
-                        </form>
+                        </form> -->
+
+                        <div class="container mt-2">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card px-5 py-5" id="form1">
+                                        <form [formGroup]="sellerLoginForm" (ngSubmit)="loginseller($event)">
+                                        <div class="form-data">
+                                            <div class="forms-inputs mb-4"> <span>Email or username</span> <input autocomplete="off" type="text" formControlName="email" name="email">
+                                                <div class="invalid-feedback">A valid email is required!</div>
+                                            </div>
+                                            <div class="forms-inputs mb-4"> <span>Password</span> 
+                                                <input autocomplete="off" type="password" formControlName="password" name="password" #loginPasswordInput>
+                                                <i class="eye fa-solid fa-eye"
+                                                (click)="togglePassword(loginPasswordInput)"></i>
+                                                <div class="invalid-feedback">Password must be 8 character!</div>
+                                            </div>
+                                            <div style="display: flex; justify-content: end;">
+                                                <a routerLink="/forgetPassword" class="text-decoration-none">Forgot password?</a>
+                                            </div>
+                                            <div class="mb-3 mt-4"> <button  class="btn btn-dark w-100">Login</button> </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
 
 
                     <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                        <form [formGroup]="sellerSignupForm">
+                        <!-- <form [formGroup]="sellerSignupForm">
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" NoSpecialCharacter for="registerName">Name</label>
@@ -99,9 +128,9 @@
                                 <label class="form-label" for="registerPassword">Password</label>
                                 <input type="password" id="registerPassword" class="form-control" name="password"
                                     formControlName="password" #signupPasswordInput>
-                                <span>
+                              
                                     <i class="eye fa-solid fa-eye" (click)="togglePassword(signupPasswordInput)"></i>
-                                </span>
+                              
                                 <small class="text-danger"
                                     *ngIf="!sellerSignupForm.get('password')?.valid && sellerSignupForm.get('password')?.touched">*Please
                                     Enter Password</small>
@@ -112,10 +141,50 @@
                                 <button type="submit" class="btns btns-primary btns-block mb-3"
                                     (click)="submitseller()">Sign Up</button>
                             </div>
-                        </form>
+                        </form> -->
+
+
+
+
+
+                        <div class="container mt-2">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="card px-5 py-5" id="form1">
+                                        <form [formGroup]="sellerSignupForm" (ngSubmit)="submitseller()">
+                                        <div class="form-data">
+                                            <div class="forms-inputs mb-4"> <span>Name</span> <input autocomplete="off" type="text" formControlName="name" name="name">
+                                                <div class="invalid-feedback">Name is required!</div>
+                                            </div>
+                                            <div class="forms-inputs mb-4"> <span>Email</span> <input autocomplete="off" type="text" formControlName="email" name="email">
+                                                <div class="invalid-feedback">A valid email is required!</div>
+                                            </div>
+                                            <div class="forms-inputs mb-4"> <span>Phone</span> <input autocomplete="off" type="text" formControlName="phone" name="phone">
+                                                <div class="invalid-feedback">A valid Phone number is required!</div>
+                                            </div>
+                                            <div class="forms-inputs mb-4"> <span>Password</span> 
+                                                <input autocomplete="off" type="password" formControlName="password" name="password" #signupPasswordInput>
+                                                <i class="eye fa-solid fa-eye"
+                                                (click)="togglePassword(signupPasswordInput)"></i>
+                                                <div class="invalid-feedback">Password must be 8 character!</div>
+                                            </div>
+                                        
+                                            <div class="mb-3"> <button  class="btn btn-dark w-100">Login</button> </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
