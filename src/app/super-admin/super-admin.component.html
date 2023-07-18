@@ -1,61 +1,61 @@
 <!-- sidenav and main part -->
-  <div id="back" class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary ">
-      <!-- Vertical Navbar -->
-      <nav class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
-          id="navbarVertical" >
-          <div class="container-fluid">
-              <!-- Collapse -->
-              <div class="collapse navbar-collapse" id="sidebarCollapse">
-                  <!-- Navigation -->
-                  <ul class="navbar-nav cursor-pointer">
-                      <li class="nav-item ">
-                          <a class="nav-link" routerLink="/superAdmin/adminDashboard">
-                              <i class="bi bi-house"></i> Dashboard
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="/superAdmin/userList">
-                              <i class="bi bi-people"></i> Users
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="/superAdmin/SellerList">
-                            <i class="bi bi-person-square"></i> Sellers
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="/superAdmin/MyProducts">
-                              <i class="bi bi-bag-check-fill"></i> Products
-                          </a>
-                      </li>
-                  </ul>
-                  <ul class="navbar-nav">
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="/superAdmin/orders">
-                            <i class="bi bi-bag-check-fill"></i>Orders
-                          </a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" routerLink="/superAdmin/category">
-                            <i class="bi bi-box-seam"></i>Categories
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </nav>
-
-      
-      <!-- Main content -->
-      <div class="h-screen flex-grow-1 overflow-y-lg-auto">
-         
-          <main class="py-6 bg-surface-secondary">
-              <div class="container-fluid">
-                  <router-outlet></router-outlet>
-              
-              </div>
-          </main>
+<div
+  id="back"
+  class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary"
+>
+  <!-- Vertical Navbar -->
+  <nav
+    class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
+    id="navbarVertical"
+  >
+    <div class="container-fluid">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidebarCollapse">
+        <!-- Navigation -->
+        <ul class="navbar-nav cursor-pointer">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/adminDashboard">
+              <i class="bi bi-house"></i> Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/userList">
+              <i class="bi bi-people"></i> Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/SellerList">
+              <i class="bi bi-person-square"></i> Sellers
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/MyProducts">
+              <i class="bi bi-bag-check-fill"></i> Products
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/orders">
+              <i class="bi bi-bag-check-fill"></i>Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/superAdmin/category">
+              <i class="bi bi-box-seam"></i>Categories
+            </a>
+          </li>
+        </ul>
       </div>
-      
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+    <main class="py-6 bg-surface-secondary">
+      <div class="container-fluid">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
   </div>
- 
+</div>

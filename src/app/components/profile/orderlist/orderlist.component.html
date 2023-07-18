@@ -1,60 +1,86 @@
 <div class="loader" *ngIf="showSpinner"></div>
-<div class="container mt-4"  >
-    <section class=" gradient-custom-2" *ngIf="imageFound">
-        <div class="container py-1">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-10 col-lg-8 col-xl-6 mb-4" *ngFor="let item of myorder">
-                    <div class="card card-stepper" style="border-radius: 16px;">
-                        <div class="card-header p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <p class="text-muted mb-2"> Order ID : <span
-                                            class="fw-bold text-body">{{item._id}}</span></p>
-                                    <p class="text-muted mb-0"> Place On : <span
-                                            class="fw-bold text-body">{{item.createdAt | date:'medium'}}</span> </p>
-                                </div>
-                                <div>
-
-                                    <h6 class="mb-0 details"> <a
-                                            (click)="sendId(item._id , item.product.product._id)">View Details</a> </h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body p-4">
-                            <div class="d-flex flex-row mb-4 pb-2">
-                                <div class="flex-fill">
-                                    <h5 class="bold">{{item.product.product.title}}</h5>
-                                    <p class="text-muted"> Qt: {{item.product.quantity}} item</p>
-                                    <h4 class="mb-3"> {{item.product.product.price}} <span class="small text-muted"> via
-                                            ({{item.PaymentStatus}}) </span></h4>
-
-                                </div>
-                                <div>
-                                    <img class="align-self-center img-fluid"
-                                        src="https://ecombackend.softprodigyphp.in/uploads/{{item.product.product.thumbnail}}"
-                                        width="100">
-                                </div>
-                            </div>
-
-                            <h4 class="text-danger text-center" *ngIf="cancelled">Cancelled</h4>
-
-
-                        </div>
-                        <div class="card-footer p-4">
-                            <div class="d-flex justify-content-between">
-                                <div class="border-start h-100"></div>
-                                <h5 class="fw-normal mb-0" *ngIf="!cancelled"><a style="color: blue; cursor: pointer;"
-                                        (click)="cancleOrder(item)">Cancel</a></h5>
-                                <div class="border-start h-100"></div>
-                            </div>
-                        </div>
-                    </div>
+<div class="container mt-4">
+  <section class="gradient-custom-2" *ngIf="imageFound">
+    <div class="container py-1">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div
+          class="col-md-10 col-lg-8 col-xl-6 mb-4"
+          *ngFor="let item of myorder"
+        >
+          <div class="card card-stepper" style="border-radius: 16px">
+            <div class="card-header p-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-2">
+                    Order ID :
+                    <span class="fw-bold text-body">{{ item._id }}</span>
+                  </p>
+                  <p class="text-muted mb-0">
+                    Place On :
+                    <span class="fw-bold text-body">{{
+                      item.createdAt | date : "medium"
+                    }}</span>
+                  </p>
                 </div>
+                <div>
+                  <h6 class="mb-0 details">
+                    <a (click)="sendId(item._id, item.product.product._id)"
+                      >View Details</a
+                    >
+                  </h6>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
+            <div class="card-body p-4">
+              <div class="d-flex flex-row mb-4 pb-2">
+                <div class="flex-fill">
+                  <h5 class="bold">{{ item.product.product.title }}</h5>
+                  <p class="text-muted">Qt: {{ item.product.quantity }} item</p>
+                  <h4 class="mb-3">
+                    {{ item.product.product.price }}
+                    <span class="small text-muted">
+                      via ({{ item.PaymentStatus }})
+                    </span>
+                  </h4>
+                </div>
+                <div>
+                  <img
+                    class="align-self-center img-fluid"
+                    src="https://ecombackend.softprodigyphp.in/uploads/{{
+                      item.product.product.thumbnail
+                    }}"
+                    width="100"
+                  />
+                </div>
+              </div>
 
-    <div *ngIf="!imageFound">
-        <img src="../../../../assets//no_found.png" alt="">
+              <h4
+                class="text-danger text-center"
+                *ngIf="item.product.status === 'Cancelled'"
+              >
+                Cancelled
+              </h4>
+            </div>
+            <div class="card-footer p-4">
+              <div class="d-flex justify-content-between">
+                <div class="border-start h-100"></div>
+                <h5 class="fw-normal mb-0" *ngIf="item.product.status !== 'Cancelled'">
+                  <a
+                    style="color: blue; cursor: pointer"
+                    (click)="cancleOrder(item)"
+                    >Cancel</a
+                  >
+                </h5>
+                <div class="border-start h-100"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <div *ngIf="!imageFound">
+    <img src="../../../../assets//no_found.png" alt="" />
+  </div>
 </div>

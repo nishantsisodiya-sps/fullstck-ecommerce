@@ -1,230 +1,200 @@
-
- body{
-
-	background-color: #eee;
+body {
+  background-color: #eee;
 }
-.container{
-	width: 100%;
-	padding: 5%;
+.container {
+  width: 100%;
+  padding: 5%;
 }
 
-.card{
-
-	background-color: #fff;
-	border:none;
-	border-radius: 10px;
-	width: 100%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.image-container{
-
-	position: relative;
+.image-container {
+  position: relative;
 }
 
-.thumbnail-image{
-	border-radius: 10px !important;
+.thumbnail-image {
+  border-radius: 10px !important;
 }
 
-
-.discount{
-
-	background-color: red;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	padding-left: 4px;
-	padding-right: 4px;
-	font-size: 10px;
-	border-radius: 6px;
-	color: #fff;
+.discount {
+  background-color: red;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 10px;
+  border-radius: 6px;
+  color: #fff;
 }
 
-.wishlist{
-
-	height: 25px;
-	width: 25px;
-	background-color: #eee;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 50%;
-	box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.wishlist {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.first{
-
-	position: absolute;
-	width: 100%;
-	    padding: 9px;
+.first {
+  position: absolute;
+  width: 100%;
+  padding: 9px;
 }
 
-
-.dress-name{
-	font-size: 13px;
-	font-weight: bold;
-	width: 60%;
+.dress-name {
+  font-size: 13px;
+  font-weight: bold;
+  width: 60%;
 }
 
-
-.new-price{
-	font-size: 13px;
-	font-weight: bold;
-	color: red;
-	
+.new-price {
+  font-size: 13px;
+  font-weight: bold;
+  color: red;
 }
-.old-price{
-	font-size: 8px;
-	font-weight: bold;
-	color: grey;
+.old-price {
+  font-size: 8px;
+  font-weight: bold;
+  color: grey;
 }
 
-
-.btns{
-	width: 14px;
-	height: 14px;
-	border-radius: 50%;
-	padding: 3px;
+.btns {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  padding: 3px;
 }
 
-.creme{
-	background-color: #fff;
-	border: 2px solid grey;
-	
-
+.creme {
+  background-color: #fff;
+  border: 2px solid grey;
 }
 .creme:hover {
-	border: 3px solid grey;
+  border: 3px solid grey;
 }
 
 .creme:focus {
-	background-color: grey;
-
+  background-color: grey;
 }
 
-
-.red{
-	background-color: #fff;
-	border: 2px solid red;
-	
+.red {
+  background-color: #fff;
+  border: 2px solid red;
 }
-
 
 .red:hover {
-	border: 3px solid red;
+  border: 3px solid red;
 }
 .red:focus {
-	background-color: red;
+  background-color: red;
 }
 
-
-
-.blue{
-	background-color: #fff;
-	border: 2px solid #40C4FF;
+.blue {
+  background-color: #fff;
+  border: 2px solid #40c4ff;
 }
 
 .blue:hover {
-	border: 3px solid #40C4FF;
+  border: 3px solid #40c4ff;
 }
 .blue:focus {
-	background-color: #40C4FF;
+  background-color: #40c4ff;
 }
-.darkblue{
-	background-color: #fff;
-	border: 2px solid #01579B;
+.darkblue {
+  background-color: #fff;
+  border: 2px solid #01579b;
 }
 .darkblue:hover {
-	border: 3px solid #01579B;
+  border: 3px solid #01579b;
 }
 .darkblue:focus {
-	background-color: #01579B;
+  background-color: #01579b;
 }
-.yellow{
-	background-color: #fff;
-	border: 2px solid #FFCA28;
+.yellow {
+  background-color: #fff;
+  border: 2px solid #ffca28;
 }
 .yellow:hover {
-	border-radius: 3px solid #FFCA28;
+  border-radius: 3px solid #ffca28;
 }
 .yellow:focus {
-	background-color: #FFCA28;
+  background-color: #ffca28;
 }
 
-
-.item-size{
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;
-	background: #fff;
-	border: 1px solid grey;
-	color: grey;
-	font-size: 10px;
-	text-align: center;
-	align-items: center;
-	display: flex;
-	justify-content: center;
+.item-size {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid grey;
+  color: grey;
+  font-size: 10px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
 
-
-.rating-star{
-	font-size: 10px !important;
+.rating-star {
+  font-size: 10px !important;
 }
-.rating-number{
-	font-size: 10px;
-	color: grey;
-
+.rating-number {
+  font-size: 10px;
+  color: grey;
 }
-.buy{
-	font-size: 12px;
-	color: purple;
-	font-weight: 500;
+.buy {
+  font-size: 12px;
+  color: purple;
+  font-weight: 500;
 }
 
-
-
-.voutchers{
-	background-color: #fff;
-	border:none;
-	border-radius: 10px;
-	width: 100%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	overflow: hidden;
-
+.voutchers {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
 }
-.voutcher-divider{
-
-	display: flex;
-
+.voutcher-divider {
+  display: flex;
 }
-.voutcher-left{
-	
-	width: 60%
+.voutcher-left {
+  width: 60%;
 }
-.voutcher-name{
-	color: grey;
-	font-size: 9px;
-	font-weight: 500;
+.voutcher-name {
+  color: grey;
+  font-size: 9px;
+  font-weight: 500;
 }
-.voutcher-code{
-	color: red;
-	font-size: 11px;
-	font-weight: bold;
+.voutcher-code {
+  color: red;
+  font-size: 11px;
+  font-weight: bold;
 }
-.voutcher-right{
-	width: 40%;	 
-	background-color: purple;
-	color: #fff;
+.voutcher-right {
+  width: 40%;
+  background-color: purple;
+  color: #fff;
 }
 
-.discount-percent{
-	font-size: 12px;
-	font-weight: bold;
-	position: relative;
-	top: 5px;
+.discount-percent {
+  font-size: 12px;
+  font-weight: bold;
+  position: relative;
+  top: 5px;
 }
-.off{
-	font-size: 14px;
-	position: relative;
-	bottom: 5px;
+.off {
+  font-size: 14px;
+  position: relative;
+  bottom: 5px;
 }

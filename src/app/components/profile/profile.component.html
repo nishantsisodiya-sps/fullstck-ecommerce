@@ -1,89 +1,125 @@
 <div class="container mt-4">
-    <div class="row">
-        <div class="col-lg-3 my-lg-0 my-md-1">
-            <div id="sidebar" class="bg-purple">
-                <div class="h4 text-white">Account</div>
-                <ul>
-
-                    <li *ngIf="forseller" routerLinkActive="active" style="cursor: pointer;">
-                        <div class="dropdown">
-                          <a class="text-decoration-none d-flex align-items-start" data-bs-toggle="dropdown">
-                            <div class="fa-solid fa-box pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                              <div class="link" routerLink="dashboard">Dashboard</div>
-                              <div class="link-desc">View & Manage orders and returns</div>
-                            </div>
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" routerLink="orderByUsers">Orders</a></li>
-                            <li><a class="dropdown-item" routerLink="stock">Stock</a></li>
-                          </ul>
-                        </div>
-                      </li>
-                
-
-                    <li *ngIf="forseller" routerLinkActive="active" >
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="sellerProducts">
-                            <div class="fas fa-user-secret pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">My Products</div>
-                                <div class="link-desc">Check your Products as You are Merchant</div>
-                            </div>
-                        </a>
-                    </li>
-
-                    <li routerLinkActive="active">
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="MyOrderList">
-                            <div class="far fa-address-book pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">My Purchase</div>
-                                <div class="link-desc">View Your Purchased Orders</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li routerLinkActive="active">
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="userDetails">
-                            <div class="far fa-user pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">My Profile</div>
-                                <div class="link-desc">Change your profile details & password</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li routerLinkActive="active">
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="wishlist">
-                            <div class="far fa-user pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">Wishlist</div>
-                                <div class="link-desc">Your Most liked products</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li routerLinkActive="active">
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="address">
-                            <div class="far fa-user pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">Address</div>
-                                <div class="link-desc">Add your address</div>
-                            </div>
-                        </a>
-                    </li>
-                    <li >
-                        <a class="text-decoration-none d-flex align-items-start" routerLinkActive="active" routerLink="support">
-                            <div class="fas fa-headset pt-2 me-3"></div>
-                            <div class="d-flex flex-column">
-                                <div class="link">Help & Support</div>
-                                <div class="link-desc">Contact Us for help and support</div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+  <div class="row">
+    <div class="col-lg-3 my-lg-0 my-md-1">
+      <div id="sidebar" class="bg-purple">
+        <div class="h4 text-white">Account</div>
+        <ul>
+          <li
+            *ngIf="forseller"
+            routerLinkActive="active"
+            style="cursor: pointer"
+          >
+            <div class="dropdown">
+              <a
+                class="text-decoration-none d-flex align-items-start"
+                data-bs-toggle="dropdown"
+              >
+                <div class="fa-solid fa-box pt-2 me-3"></div>
+                <div class="d-flex flex-column">
+                  <div class="link" routerLink="dashboard">Dashboard</div>
+                  <div class="link-desc">View & Manage orders and returns</div>
+                </div>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="dropdown-item" routerLink="orderByUsers">Orders</a>
+                </li>
+                <li><a class="dropdown-item" routerLink="stock">Stock</a></li>
+              </ul>
             </div>
-        </div>
+          </li>
 
+          <li *ngIf="forseller" routerLinkActive="active">
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="sellerProducts"
+            >
+              <div class="fas fa-user-secret pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">My Products</div>
+                <div class="link-desc">
+                  Check your Products as You are Merchant
+                </div>
+              </div>
+            </a>
+          </li>
 
-        <div class="col-lg-9 my-lg-0 my-1">
-            <div id="main-content" class="bg-white border">
-                <router-outlet></router-outlet>
-        </div>
+          <li routerLinkActive="active">
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="MyOrderList"
+            >
+              <div class="far fa-address-book pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">My Purchase</div>
+                <div class="link-desc">View Your Purchased Orders</div>
+              </div>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="userDetails"
+            >
+              <div class="far fa-user pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">My Profile</div>
+                <div class="link-desc">
+                  Change your profile details & password
+                </div>
+              </div>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="wishlist"
+            >
+              <div class="far fa-user pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">Wishlist</div>
+                <div class="link-desc">Your Most liked products</div>
+              </div>
+            </a>
+          </li>
+          <li routerLinkActive="active">
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="address"
+            >
+              <div class="far fa-user pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">Address</div>
+                <div class="link-desc">Add your address</div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              class="text-decoration-none d-flex align-items-start"
+              routerLinkActive="active"
+              routerLink="support"
+            >
+              <div class="fas fa-headset pt-2 me-3"></div>
+              <div class="d-flex flex-column">
+                <div class="link">Help & Support</div>
+                <div class="link-desc">Contact Us for help and support</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+
+    <div class="col-lg-9 my-lg-0 my-1">
+      <div id="main-content" class="bg-white border">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

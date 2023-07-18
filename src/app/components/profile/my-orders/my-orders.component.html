@@ -1,128 +1,204 @@
 <div class="loader" *ngIf="showSpinner"></div>
 <section class="gradient-custom">
-    <div class="container py-5">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-10 col-xl-10">
-                <div class="card" style="border-radius: 10px;">
-                    <div class="card-header px-4 py-5">
-                        <h5 class="text-muted mb-0">Thanks for your Order, <span style="color: #a8729a;">{{name |
-                                uppercase}}</span>!
-                        </h5>
-                    </div>
-                    <div class="card-body p-4" *ngFor="let item of orders">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <p class="lead fw-normal mb-0" style="color: #a8729a;">Order</p>
-                            <p class="small text-muted mb-0">Order Id : {{item.id}}</p>
-                        </div>
-                        <div class="card shadow-0 border mb-4" *ngFor="let product of orderProducts">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <img src="https://ecombackend.softprodigyphp.in/uploads/{{product.thumbnail}}"
-                                            class="img-fluid" alt="Phone">
-                                    </div>
-                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0">{{product.title}}</p>
-                                    </div>
-                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small">{{product.brand}}</p>
-                                    </div>
-
-                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small">Qty: {{product.quantity}}</p>
-                                    </div>
-                                    <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
-                                        <p class="text-muted mb-0 small">&#8377; {{product.price}}</p>
-                                    </div>
-                                </div>
-                                <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
-
-                                <div class="container py-1 h-100">
-                                    <div class="row d-flex justify-content-center align-items-center h-100">
-                                        <div class="col-12">
-                                            <div class="card card-stepper text-black" style="border-radius: 16px;">
-
-                                                <div class="card-body p-1">
-
-                                                    <ul id="progressbar-2" class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2">
-                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Placed' || orders[0]?.status === 'Packed' || orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step1"></li>
-                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Packed' || orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step2"></li>
-                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Shipped' || orders[0]?.status === 'Delivered' }" id="step3"></li>
-                                                        <li [ngClass]="{ 'step0': true, 'active': orders[0]?.status === 'Delivered' }" id="step4"></li>
-                                                      </ul>
-
-
-                                                    <div class="d-flex justify-content-between">
-                                                        <div class="d-lg-flex align-items-center">
-                                                            <i
-                                                                class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                                            <div>
-                                                                <p class="fw-bold mb-1">Order</p>
-                                                                <p class="fw-bold mb-0">Placed</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-lg-flex align-items-center">
-                                                            <i class="fas fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                                            <div>
-                                                                <p class="fw-bold mb-1">Order</p>
-                                                                <p class="fw-bold mb-0">Packed</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-lg-flex align-items-center">
-                                                            <i
-                                                                class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                                            <div>
-                                                                <p class="fw-bold mb-1">Order</p>
-                                                                <p class="fw-bold mb-0">Shipped</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="d-lg-flex align-items-center">
-                                                            <i class="fas fa-home fa-3x me-lg-4 mb-3 mb-lg-0"></i>
-                                                            <div>
-                                                                <p class="fw-bold mb-1">Order</p>
-                                                                <p class="fw-bold mb-0">Delivered</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                        <div>
-
-                            <div class="d-flex justify-content-between pt-2">
-                                <p class="text-muted mb-0"> <b>Payment id :</b> {{item.paymentId}}</p>
-
-                            </div>
-
-                            <div class="d-flex justify-content-between">
-                                <p class="text-muted mb-0"> <b>Order Date :</b> {{item.createdAt | date:'medium' }}</p>
-
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p class="text-muted mb-0"> <b>Expected Arrival Date :</b> {{item.expectedDeliveryDate | date:'fullDate' }}</p>
-
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="card-footer border-0 px-4 py-5"
-                        style="background-color: #a8729a; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;"
-                        *ngFor="let product of orderProducts">
-                        <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
-                            paid: <span class="h2 mb-0 ms-2">&#8377; {{product.price}}</span></h5>
-                    </div>
-                </div>
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-lg-10 col-xl-10">
+        <div class="card" style="border-radius: 10px">
+          <div class="card-header px-4 py-5">
+            <h5 class="text-muted mb-0">
+              Thanks for your Order,
+              <span style="color: #a8729a">{{ name | uppercase }}</span
+              >!
+            </h5>
+          </div>
+          <div class="card-body p-4" *ngFor="let item of orders">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <p class="lead fw-normal mb-0" style="color: #a8729a">Order</p>
+              <p class="small text-muted mb-0">Order Id : {{ item.id }}</p>
             </div>
+            <div
+              class="card shadow-0 border mb-4"
+              *ngFor="let product of orderProducts"
+            >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-3">
+                    <img
+                      src="https://ecombackend.softprodigyphp.in/uploads/{{
+                        product.thumbnail
+                      }}"
+                      class="img-fluid"
+                      alt="Phone"
+                    />
+                  </div>
+                  <div
+                    class="col-md-3 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0">{{ product.title }}</p>
+                  </div>
+                  <div
+                    class="col-md-3 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">{{ product.brand }}</p>
+                  </div>
+
+                  <div
+                    class="col-md-3 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      Qty: {{ product.quantity }}
+                    </p>
+                  </div>
+                  <div
+                    class="col-md-3 text-center d-flex justify-content-center align-items-center"
+                  >
+                    <p class="text-muted mb-0 small">
+                      &#8377; {{ product.price }}
+                    </p>
+                  </div>
+                </div>
+                <hr
+                  class="mb-4"
+                  style="background-color: #e0e0e0; opacity: 1"
+                />
+
+                <div class="container py-1 h-100">
+                  <div
+                    class="row d-flex justify-content-center align-items-center h-100"
+                  >
+                    <div class="col-12">
+                      <div
+                        class="card card-stepper text-black"
+                        style="border-radius: 16px"
+                      >
+                        <div class="card-body p-1">
+                          <ul
+                            id="progressbar-2"
+                            class="d-flex justify-content-between mx-0 mt-0 mb-5 px-0 pt-0 pb-2"
+                          >
+                            <li
+                              [ngClass]="{
+                                step0: true,
+                                active:
+                                  orders[0]?.status === 'Placed' ||
+                                  orders[0]?.status === 'Packed' ||
+                                  orders[0]?.status === 'Shipped' ||
+                                  orders[0]?.status === 'Delivered'
+                              }"
+                              id="step1"
+                            ></li>
+                            <li
+                              [ngClass]="{
+                                step0: true,
+                                active:
+                                  orders[0]?.status === 'Packed' ||
+                                  orders[0]?.status === 'Shipped' ||
+                                  orders[0]?.status === 'Delivered'
+                              }"
+                              id="step2"
+                            ></li>
+                            <li
+                              [ngClass]="{
+                                step0: true,
+                                active:
+                                  orders[0]?.status === 'Shipped' ||
+                                  orders[0]?.status === 'Delivered'
+                              }"
+                              id="step3"
+                            ></li>
+                            <li
+                              [ngClass]="{
+                                step0: true,
+                                active: orders[0]?.status === 'Delivered'
+                              }"
+                              id="step4"
+                            ></li>
+                          </ul>
+
+                          <div class="d-flex justify-content-between">
+                            <div class="d-lg-flex align-items-center">
+                              <i
+                                class="fas fa-clipboard-list fa-3x me-lg-4 mb-3 mb-lg-0"
+                              ></i>
+                              <div>
+                                <p class="fw-bold mb-1">Order</p>
+                                <p class="fw-bold mb-0">Placed</p>
+                              </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                              <i
+                                class="fas fa-box-open fa-3x me-lg-4 mb-3 mb-lg-0"
+                              ></i>
+                              <div>
+                                <p class="fw-bold mb-1">Order</p>
+                                <p class="fw-bold mb-0">Packed</p>
+                              </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                              <i
+                                class="fas fa-shipping-fast fa-3x me-lg-4 mb-3 mb-lg-0"
+                              ></i>
+                              <div>
+                                <p class="fw-bold mb-1">Order</p>
+                                <p class="fw-bold mb-0">Shipped</p>
+                              </div>
+                            </div>
+                            <div class="d-lg-flex align-items-center">
+                              <i
+                                class="fas fa-home fa-3x me-lg-4 mb-3 mb-lg-0"
+                              ></i>
+                              <div>
+                                <p class="fw-bold mb-1">Order</p>
+                                <p class="fw-bold mb-0">Delivered</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="d-flex justify-content-between pt-2">
+                <p class="text-muted mb-0">
+                  <b>Payment id :</b> {{ item.paymentId }}
+                </p>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <p class="text-muted mb-0">
+                  <b>Order Date :</b> {{ item.createdAt | date : "medium" }}
+                </p>
+              </div>
+              <div class="d-flex justify-content-between">
+                <p class="text-muted mb-0">
+                  <b>Expected Arrival Date :</b>
+                  {{ item.expectedDeliveryDate | date : "fullDate" }}
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="card-footer border-0 px-4 py-5"
+            style="
+              background-color: #a8729a;
+              border-bottom-left-radius: 10px;
+              border-bottom-right-radius: 10px;
+            "
+            *ngFor="let product of orderProducts"
+          >
+            <h5
+              class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"
+            >
+              Total paid:
+              <span class="h2 mb-0 ms-2">&#8377; {{ product.price }}</span>
+            </h5>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
