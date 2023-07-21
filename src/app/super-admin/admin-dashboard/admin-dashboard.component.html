@@ -71,35 +71,12 @@
         </div>
 
 
-        <!-- <div class="charts">
-            <div class="col-md-2" style="cursor: pointer;">
-                <ul *ngFor="let item of allSellers">
-                    <li (click)="getSellerProducts(item._id)"><b>{{item.name}}</b></li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-10 d-flex">
-                <div class='container-fluid'*ngFor="let item of SellerProducts" style="cursor: pointer;">
-                    <div class="card3 mx-auto col-md-3 col-10 mt-1 pt-4">
-                        <img class='mx-auto img-thumbnail'
-                            src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}"
-                            width="auto" height="auto"/>
-                        <div class="card-body text-center mx-auto">
-                            <h5 class="card-title card-title-limit" title="{{item.title}}">{{item.title}}</h5>
-                            <p class="card-text">{{item.price}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
+      
 
         <div class="charts">
             <div class="col-md-2">
               <ul>
-                <li *ngFor="let item of allSellers" (click)="getSellerProducts(item._id)" [ngClass]="{'active': item.open}">
+                <li style="cursor: pointer;" *ngFor="let item of allSellers" (click)="getSellerProducts(item._id)" [ngClass]="{'active': item.open}">
                   <b>{{item.name | uppercase}}</b>
                 </li>
               </ul>

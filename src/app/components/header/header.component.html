@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">E-Commerce</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -20,7 +20,7 @@
 
       <div class="ms-auto" [ngSwitch]="menuType">
 
-        <!-- for default if not signedin -->
+
 
         <ul class="navbar-nav ms-auto" *ngSwitchCase="'default'">
           <li class="nav-item">
@@ -40,7 +40,7 @@
         </ul>
 
 
-        <!-- for user if signed in -->
+      
 
 
         <ul class="navbar-nav ms-auto" *ngSwitchCase="'user'">
@@ -72,7 +72,7 @@
           </li>
         </ul>
 
-        <!-- for seller if signed in -->
+
 
         <ul class="navbar-nav ms-auto" *ngSwitchCase="'seller'">
           <li class="nav-item">
@@ -122,6 +122,256 @@
           </li>
         </ul>
 
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-white shadow-sm "
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse d-lg-flex align-items-lg-center justify-content-lg-between"
+      id="navbarSupportedContent"
+    >
+      <form class="d-flex" style="margin: auto">
+        <input
+          class="form-control me-2"
+          NoSpecialCharacter
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          #val
+          (keyup)="search(val.value)"
+          (blur)="hideSearch()"
+        />
+        <ul id="suggested-search" *ngIf="searchResult">
+          <li *ngFor="let item of searchResult">
+            <a (mousedown)="redirectToDetails(item._id)">
+              <img
+                src="https://ecombackend.softprodigyphp.in/uploads/{{
+                  item.thumbnail
+                }}"
+                width="15%"
+                alt=""
+              />
+              {{ item.title }}</a
+            >
+          </li>
+        </ul>
+      </form>
+
+      <div class="ms-auto" [ngSwitch]="menuType">
+        
+        <ul
+          class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row"
+          *ngSwitchCase="'default'"
+        >
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/superAdminAuth">Super Admin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+       
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/sellerAuth">seller</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/userAuth">LogIn/SignUp</a>
+        </li>
+        </ul>
+
+
+
+
+
+        <ul
+          class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row"
+          *ngSwitchCase="'user'"
+        >
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/sellerAuth">Become a seller</a>
+        </li>
+          <li class="nav-item me-3">
+            <a class="nav-link active"  aria-current="page" routerLink="/cart"
+              ><i id="icon" class="fa-solid fa-cart-shopping"></i>
+              <span class="badge badge-warning" id="lblCartCount">
+                {{ cartlength }}
+              </span>
+            </a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link active" aria-current="page" routerLink="/profile/wishlist"
+              ><i id="icon" class="fa-regular fa-heart"></i>
+              <span class="badge badge-warning" id="lblCartCount">
+                {{ cartlength }}
+              </span>
+            </a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                class="rounded-circle"
+                src="https://cdn.quasar.dev/img/boy-avatar.png"
+                width="40px"
+                alt=""
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-center"
+              aria-labelledby="navbarDropdown"
+            >
+              <li>
+                <a class="dropdown-item" routerLink="/profile">Profile</a>
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/profile/MyOrderList"
+                  >MyOrders</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" routerLink="/profile/wishlist"
+                  >Wishlist</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="sellerlogout()">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+
+
+
+
+        <ul
+        class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row"
+       *ngSwitchCase="'seller'"
+      >
+
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="addproduct">Add products</a>
+      </li>
+
+        <li class="nav-item me-3">
+          <a class="nav-link active" aria-current="page" routerLink="/cart"
+            ><i id="icon" class="fa-solid fa-cart-shopping"></i>
+            <span class="badge badge-warning" id="lblCartCount">
+              {{ cartlength }}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item me-3">
+          <a class="nav-link active" aria-current="page" routerLink="/profile/wishlist"
+            ><i id="icon" class="fa-regular fa-heart"></i>
+            <span class="badge badge-warning" id="lblCartCount">
+              {{ cartlength }}
+            </span>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              class="rounded-circle"
+              src="https://cdn.quasar.dev/img/boy-avatar.png"
+              width="40px"
+              alt=""
+            />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end dropdown-center"
+            aria-labelledby="navbarDropdown"
+          >
+            <li>
+              <a class="dropdown-item" routerLink="/profile">Profile</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/profile/MyOrderList"
+                >MyOrders</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/profile/wishlist"
+                >Wishlist</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="sellerlogout()">Logout</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
+
+
+
+        <ul
+          class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row"
+         *ngSwitchCase="'superAdmin'"
+        >
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                class="rounded-circle"
+                src="https://cdn.quasar.dev/img/boy-avatar.png"
+                width="40px"
+                alt=""
+              />
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end dropdown-center"
+              aria-labelledby="navbarDropdown"
+            >
+              <li>
+                <a class="dropdown-item" (click)="sellerlogout()">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

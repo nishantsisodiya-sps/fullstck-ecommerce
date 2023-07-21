@@ -63,7 +63,6 @@ import { CategoryComponent } from './super-admin/category/category.component';
 import { AdminDashboardComponent } from './super-admin/admin-dashboard/admin-dashboard.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -106,6 +105,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     NgbModule,

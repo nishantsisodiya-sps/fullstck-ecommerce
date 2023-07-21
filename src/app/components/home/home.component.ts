@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
     this.showSpinner = true
     return this.api.getProducts().subscribe(response =>{
       this.myProducts = response.products
+      console.log(this.myProducts);
       this.products =  response.products.slice(4,8)
       this.showSpinner = false
     })}

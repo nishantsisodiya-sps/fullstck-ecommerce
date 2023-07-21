@@ -259,3 +259,62 @@ body{
 	width: 100%;
 	cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+
+  .homepage {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 1%;
+    border-radius: 20px;
+  }
+  .carousel-caption {
+    background-color: #0000007d;
+    border-radius: 10px;
+  }
+  .anchortag {
+    text-decoration: none;
+    color: rgb(41, 36, 36);
+  }
+  .category-items {
+    height: 200px;
+    margin-right: 0;
+    flex: 0 0 16.666%;
+    display: block;
+  }
+  .product-card:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+  }
+  .category-card:hover {
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+  }
+  .carousel-control-next {
+    z-index: 0;
+    width: 5%;
+  }
+  .carousel-control-prev {
+    z-index: 0;
+    width: 5%;
+  }
+  .carousel-control-next-category {
+    z-index: 0;
+    width: 2%;
+  }
+  .carousel-control-prev-category {
+    z-index: 0;
+    width: 2%;
+  }
+
+
+
+
+
+

@@ -1,13 +1,14 @@
 nav{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    height: 10%;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* height: 10%; */
+    padding: 1%;
 }
 .example-spacer {
     flex: 1 1 auto;
   }
-  .fa-solid{
+  #icon{
     font-size: x-large;
-    color: blueviolet;
+    /* color: white; */
   }
 
 .badge {
