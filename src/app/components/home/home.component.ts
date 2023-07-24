@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   sellerData : any = []
   categories : any = []
   showSpinner : boolean = false
-
+  
   constructor(private api : UserAuthApiService , private category : CategoryService) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     return this.api.getProducts().subscribe(response =>{
       this.myProducts = response.products
       console.log(this.myProducts);
-      this.products =  response.products.slice(4,8)
+      this.products =  response.products
       this.showSpinner = false
     })}
 

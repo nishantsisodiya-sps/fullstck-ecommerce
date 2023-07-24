@@ -3,6 +3,7 @@ import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { LengthServiceService } from 'src/app/service/length-service.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 import { WishlistService } from 'src/app/service/wishlist.service';
@@ -27,6 +28,7 @@ export class DetailsComponent implements OnInit {
     private auth: AuthTokenService,
     private productApi: ProductService,
     private wishlist: WishlistService,
+    private lengthService : LengthServiceService
  
   ) { }
 
@@ -41,6 +43,7 @@ export class DetailsComponent implements OnInit {
       let id = param.get('id')
 
       this.api.getSingleProduct(id).subscribe(res => {
+        console.log(res);
         this.product.push(res)
 
         if (res.isWishlist == true) {
@@ -75,41 +78,40 @@ export class DetailsComponent implements OnInit {
 
   AddToCart() {
     if (this.product) {
-      this.product[0].quantity = this.productQuantity
+      this.product[0].quantity = this.productQuantity;
 
-      let controll = this.auth.getSellerId()
+      let controll = this.auth.getSellerId();
 
       if (controll.role === 'user') {
         //Getting user id 
-        let user = controll.id
+        let user = controll.id;
         let cart: any = {
           user: user,
           seller: null,
           quantity: this.productQuantity,
           product: this.product[0],
-        }
+        };
         this.productApi.addToCart(cart).subscribe((res) => {
           console.log(res);
-
-        })
+          // Update the cart length in the header after a successful API call
+          this.lengthService.updateCartLength();
+        });
       } else if (controll.role === 'seller') {
         //Getting user id 
-        let seller = controll.id
+        let seller = controll.id;
         let cart: any = {
           user: null,
           seller: seller,
           quantity: this.productQuantity,
           product: this.product[0],
-        }
+        };
         this.productApi.addToCart(cart).subscribe((res) => {
-         
-          if(res){
+          if (res) {
             console.log(res);
-         
-
+            // Update the cart length in the header after a successful API call
+            this.lengthService.updateCartLength();
           }
-
-        })
+        });
       }
     }
   }
@@ -123,7 +125,8 @@ export class DetailsComponent implements OnInit {
           console.log(response);
           this.product[0].isWishlist = response.isWishlist;
           this.wishlisted = this.product[0].isWishlist;
- 
+          this.lengthService.updateWishlistLength();
+
           this.activate.paramMap.subscribe(param => {
             let id = param.get('id')
       

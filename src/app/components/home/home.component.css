@@ -314,7 +314,43 @@ body{
   }
 
 
-
-
+/* Add this CSS to your component's CSS file */
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 20px;
+	padding: 2%;
+  }
+  
+  .product-card {
+	background-color: #fff;
+	border-radius: 15px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .product-card:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .product-card img {
+	height: 150px;
+	width: 150px;
+	object-fit: fill;
+	padding: 1%;
+	margin-top: 1%;
+	mix-blend-mode: darken;
+	border-radius: 15px;
+  }
+  .category-Img{
+	/* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .category-Img:hover{
+	transform: translateY(-10px);
+	/* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
+  }
+ 
 
 

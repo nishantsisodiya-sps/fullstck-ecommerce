@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, of } from 'rxjs';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { LengthServiceService } from 'src/app/service/length-service.service';
 import { WishlistService } from 'src/app/service/wishlist.service';
 
 @Component({
@@ -12,7 +13,12 @@ export class WishlistComponent implements OnInit {
   imageFound : boolean = true
   products:any = []
   showSpinner : boolean = false
-  constructor(private wishlist : WishlistService , private auth : AuthTokenService) { }
+  constructor(
+    private wishlist : WishlistService ,
+     private auth : AuthTokenService,
+    private lengthService : LengthServiceService
+     
+     ) { }
 
   ngOnInit(): void {
     this.getWishlistProducts()
@@ -42,6 +48,7 @@ export class WishlistComponent implements OnInit {
     this.showSpinner = true
     this.wishlist.deleteFromWishlist(id).subscribe(
       res => {
+        this.lengthService.updateWishlistLength()
         this.getWishlistProducts();
         this.showSpinner = false
       },

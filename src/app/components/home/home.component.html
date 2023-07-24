@@ -137,7 +137,7 @@
 
 <div class="row mt-1">
   <div class="col-sm-12">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         
         <div class="carousel-item active" style="text-align: center">
@@ -177,8 +177,28 @@
           style="filter: invert()"
         ></span>
       </a>
+    </div> -->
+
+    <div>
+      <ngb-carousel *ngIf="myProducts">
+        <ng-template *ngFor="let item of myProducts" ngbSlide>
+          <div class="picsum-img-wrapper">
+            <a [routerLink]="['/details', item._id]"
+              ><img
+                class="product-header-image"
+                src="https://ecombackend.softprodigyphp.in/uploads/{{
+                  item.thumbnail
+                }}"
+                alt="Random first slide"
+            /></a>
+          </div>
+          <div class="carousel-caption">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+          </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   </div>
 </div>
 <div class="row" style="margin: 1%">
@@ -198,16 +218,19 @@
         >
           <div
             class="carousel-inner carousel-inner-category"
-            style="display: flex"
+            style="display: flex; justify-content: space-between"
           >
-       
-            <div class="carousel-item category-items carousel-item-category" *ngFor="let item of categories">
+            <div
+              class="carousel-item category-items carousel-item-category"
+              *ngFor="let item of categories"
+              [routerLink]="['/category-products', item._id]"
+            >
               <a
-                href=""
                 class="d-flex flex-column align-items-center category-card"
                 style="text-decoration: none"
               >
                 <img
+                  class="category-Img"
                   src="https://source.unsplash.com/450x300/?{{ item.name }}"
                   style="
                     height: 170px;
@@ -217,14 +240,14 @@
                     mix-blend-mode: darken;
                   "
                   alt="..."
+                  
                 />
+                <h2>{{ item.name }}</h2>
                 <strong
                   style="color: var(--yellow); color: #443e3e; font-size: 21px"
-                  ></strong
-                >
+                ></strong>
               </a>
             </div>
-
           </div>
           <button
             class="carousel-control-prev carousel-control-prev-category"
@@ -257,85 +280,55 @@
 </div>
 <div class="row" style="margin: 4% 5% 1% 5%">
   <img src="../../../assets/deall.jpg" />
-  <div>Today' Deal</div>
+
 </div>
-<div class="row" style="margin: 1%">
+
+
+<div class="row" style="margin: 1%;">
   <div class="col-sm-12">
     <div class="row">
-      <div class="col-sm-12" style="text-align: center">
-        <h3 class="py-1" style="color: #443e3e"><strong>Products</strong></h3>
+      <div class="col-sm-12" style="text-align: center;">
+        <h3 class="py-1">
+          <strong style="color: black; font-weight: 400;">Products</strong>
+        </h3>
       </div>
     </div>
-    
-
-    <div class="container mt-5">
-      <div class="row">
-        <div
-          class="col-md-3 mb-5"
-          *ngFor="let item of products"
-          style="cursor: pointer"
-        >
-          <div class="card">
-            <div class="image-container" [routerLink]="['/details', item._id]">
-              <div class="first">
-                <div class="d-flex justify-content-between align-items-center">
-                  <span class="discount">{{ item.discountPercentage }}%</span>
-              
+    <div class="row">
+      <div class="col-sm-12">
+        <section style="background-color: #eee; border-radius: 15px;">
+          <div class="product-grid">
+            <a class="text-reset anchortag" *ngFor="let item of products" [routerLink]="['/details', item._id]">
+              <div class="card product-card" *ngIf="item">
+                <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                  data-mdb-ripple-color="light">
+                  <img src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}"
+                    alt="Product Image" />
+                </div>
+                <div class="card-body" style="color: #443E3E; font-size: 14px;">
+                  <h5 class="card-title mb-3" style="color: black; font-weight: 400;">{{ item.title }}</h5>
+                  <p>Rs. {{ item.price }}</p>
+                  <div style="color: #3e3b3b">{{ item.rating }}/5</div>
+                  <div class="stars">
+                    <i class="bi bi-star-fill" style="color: rgb(21, 194, 21)"></i>
+                    <i class="bi bi-star-fill" style="color: rgb(21, 194, 21)"></i>
+                    <i class="bi bi-star-fill" style="color: rgb(21, 194, 21)"></i>
+                    <i class="bi bi-star-fill" style="color: rgb(21, 194, 21)"></i>
+                    <i class="bi bi-star-half" style="color: rgb(21, 194, 21)"></i>
+                  </div>
                 </div>
               </div>
-              <img
-                src="https://ecombackend.softprodigyphp.in/uploads/{{
-                  item.thumbnail
-                }}"
-                class="img-fluid rounded thumbnail-image"
-                style="aspect-ratio: 10/10"
-              />
-            </div>
-            <div class="product-detail-container p-2">
-              <div class="d-flex justify-content-between align-items-center">
-                <h5 class="dress-name">{{ item.title }}</h5>
-                <div class="d-flex flex-column mb-2">
-                  <span class="new-price">&#8377; {{ item.price }}</span>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center pt-1">
-                <div class="color-select d-flex">
-                  <input type="button" name="grey" class="btnss creme" />
-                  <input type="button" name="red" class="btnss red ml-2" />
-                  <input type="button" name="blue" class="btnss blue ml-2" />
-                </div>
-                <div class="d-flex">
-                  <span class="item-size mr-2 btnss" type="button">S</span>
-                  <span class="item-size mr-2 btnss" type="button">M</span>
-                  <span class="item-size btnss" type="button">L</span>
-                </div>
-              </div>
-              <div class="d-flex justify-content-between align-items-center pt-1">
-                <div>
-                  <i class="fa fa-star-o rating-star">{{ item.rating }}</i>
-                  <span class="rating-number"></span>
-                </div>
-                <span class="buy">BUY +</span>
-              </div>
-            </div>
+            </a>
           </div>
-          <div class="mt-3">
-            <div class="card voutchers">
-              <div class="voutcher-divider">
-                <div class="voutcher-left text-center">
-                  <span class="voutcher-name">Nion 2023</span>
-                  <h5 class="voutcher-code">#NION2023</h5>
-                </div>
-                <div class="voutcher-right text-center border-left">
-                  <h5 class="discount-percent">20%</h5>
-                  <span class="off">Off</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </div>
     </div>
-
   </div>
+</div>
+
+
+
+<div class="d-flex justify-content-center">
+  <button class="btn btn-primary" routerLink="/MyProducts">
+    View More
+  </button>
 </div>

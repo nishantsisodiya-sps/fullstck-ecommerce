@@ -133,7 +133,9 @@
   class="navbar navbar-expand-lg navbar-light bg-white shadow-sm "
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/logo.png" width="60%" alt="">
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -214,7 +216,7 @@
             <a class="nav-link active"  aria-current="page" routerLink="/cart"
               ><i id="icon" class="fa-solid fa-cart-shopping"></i>
               <span class="badge badge-warning" id="lblCartCount">
-                {{ cartlength }}
+                {{ cartLength }}
               </span>
             </a>
           </li>
@@ -222,7 +224,7 @@
             <a class="nav-link active" aria-current="page" routerLink="/profile/wishlist"
               ><i id="icon" class="fa-regular fa-heart"></i>
               <span class="badge badge-warning" id="lblCartCount">
-                {{ cartlength }}
+                {{ wishlistLength }}
               </span>
             </a>
           </li>
@@ -256,25 +258,18 @@
                 >
               </li>
               <li>
-                <a class="dropdown-item" routerLink="/profile/wishlist"
-                  >Wishlist</a
-                >
-              </li>
-              <li>
                 <a class="dropdown-item" (click)="sellerlogout()">Logout</a>
               </li>
             </ul>
           </li>
         </ul>
 
-
-
-
-
         <ul
         class="navbar-nav ms-auto mb-2 mb-lg-0 flex-row"
        *ngSwitchCase="'seller'"
       >
+
+
 
       <li class="nav-item">
         <a class="nav-link active" aria-current="page" routerLink="addproduct">Add products</a>
@@ -284,7 +279,7 @@
           <a class="nav-link active" aria-current="page" routerLink="/cart"
             ><i id="icon" class="fa-solid fa-cart-shopping"></i>
             <span class="badge badge-warning" id="lblCartCount">
-              {{ cartlength }}
+              {{ cartLength }}
             </span>
           </a>
         </li>
@@ -292,7 +287,7 @@
           <a class="nav-link active" aria-current="page" routerLink="/profile/wishlist"
             ><i id="icon" class="fa-regular fa-heart"></i>
             <span class="badge badge-warning" id="lblCartCount">
-              {{ cartlength }}
+              {{ wishlistLength }}
             </span>
           </a>
         </li>

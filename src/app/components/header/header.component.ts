@@ -1,32 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthTokenService } from 'src/app/service/auth-token.service';
+import { LengthServiceService } from 'src/app/service/length-service.service';
 import { MenutypeService } from 'src/app/service/menutype.service';
 import { ProductService } from 'src/app/service/product.service';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
+import { WishlistService } from 'src/app/service/wishlist.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit , OnDestroy {
   admin : boolean = false
   menuType : string = 'default'
   sellerData: any = []
   searchResult : any
-  cartlength : any
-  constructor( private router : Router ,
-     private auth : AuthTokenService , private product : ProductService , private menuService: MenutypeService) { }
+ 
+  cartLength: number = 0;
+  wishlistLength: number = 0;
 
+  private cartSubscription?: Subscription;
+  private wishlistSubscription?: Subscription;
+
+
+  constructor( private router : Router ,
+     private auth : AuthTokenService ,
+      private product : ProductService ,
+       private menuService: MenutypeService,
+       private lengthService: LengthServiceService
+       ) { }
+
+       
   ngOnInit(): void {
     this.menuService.menuType$.subscribe(menuType => {
       this.menuType = menuType;
     });
-    this.switchMenu()
 
-    let cart = localStorage.getItem('cartLength')
-    this.cartlength = cart
+    this.cartSubscription = this.lengthService.getCartLength().subscribe(length => {
+      this.cartLength = length;
+    });
+
+    this.wishlistSubscription = this.lengthService.getWishlistLength().subscribe(length => {
+      this.wishlistLength = length;
+    });
+
+
+    this.switchMenu()
+    this.getcartLength();
+    this.getWishlistLength();
+  }
+
+  ngOnDestroy(): void {
+    // Don't forget to unsubscribe to prevent memory leaks
+    this.cartSubscription?.unsubscribe();
+    this.wishlistSubscription?.unsubscribe();
   }
 
   switchMenu(){
@@ -80,6 +110,14 @@ export class HeaderComponent implements OnInit {
 
   hideSearch(){
     this.searchResult = undefined
+  }
+
+  getcartLength() {
+    this.lengthService.updateCartLength();
+  }
+
+  getWishlistLength() {
+    this.lengthService.updateWishlistLength();
   }
 
   }
