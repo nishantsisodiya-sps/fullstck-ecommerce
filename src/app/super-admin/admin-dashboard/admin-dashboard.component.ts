@@ -16,6 +16,7 @@ export class AdminDashboardComponent implements OnInit {
   totalOrder : any
   allSellers : any = []
   SellerProducts : any = []
+  showSpinner : boolean =  false
   constructor(private superAdmin : SuperAdminService , private userAuth : UserAuthApiService) { }
 
   ngOnInit(): void {
@@ -27,10 +28,12 @@ export class AdminDashboardComponent implements OnInit {
 
 
   getDetails(){
+    this.showSpinner = true
     this.superAdmin.getRevuenue().subscribe(res=>{
       this.topOrders = res.topProducts
       this.totalRevenue = res.totalRevenue
       this.totalOrder = res.totalOrderCount
+      this.showSpinner = false
     })
   }
 
@@ -43,8 +46,10 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   getSellerProducts(id:any){
+    this.showSpinner = true
     this.userAuth.getSellerProducts(id).subscribe(res=>{
       this.SellerProducts =  res
+      this.showSpinner = false
     })
   }
 

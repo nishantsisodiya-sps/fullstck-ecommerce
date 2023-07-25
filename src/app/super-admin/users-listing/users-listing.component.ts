@@ -1,17 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { UserAuthApiService } from 'src/app/service/user-auth-api.service';
 import { SuperAdminService } from 'src/app/service/super-admin.service';
-
-
-export interface User {
-  name: string;
-  email: string;
-  phone: number;
-  _id: string;
-  createdAt : Date
-}
 
 
 
@@ -22,14 +11,9 @@ export interface User {
 })
 
 
-export class UsersListingComponent implements OnInit , AfterViewInit {
+export class UsersListingComponent implements OnInit  {
   showSpinner : any
-  users!: MatTableDataSource<User>;
-
-  displayedColumns: string[] = ['name', 'email', 'phone', 'createdAt' , 'action'];
-
-
-  @ViewChild(MatPaginator) paginator : any | MatPaginator;
+  allUsers:any = []
 
   constructor(private auth : UserAuthApiService , private superAdmin : SuperAdminService) { }
 
@@ -38,16 +22,12 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
-    this.users.paginator = this.paginator;
-  }
-
   getAllUsers(): void {
     this.showSpinner = true
     this.auth.getAllUsers().subscribe(
-      (res: User[]) => {
-        this.users = new MatTableDataSource<User>(res);
-        this.users.paginator = this.paginator;
+      (res) => {
+        this.allUsers = res
+
         this.showSpinner = false
       },
       (error: any) => {
@@ -64,7 +44,9 @@ export class UsersListingComponent implements OnInit , AfterViewInit {
   blockUser(id:any){
     this.showSpinner = true
     this.superAdmin.blockUser(id).subscribe(res=>{
-      console.log(res);
+      if(res){
+        this.getAllUsers()
+      }
       this.showSpinner = false
     })
   }

@@ -1,52 +1,32 @@
 <div class="loader" *ngIf="showSpinner"></div>
-<div class="main">
-    <div class="mat-elevation-z8" style="border-radius: 18px;">
-        <table mat-table [dataSource]="sellers">
+<div class="card border-1 mb-2">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr class="topBar">
+                    <th scope="col"><b>Name</b></th>
+                    <th scope="col"><b>Email</b></th>
+                    <th scope="col"><b>Phone</b></th>
+                    <th scope="col"><b>Joined</b></th>
+                    <th scope="col"><b>Action</b></th>
+             
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of allSellers" style="text-align: center;">
+                    <td>{{item.name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.phone}}</td>
+                    <td>{{item.createdAt | date:'longDate'}}</td>
+                    <td>
+                        <div>
+                            <button *ngIf="!item.isBlocked" title="block" (click)="blockSeller(item._id)"><i class="fa-solid fa-user-lock"></i></button>
+                            <button *ngIf="item.isBlocked" title="Unblock" (click)="blockSeller(item._id)"><i class="fa-solid fa-lock-open"></i></button>
+                        </div>
+                    </td>
 
-           
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Name </th>
-                <td mat-cell *matCellDef="let seller"> {{seller.name}} </td>
-            </ng-container>
-
-            <!-- Weight Column -->
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef> Email </th>
-                <td mat-cell *matCellDef="let seller"> {{seller.email}} </td>
-            </ng-container>
-
-            <!-- Symbol Column -->
-            <ng-container matColumnDef="phone">
-                <th mat-header-cell *matHeaderCellDef> Phone </th>
-                <td mat-cell *matCellDef="let seller"> {{seller.phone}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="createdAt">
-                <th mat-header-cell *matHeaderCellDef> Joined </th>
-                <td mat-cell *matCellDef="let seller"> {{seller.createdAt | date:'longDate'}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="action">
-                <th mat-header-cell *matHeaderCellDef> Action </th>
-                <td mat-cell *matCellDef="let seller">
-                    <button mat-icon-button color="warn" title="DELETE USER" (click)="deleteSeller(seller._id)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                    <button mat-icon-button color="primary" title="BLOCK USER" (click)="blockSeller(seller._id)">
-                        <mat-icon>block</mat-icon>
-                    </button>
-                </td>
-            </ng-container>
-
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </tr>
+            </tbody>
         </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-            aria-label="Select page of periodic elements">
-        </mat-paginator>
     </div>
 </div>

@@ -1,97 +1,114 @@
+<div class="loader" *ngIf="showSpinner"></div>
 <div>
-    <h3>Dashboard</h3>
-    <hr>
+  <h3>Dashboard</h3>
+  <hr />
 
-
-    <div class="cards">
-
-        <mat-card>
-            <mat-card-content>
-                <b>Total Revenue </b>
-                <hr>
-                <br>
-                <div class="ord">
-                    <i class="fa-solid fa-sack-dollar"></i>
-                    &nbsp;<span> &#8377;{{totalRevenue}}</span>
-                </div>
-            </mat-card-content>
-        </mat-card>
-
-        <mat-card>
-            <mat-card-content>
-                <b>Total orders </b>
-                <hr>
-                <br>
-                <div class="ord text-success">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    &nbsp;<span style="color: #063970;">{{totalOrder}}</span>
-                </div>
-            </mat-card-content>
-        </mat-card>
-
-    </div>
-
-    <br>
-    <div>
-        <p>Top Products</p>
-    </div>
-    <br>
-    <div class="card border-1 mb-2">
-        <div class="col-md-12">
-            <table class="table">
-                <thead>
-                    <tr style="text-align: center;">
-                        <th scope="col"><b>Id</b></th>
-                        <th scope="col"><b>Image</b></th>
-                        <th scope="col"><b>Product Name</b></th>
-                        <th scope="col"><b>Price(&#8377;)</b></th>
-                        <th scope="col"><b>Sold Count</b></th>
-                        <th scope="col"><b>Total Revenue (&#8377;)</b></th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of topOrders">
-                        <td>{{item.productId}}</td>
-                        <td><img id="img" src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}" alt=""
-                                height="55px"></td>
-                        <td>{{item.name}}</td>
-                        <td>{{item.price}}</td>
-                        <td>{{item.count}}</td>
-                        <td>{{item.price * item.count}}</td>
-
-                    </tr>
-                </tbody>
-            </table>
+  <div class="cards">
+    <mat-card>
+      <mat-card-content>
+        <b>Total Revenue </b>
+        <hr />
+        <br />
+        <div class="ord">
+          <i class="fa-solid fa-sack-dollar"></i>
+          &nbsp;<span> &#8377;{{ totalRevenue }}</span>
         </div>
-    </div>
-        <br>
-        <div>
-            <p>Filter Products with Seller</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-content>
+        <b>Total orders </b>
+        <hr />
+        <br />
+        <div class="ord text-success">
+          <i class="fa-solid fa-cart-shopping"></i>
+          &nbsp;<span style="color: #063970">{{ totalOrder }}</span>
         </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
+  <br />
+  <div>
+    <p>Top Products</p>
+  </div>
+  <br />
+  <div class="card border-1 mb-2">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr style="text-align: center">
+            <th scope="col"><b>Id</b></th>
+            <th scope="col"><b>Image</b></th>
+            <th scope="col"><b>Product Name</b></th>
+            <th scope="col"><b>Price(&#8377;)</b></th>
+            <th scope="col"><b>Sold Count</b></th>
+            <th scope="col"><b>Total Revenue (&#8377;)</b></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of topOrders" style="text-align: center">
+            <td>{{ item.productId }}</td>
+            <td>
+              <img
+                id="img"
+                src="https://ecombackend.softprodigyphp.in/uploads/{{
+                  item.thumbnail
+                }}"
+                alt=""
+                height="55px"
+              />
+            </td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.count }}</td>
+            <td>{{ item.price * item.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <br />
+  <div>
+    <p>Filter Products with Seller</p>
+  </div>
 
-      
+  <div class="charts">
+    <div class="col-md-2">
+      <ul>
+        <li
+          style="cursor: pointer"
+          *ngFor="let item of allSellers"
+          (click)="getSellerProducts(item._id)"
+        >
+          <b>{{ item.name | uppercase }}</b>
+        </li>
+      </ul>
+    </div>
 
-        <div class="charts">
-            <div class="col-md-2">
-              <ul>
-                <li style="cursor: pointer;" *ngFor="let item of allSellers" (click)="getSellerProducts(item._id)" [ngClass]="{'active': item.open}">
-                  <b>{{item.name | uppercase}}</b>
-                </li>
-              </ul>
-            </div>
-          
-            <div class="col-md-10 d-flex">
-              <div class='container-fluid'*ngFor="let item of SellerProducts">
-                <div class="card3 mx-auto col-md-3 col-10 mt-1 pt-4">
-                  <img class='mx-auto img-thumbnail' src="https://ecombackend.softprodigyphp.in/uploads/{{item.thumbnail}}"
-                    width="auto" height="auto" />
-                  <div class="card-body text-center mx-auto">
-                    <h5 class="card-title card-title-limit" title="{{item.title}}">{{item.title}}</h5>
-                    <p class="card-text">{{item.price}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="col-md-10 d-flex p-2" style="overflow-x: scroll">
+      <div class="container-fluid" *ngFor="let item of SellerProducts">
+        <div
+          class="card3 mx-auto col-md-3 col-10 mt-1 pt-4"
+          *ngIf="SellerProducts"
+        >
+          <img
+            class="mx-auto img-thumbnail"
+            src="https://ecombackend.softprodigyphp.in/uploads/{{
+              item.thumbnail
+            }}"
+            width="auto"
+            height="auto"
+          />
+          <div class="card-body text-center mx-auto">
+            <h5 class="card-title card-title-limit" title="{{ item.title }}">
+              {{ item.title }}
+            </h5>
+            <p class="card-text">&#8377;{{ item.price }}</p>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

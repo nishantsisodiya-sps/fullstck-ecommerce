@@ -17,13 +17,21 @@ export class OrdersComponent implements OnInit {
   }
 
 
-  getOrders(){
-    this.showSpinner = true
-    this.admin.getAllOrders().subscribe(res=>{
-      this.orders = res.orders
-      console.log(this.orders);
-      this.showSpinner = false
-    })
+  getOrders() {
+    this.showSpinner = true;
+    this.admin.getAllOrders().subscribe((res: any) => {
+      const data: any[] = res.orders;
+      const filteredOrders: any[] = [];
+  
+      data.forEach((element: any) => {
+        if (element.productDetails && element.productDetails.product !== null) {
+          filteredOrders.push(element);
+        }
+      });
+  
+      this.orders = filteredOrders
+    });
   }
-
+  
+  
 }

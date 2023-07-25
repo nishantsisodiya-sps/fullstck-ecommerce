@@ -344,12 +344,11 @@ body{
 	border-radius: 15px;
   }
   .category-Img{
-	/* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   .category-Img:hover{
 	transform: translateY(-10px);
-	/* box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); */
+	/* transform: translateX(-10px); */
   }
  
 
